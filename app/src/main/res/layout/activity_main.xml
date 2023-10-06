@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,15 +12,12 @@
         android:id="@+id/editTextCorreoElectronico"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="64dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="correo electronico"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextContrasena"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="230dp" />
 
     <EditText
         android:id="@+id/editTextTextContrasena"
@@ -33,40 +29,34 @@
         android:inputType="textPassword"
         android:textColorHint="#5E3B2B30"
         android:textColorLink="@color/moradoOscuro"
-        tools:layout_editor_absoluteY="112dp" />
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="342dp" />
 
     <Button
         android:id="@+id/botonAcceder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
-        android:text="Acceder"
         android:onClick="acceder"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextContrasena" />
+        android:text="Acceder"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="416dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="¿No tienes una cuenta en este dispositivo?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextContrasena" />
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="537dp" />
 
     <Button
         android:id="@+id/botonRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
         android:onClick="onClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonAcceder" />
+        android:text="Registrarse"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="574dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
