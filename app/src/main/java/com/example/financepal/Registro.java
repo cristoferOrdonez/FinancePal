@@ -112,6 +112,7 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado.", Toast.LENGTH_SHORT).show();
             }
 
+            //Nuevo cambio (pongo este comentario para ver si se pueden ver los cambios)
             this.nombres.setText("");
             this.apellidos.setText("");
             this.edad.setText("");
