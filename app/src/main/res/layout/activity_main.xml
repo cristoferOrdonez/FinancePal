@@ -12,51 +12,64 @@
         android:id="@+id/editTextCorreoElectronico"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginTop="340dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="correo electronico"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="230dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextContrasena"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="contraseña"
         android:inputType="textPassword"
         android:textColorHint="#5E3B2B30"
         android:textColorLink="@color/moradoOscuro"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="342dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCorreoElectronico" />
 
     <Button
         android:id="@+id/botonAcceder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:onClick="acceder"
         android:text="Acceder"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="416dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextContrasena" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="268dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="24dp"
         android:text="¿No tienes una cuenta en este dispositivo?"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="537dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonAcceder" />
 
     <Button
         android:id="@+id/botonRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:onClick="onClick"
         android:text="Registrarse"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="574dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (correoElectronicoS.equalsIgnoreCase(editTextCorreoElectronico.getText().toString()) && contrasenaS.equals(editTextContrasena.getText().toString())) {
                     Intent miIntent = new Intent(MainActivity.this, PantallaPrincipal.class);
+                    miIntent.putExtra("correoElectronico", correoElectronicoS);
                     startActivity(miIntent);
                     flag = false;
                 }

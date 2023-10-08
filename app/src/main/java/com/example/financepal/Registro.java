@@ -105,7 +105,7 @@ public class Registro extends AppCompatActivity {
                 archivoNuevo.flush();
                 archivoNuevo.close();
                 Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
-                Intent miIntent = new Intent(Registro.this, MainActivity.class);
+                Intent miIntent = new Intent(this, MainActivity.class);
                 startActivity(miIntent);
                 finishAffinity();
             } else {
