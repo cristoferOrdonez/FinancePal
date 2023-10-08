@@ -7,46 +7,46 @@
     tools:context=".Registro">
 
     <EditText
-        android:id="@+id/editTextNombres"
+        android:id="@+id/editTextNombresMISDATOS"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Nombres"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextApellidos"
+        app:layout_constraintBottom_toTopOf="@+id/editTextApellidosMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextApellidos"
+        android:id="@+id/editTextApellidosMISDATOS"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Apellidos"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEdad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextEdad"
+        android:id="@+id/editTextEdadMISDATOS"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="160dp"
         android:ems="10"
         android:hint="Edad"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoR"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextCorreoElectronicoR"
+        android:id="@+id/editTextCorreoElectronicoRMISDATOS"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="250dp"
@@ -54,7 +54,7 @@
         android:ems="10"
         android:hint="Correo Electronico"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextContrasenaR"
+        app:layout_constraintBottom_toTopOf="@+id/editTextContrasenaRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextContrasenaR"
+        android:id="@+id/editTextContrasenaRMISDATOS"
         android:layout_width="206dp"
         android:layout_height="48dp"
         android:layout_marginTop="290dp"

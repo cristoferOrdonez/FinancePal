@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void onClick(View view) {
+    public void registro(View view) {
         Intent miIntent = new Intent(MainActivity.this, Registro.class);
         startActivity(miIntent);
         finishAffinity();

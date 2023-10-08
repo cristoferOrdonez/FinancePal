@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -26,11 +24,11 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        nombres = findViewById(R.id.editTextNombres);
-        apellidos = findViewById(R.id.editTextApellidos);
-        edad = findViewById(R.id.editTextEdad);
-        correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoR);
-        contrasenaR = findViewById(R.id.editTextContrasenaR);
+        nombres = findViewById(R.id.editTextNombresMISDATOS);
+        apellidos = findViewById(R.id.editTextApellidosMISDATOS);
+        edad = findViewById(R.id.editTextEdadMISDATOS);
+        correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
+        contrasenaR = findViewById(R.id.editTextContrasenaRMISDATOS);
 
     }
 
