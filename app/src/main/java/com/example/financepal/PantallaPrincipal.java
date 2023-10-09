@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class PantallaPrincipal extends AppCompatActivity {
@@ -21,7 +18,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
 
-        correoElectronicoS = getIntent().getStringExtra("correoElectronico").toString();
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         String nombre = "";
 
@@ -48,9 +45,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
             }
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

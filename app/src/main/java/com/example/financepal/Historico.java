@@ -16,7 +16,7 @@ public class Historico extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico);
 
-        correoElectronicoS = getIntent().getStringExtra("correoElectronico").toString();
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         Toast.makeText(this, "HISTORICO", Toast.LENGTH_SHORT).show();
 

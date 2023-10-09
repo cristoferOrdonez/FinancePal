@@ -81,7 +81,7 @@ public class Registro extends AppCompatActivity {
         String edad = this.edad.getText().toString();
         String correoElectronicoR = this.correoElectronicoR.getText().toString();
         String contrasenaR = this.contrasenaR.getText().toString();
-        String infoNuevoUsuario = "nombres: " + nombres + "; apellidos: " + apellidos + "; edad: " + edad + "; correoElectronico: " + correoElectronicoR + "; contrasena: " + contrasenaR + ";\n";
+        String infoNuevoUsuario = "nombres: " + nombres + "; apellidos: " + apellidos + "; edad: " + edad + "; correoElectronico: " + correoElectronicoR.toLowerCase() + "; contrasena: " + contrasenaR + ";\n";
 
         try{
 
@@ -110,7 +110,6 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado.", Toast.LENGTH_SHORT).show();
             }
 
-            //Nuevo cambio (pongo este comentario para ver si se pueden ver los cambios)
             this.nombres.setText("");
             this.apellidos.setText("");
             this.edad.setText("");

@@ -16,7 +16,7 @@ public class Balance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
 
-        correoElectronicoS = getIntent().getStringExtra("correoElectronico").toString();
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         Toast.makeText(this, "BALANCE", Toast.LENGTH_SHORT).show();
 
