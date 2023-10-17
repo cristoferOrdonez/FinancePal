@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".Registro">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorRegistro"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloSuperiorRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorRegistro"
+        app:layout_constraintEnd_toEndOf="@+id/recuadroSuperiorRegistro"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorRegistro"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorRegistro" />
+
     <EditText
         android:id="@+id/editTextNombresMISDATOS"
         android:layout_width="wrap_content"
@@ -16,34 +41,25 @@
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/editTextApellidosMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.769" />
 
     <EditText
-        android:id="@+id/editTextApellidosMISDATOS"
-        android:layout_width="wrap_content"
+        android:id="@+id/editTextContrasenaRMISDATOS"
+        android:layout_width="206dp"
         android:layout_height="48dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="290dp"
         android:ems="10"
-        android:hint="Apellidos"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/botonRegistrarseR"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextEdadMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="160dp"
-        android:ems="10"
-        android:hint="Edad"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoRMISDATOS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928" />
 
     <EditText
         android:id="@+id/editTextCorreoElectronicoRMISDATOS"
@@ -56,35 +72,53 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/editTextContrasenaRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editTextContrasenaRMISDATOS"
-        android:layout_width="206dp"
+        android:id="@+id/editTextEdadMISDATOS"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="160dp"
         android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/botonRegistrarseR"
+        android:hint="Edad"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.739" />
+
+    <EditText
+        android:id="@+id/editTextApellidosMISDATOS"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.734" />
 
     <Button
         android:id="@+id/botonRegistrarseR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
         android:onClick="VerificarInformacionRegistro"
+        android:text="Registrarse"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.594" />
 
     <TextView
         android:id="@+id/textView"
@@ -102,6 +136,7 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="Acceder"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

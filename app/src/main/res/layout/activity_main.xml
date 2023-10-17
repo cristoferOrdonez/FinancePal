@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/moradoClaro"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -45,6 +45,7 @@
         android:layout_marginTop="24dp"
         android:onClick="acceder"
         android:text="Acceder"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextContrasena" />
@@ -67,6 +68,7 @@
         android:layout_marginTop="24dp"
         android:onClick="registro"
         android:text="Registrarse"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

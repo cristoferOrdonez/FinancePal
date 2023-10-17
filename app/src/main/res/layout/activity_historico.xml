@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="64dp"
-        android:text="MIS DATOS"
         android:onClick="cambiarAMisDatos"
+        android:text="MIS DATOS"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="HISTORICO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonBalanceHISTORICO" />
 
@@ -32,8 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginBottom="16dp"
-        android:text="BALANCE"
         android:onClick="cambiarABalance"
+        android:text="BALANCE"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -42,8 +45,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:text="INICIO"
         android:onClick="cambiarAInicio"
+        android:text="INICIO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorHistorico"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TituloSuperiorHistorico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HISTÓRICO"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorHistorico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorHistorico"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorHistorico" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

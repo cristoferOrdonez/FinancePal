@@ -6,12 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".PantallaPrincipal">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorInicio"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloSuperiorInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INICIO"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorInicio"
+        app:layout_constraintEnd_toEndOf="@+id/recuadroSuperiorInicio"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorInicio"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorInicio" />
+
     <Button
         android:id="@+id/botonInicioINICIO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:text="INICIO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -21,8 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginBottom="16dp"
-        android:text="BALANCE"
         android:onClick="cambiarABalance"
+        android:text="BALANCE"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -31,8 +58,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="HISTORICO"
         android:onClick="cambiarAHistorico"
+        android:text="HISTORICO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonBalanceINICIO" />
 
@@ -42,8 +70,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="64dp"
-        android:text="MIS DATOS"
         android:onClick="cambiarAMisDatos"
+        android:text="MIS DATOS"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

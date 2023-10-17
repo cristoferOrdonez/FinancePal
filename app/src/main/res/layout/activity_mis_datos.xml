@@ -6,31 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".MisDatos">
 
-    <EditText
-        android:id="@+id/editTextNombresMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:hint="Nombres"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextApellidosMISDATOS"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorMisDatos"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextApellidosMISDATOS"
+    <TextView
+        android:id="@+id/tituloSuperiorMisDatos"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="Apellidos"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
+        android:layout_height="wrap_content"
+        android:text="MIS DATOS"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMisDatos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorMisDatos"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorMisDatos" />
 
     <EditText
         android:id="@+id/editTextEdadMISDATOS"
@@ -42,8 +41,53 @@
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.818" />
+
+    <EditText
+        android:id="@+id/editTextContrasenaRMISDATOS"
+        android:layout_width="206dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="352dp"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextNombresMISDATOS"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Nombres"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextApellidosMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.741" />
+
+    <EditText
+        android:id="@+id/editTextApellidosMISDATOS"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="Apellidos"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714" />
 
     <EditText
         android:id="@+id/editTextCorreoElectronicoRMISDATOS"
@@ -56,23 +100,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/editTextContrasenaRMISDATOS"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editTextContrasenaRMISDATOS"
-        android:layout_width="206dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="320dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/botonMisDatosMISDATOS"
@@ -81,6 +112,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="64dp"
         android:text="MIS DATOS"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -89,8 +121,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="HISTORICO"
         android:onClick="cambiarAHistorico"
+        android:text="HISTORICO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonBalanceMISDATOS" />
 
@@ -100,8 +133,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginBottom="16dp"
-        android:text="BALANCE"
         android:onClick="cambiarABalance"
+        android:text="BALANCE"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -110,8 +144,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:text="INICIO"
         android:onClick="cambiarAInicio"
+        android:text="INICIO"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -120,8 +155,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:text="Actualizar"
         android:onClick="verificarNuevosDatos"
+        android:text="Actualizar"
+        app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextContrasenaRMISDATOS" />
