@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -13,10 +14,35 @@ import java.io.InputStreamReader;
 public class PantallaPrincipal extends AppCompatActivity {
 
     String correoElectronicoS;
+    ImageView botonBalance, botonHistorico, botonMisDatos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_principal);
+
+        botonBalance = findViewById(R.id.botonBalanceINICIO);
+        botonBalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarABalance(view);
+            }
+        });
+
+        botonHistorico = findViewById(R.id.botonHistoricoINICIO);
+        botonHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAHistorico(view);
+            }
+        });
+
+        botonMisDatos = findViewById(R.id.botonMisDatosINICIO);
+        botonMisDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAMisDatos(view);
+            }
+        });
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 

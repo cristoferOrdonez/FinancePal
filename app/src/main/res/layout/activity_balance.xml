@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Balance">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorBalance"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/verdeClaro"
         android:minHeight="?attr/actionBarSize"

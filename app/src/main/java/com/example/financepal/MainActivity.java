@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Declaracion de las casillas editables de texto
+    //Declaracion de los editText
     private EditText editTextCorreoElectronico, editTextContrasena;
 
     @Override

@@ -12,7 +12,7 @@
                 android:right="10sp"
                 android:left="10sp"
                 android:bottom="10sp"/>
-            <solid android:color="@color/moradoEditText" />
+            <solid android:color="@color/Gris" />
         </shape>
     </item>
 </layer-list>

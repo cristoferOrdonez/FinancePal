@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".PantallaPrincipal">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorInicio"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/verdeClaro"
         android:minHeight="?attr/actionBarSize"
@@ -16,6 +17,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroInferiorInicio"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/verdeOscuro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/botonHistoricoINICIO"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonMisDatosINICIO"
+        app:srcCompat="@mipmap/boton_historico_des_select" />
+
+    <ImageView
+        android:id="@+id/botonBalanceINICIO"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botonInicioINICIO"
+        app:srcCompat="@mipmap/boton_balance_des_select" />
+
+    <ImageView
+        android:id="@+id/botonInicioINICIO"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/boton_inicio_select" />
+
+    <ImageView
+        android:id="@+id/botonMisDatosINICIO"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_mis_datos_des_select" />
 
     <TextView
         android:id="@+id/tituloSuperiorInicio"
@@ -31,48 +75,4 @@
         app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorInicio"
         app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorInicio" />
 
-    <Button
-        android:id="@+id/botonInicioINICIO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="INICIO"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/botonBalanceINICIO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="cambiarABalance"
-        android:text="BALANCE"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/botonHistoricoINICIO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:onClick="cambiarAHistorico"
-        android:text="HISTORICO"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botonBalanceINICIO" />
-
-    <Button
-        android:id="@+id/botonMisDatosINICIO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="64dp"
-        android:onClick="cambiarAMisDatos"
-        android:text="MIS DATOS"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
