@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class Balance extends AppCompatActivity {
 
-    String correoElectronicoS;
+    String correoElectronicoS; //informacion del correo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
