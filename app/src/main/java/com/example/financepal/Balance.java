@@ -5,16 +5,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Balance extends AppCompatActivity {
 
     String correoElectronicoS;
+    ImageView botonHistorico, botonInicio, botonMisDatos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_balance);
+
+        botonHistorico = findViewById(R.id.botonHistoricoBALANCE);
+        botonHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAHistorico(view);
+            }
+        });
+
+        botonInicio = findViewById(R.id.botonInicioBALANCE);
+        botonInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAInicio(view);
+            }
+        });
+
+        botonMisDatos = findViewById(R.id.botonMisDatosBALANCE);
+        botonMisDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAMisDatos(view);
+            }
+        });
+
+
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 

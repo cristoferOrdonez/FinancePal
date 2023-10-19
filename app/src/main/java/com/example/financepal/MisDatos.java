@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -18,6 +19,9 @@ public class MisDatos extends AppCompatActivity {
 
     String nombresS, apellidosS, edadS, correoElectronicoS, contrasenaS, infoUsuario;
     EditText editTextNombres, editTextApellidos, editTextEdad, editTextCorreoElectronico, editTextContrasena;
+
+    ImageView botonBalance, botonInicio, botonHistorico;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,31 @@ public class MisDatos extends AppCompatActivity {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+
+        botonHistorico = findViewById(R.id.botonHistoricoMISDATOS);
+        botonHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAHistorico(view);
+            }
+        });
+
+        botonInicio = findViewById(R.id.botonInicioMISDATOS);
+        botonInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAInicio(view);
+            }
+        });
+
+        botonBalance = findViewById(R.id.botonBalanceMISDATOS);
+        botonBalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarABalance(view);
+            }
+        });
 
         Toast.makeText(this, "MIS DATOS", Toast.LENGTH_SHORT).show();
 
