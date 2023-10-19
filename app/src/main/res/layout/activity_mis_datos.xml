@@ -8,6 +8,51 @@
     tools:context=".MisDatos">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroInferiorInicio4"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/verdeOscuro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/botonHistoricoMISDATOS"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonMisDatosMISDATOS"
+        app:srcCompat="@mipmap/boton_historico_des_select" />
+
+    <ImageView
+        android:id="@+id/botonBalanceMISDATOS"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botonMisDatosMISDATOS"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/botonInicioMISDATOS"
+        app:srcCompat="@mipmap/boton_balance_des_select" />
+
+    <ImageView
+        android:id="@+id/botonInicioMISDATOS"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recuadroInferiorInicio4"
+        app:srcCompat="@mipmap/boton_inicio_select" />
+
+    <ImageView
+        android:id="@+id/botonMisDatosMISDATOS"
+        android:layout_width="101dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_mis_datos_des_select" />
+
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorMisDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,9 +85,9 @@
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="edad"
-        android:textColorHint="@color/colorHint"
         android:inputType="number"
         android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +101,9 @@
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="contraseña"
-        android:textColorHint="@color/colorHint"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,9 +117,9 @@
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="nombres"
-        android:textColorHint="@color/colorHint"
         android:inputType="text"
         android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,9 +133,9 @@
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="apellidos"
-        android:textColorHint="@color/colorHint"
         android:inputType="text"
         android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,58 +149,13 @@
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="correo electronico"
-        android:textColorHint="@color/colorHint"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEdadMISDATOS" />
-
-    <Button
-        android:id="@+id/botonMisDatosMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="64dp"
-        android:text="MIS DATOS"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/botonHistoricoMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:onClick="cambiarAHistorico"
-        android:text="HISTORICO"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botonBalanceMISDATOS" />
-
-    <Button
-        android:id="@+id/botonBalanceMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="cambiarABalance"
-        android:text="BALANCE"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/botonInicioMISDATOS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:onClick="cambiarAInicio"
-        android:text="INICIO"
-        app:backgroundTint="@color/verdeOscuro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonActualizar"
