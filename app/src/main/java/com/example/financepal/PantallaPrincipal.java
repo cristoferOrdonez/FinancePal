@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 public class PantallaPrincipal extends AppCompatActivity {
 
     String correoElectronicoS;
-    ImageView botonBalance, botonHistorico, botonMisDatos;
+    ImageView botonBalance, botonHistorico, botonMisDatos, botonMetasdeAhorro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,21 @@ public class PantallaPrincipal extends AppCompatActivity {
                 cambiarAMisDatos(view);
             }
         });
+
+
+
+        botonMetasdeAhorro = findViewById(R.id.botonInicioPruebaMetasdeAhorro);
+        botonMetasdeAhorro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAMetasDeAhorro(view);
+            }
+        });
+
+
+
+
+
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
@@ -106,6 +121,18 @@ public class PantallaPrincipal extends AppCompatActivity {
         finishAffinity();
 
     }
+
+    public void cambiarAMetasDeAhorro(View view){
+
+        Intent miIntent = new Intent(this, MetasDeAhorro.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+        finishAffinity();
+
+    }
+
+
+
 
     protected void onDestroy() {
         super.onDestroy();
