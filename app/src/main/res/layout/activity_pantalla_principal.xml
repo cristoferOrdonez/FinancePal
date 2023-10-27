@@ -29,38 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/botonHistoricoINICIO"
-        android:layout_width="101dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/botonMisDatosINICIO"
-        app:srcCompat="@mipmap/boton_historico_des_select" />
-
-    <ImageView
-        android:id="@+id/botonBalanceINICIO"
-        android:layout_width="101dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/botonInicioINICIO"
-        app:srcCompat="@mipmap/boton_balance_des_select" />
-
-    <ImageView
-        android:id="@+id/botonInicioINICIO"
-        android:layout_width="101dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/boton_inicio_select" />
-
-    <ImageView
-        android:id="@+id/botonMisDatosINICIO"
-        android:layout_width="101dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_mis_datos_des_select" />
-
     <TextView
         android:id="@+id/tituloSuperiorInicio"
         android:layout_width="wrap_content"
@@ -74,5 +42,47 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorInicio"
         app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorInicio" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroInferiorInicio"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/botonInicioINICIO"
+                android:layout_width="101dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/boton_inicio_select" />
+
+            <ImageView
+                android:id="@+id/botonBalanceINICIO"
+                android:layout_width="101dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/boton_balance_des_select" />
+
+            <ImageView
+                android:id="@+id/botonHistoricoINICIO"
+                android:layout_width="101dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/boton_historico_des_select" />
+
+            <ImageView
+                android:id="@+id/botonMisDatosINICIO"
+                android:layout_width="101dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/boton_mis_datos_des_select" />
+        </TableRow>
+
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

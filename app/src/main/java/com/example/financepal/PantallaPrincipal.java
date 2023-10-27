@@ -21,28 +21,13 @@ public class PantallaPrincipal extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_principal);
 
         botonBalance = findViewById(R.id.botonBalanceINICIO);
-        botonBalance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarABalance(view);
-            }
-        });
+        botonBalance.setOnClickListener(view -> cambiarABalance(view));
 
         botonHistorico = findViewById(R.id.botonHistoricoINICIO);
-        botonHistorico.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAHistorico(view);
-            }
-        });
+        botonHistorico.setOnClickListener(view -> cambiarAHistorico(view));
 
         botonMisDatos = findViewById(R.id.botonMisDatosINICIO);
-        botonMisDatos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAMisDatos(view);
-            }
-        });
+        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 

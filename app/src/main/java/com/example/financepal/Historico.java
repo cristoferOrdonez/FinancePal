@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Historico extends AppCompatActivity {
 
     String correoElectronicoS;
+    ImageView botonInicio, botonBalance, botonMisDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,15 @@ public class Historico extends AppCompatActivity {
         setContentView(R.layout.activity_historico);
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+
+        botonInicio = findViewById(R.id.botonInicioHISTORICO);
+        botonInicio.setOnClickListener(view -> cambiarAInicio(view));
+
+        botonBalance = findViewById(R.id.botonBalanceHISTORICO);
+        botonBalance.setOnClickListener(view -> cambiarABalance(view));
+
+        botonMisDatos = findViewById(R.id.botonMisDatosHISTORICO);
+        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
         Toast.makeText(this, "HISTORICO", Toast.LENGTH_SHORT).show();
 

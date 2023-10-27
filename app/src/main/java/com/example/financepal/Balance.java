@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Balance extends AppCompatActivity {
 
     String correoElectronicoS;
+
+    ImageView botonInicio, botonHistorico, botonMisDatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,15 @@ public class Balance extends AppCompatActivity {
         setContentView(R.layout.activity_balance);
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+
+        botonInicio = findViewById(R.id.botonInicioBALANCE);
+        botonInicio.setOnClickListener(view -> cambiarAInicio(view));
+
+        botonHistorico = findViewById(R.id.botonHistoricoBALANCE);
+        botonHistorico.setOnClickListener(view -> cambiarAHistorico(view));
+
+        botonMisDatos = findViewById(R.id.botonMisDatosBALANCE);
+        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
         Toast.makeText(this, "BALANCE", Toast.LENGTH_SHORT).show();
 
