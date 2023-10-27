@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEdadMISDATOS" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEdadMISDATOS"/>
 
     <Button
         android:id="@+id/botonActualizar"
