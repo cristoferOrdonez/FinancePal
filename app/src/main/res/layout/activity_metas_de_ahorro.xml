@@ -17,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/botonInicioMetasDeAhorro"
-        android:layout_width="75dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
-        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorMetasDeAhorro"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorMetasDeAhorro"
-        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorMetasDeAhorro"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-
     <TextView
         android:id="@+id/tituloSuperiorMetasDeAhorro"
         android:layout_width="wrap_content"
@@ -43,11 +31,17 @@
         app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorMetasDeAhorro"
         app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorMetasDeAhorro" />
 
-    <ListView
-        android:id="@+id/listaDeMetasDeAhorro"
-        android:layout_width="409dp"
-        android:layout_height="665dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="65dp" />
+    <ImageView
+        android:id="@+id/botonAtrasInicioMETAS"
+        android:layout_width="62dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorMetasDeAhorro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

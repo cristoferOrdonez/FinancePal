@@ -20,7 +20,7 @@ public class MetasDeAhorro extends AppCompatActivity {
         setContentView(R.layout.activity_metas_de_ahorro);
 
 
-        botonInicio = findViewById(R.id.botonInicioMetasDeAhorro);
+        botonInicio = findViewById(R.id.botonAtrasInicioMETAS);
         botonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,12 +28,7 @@ public class MetasDeAhorro extends AppCompatActivity {
             }
         });
 
-
-
-
-        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
-
-        Toast.makeText(this, "Metas de Ahorro", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "METAS DE AHORRO", Toast.LENGTH_SHORT).show();
 
     }
 

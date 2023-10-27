@@ -45,17 +45,13 @@ public class PantallaPrincipal extends AppCompatActivity {
         });
 
 
-
-        botonMetasdeAhorro = findViewById(R.id.botonInicioPruebaMetasdeAhorro);
+        botonMetasdeAhorro = findViewById(R.id.botonMetasDeAhorroINICIO);
         botonMetasdeAhorro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cambiarAMetasDeAhorro(view);
             }
         });
-
-
-
 
 
 
@@ -122,14 +118,12 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     }
 
-    public void cambiarAMetasDeAhorro(View view){
-
+    public void cambiarAMetasDeAhorro(View view) {
         Intent miIntent = new Intent(this, MetasDeAhorro.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
-        finishAffinity();
-
     }
+
 
 
 
