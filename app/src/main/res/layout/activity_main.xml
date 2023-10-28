@@ -10,7 +10,7 @@
 
     <EditText
         android:id="@+id/editTextCorreoElectronico"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="328dp"
         android:background="@drawable/background_buttons"
@@ -26,7 +26,7 @@
 
     <EditText
         android:id="@+id/editTextTextContrasena"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
@@ -42,7 +42,7 @@
 
     <Button
         android:id="@+id/botonAcceder"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="acceder"
@@ -67,7 +67,7 @@
 
     <Button
         android:id="@+id/botonRegistrarse"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:onClick="registro"

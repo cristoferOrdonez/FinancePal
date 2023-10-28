@@ -34,7 +34,7 @@
 
     <EditText
         android:id="@+id/editTextNombresMISDATOS"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/background_buttons"
@@ -49,7 +49,7 @@
 
     <EditText
         android:id="@+id/editTextContrasenaRMISDATOS"
-        android:layout_width="206dp"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
@@ -64,7 +64,7 @@
 
     <EditText
         android:id="@+id/editTextCorreoElectronicoRMISDATOS"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
@@ -79,7 +79,7 @@
 
     <EditText
         android:id="@+id/editTextEdadMISDATOS"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
@@ -94,7 +94,7 @@
 
     <EditText
         android:id="@+id/editTextApellidosMISDATOS"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
@@ -109,7 +109,7 @@
 
     <Button
         android:id="@+id/botonRegistrarseR"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:onClick="VerificarInformacionRegistro"
@@ -133,7 +133,7 @@
 
     <Button
         android:id="@+id/botonAccederR"
-        android:layout_width="wrap_content"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:onClick="onClick"
