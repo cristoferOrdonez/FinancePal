@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorMetasDeAhorro"
@@ -43,5 +44,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.058"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <Button
+        android:id="@+id/botonNuevaMeta"
+        android:layout_width="67dp"
+        android:layout_height="57dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintEnd_toEndOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/tituloSuperiorMetasDeAhorro"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
