@@ -114,7 +114,7 @@ public class Ingresos extends AppCompatActivity {
             nombre = linea.substring(8, linea.indexOf("; monto"));
             monto = Integer.parseInt(linea.substring(linea.indexOf("monto: ") + 7, linea.length() - 1));
             NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
-            list.add(new Ingreso(i, nombre, col.format(monto)));
+            list.add(new Ingreso(i, nombre, col.format(monto) + " COP"));
             i++;
             linea = br.readLine();
 
