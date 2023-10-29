@@ -77,6 +77,9 @@ public class MisDatos extends AppCompatActivity {
 
             }
 
+            archivo.close();
+            br.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
