@@ -124,4 +124,26 @@ public class DbNombreMetas extends  DbHelper{
 
         return correcto;
     }
+
+    public boolean elimnarMeta(int id) {
+        boolean correcto = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL( " DELETE FROM "+ TABLE_METAS + " WHERE id = '" +id+ "' ");
+            correcto=true;
+
+
+
+        } catch (Exception e) {
+            e.toString();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
+    }
 }

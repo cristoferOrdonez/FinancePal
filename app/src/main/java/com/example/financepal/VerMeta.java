@@ -1,7 +1,9 @@
 package com.example.financepal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -19,7 +21,7 @@ public class VerMeta extends AppCompatActivity {
     EditText txtNombreMeta, txtFechaMeta, txtMontoMeta;
     Button guardar;
 
-    FloatingActionButton fabEditar;
+    FloatingActionButton fabEditar, fabElminar;
 
     ImageView botonAtras;
 
@@ -38,6 +40,7 @@ public class VerMeta extends AppCompatActivity {
         txtMontoMeta = findViewById(R.id.textoMontoMetaEditar);
 
         fabEditar = findViewById(R.id.fabEditarMeta);
+        fabElminar=findViewById(R.id.fabEliminarMeta);
 
         guardar =findViewById(R.id.botonGuardarMetasEditar);
 
@@ -87,6 +90,31 @@ public class VerMeta extends AppCompatActivity {
         }
 
 
+        fabElminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder( VerMeta.this);
+                builder.setMessage("Desea eliminar esta meta?").setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(dbNombreMetas.elimnarMeta(id)){
+                            listaMetas();
+
+                        }
+
+
+                    }
+                })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+            }
+        });
+
+
 
 
     }
@@ -96,5 +124,8 @@ public class VerMeta extends AppCompatActivity {
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
         finishAffinity();
+    }
+    private void listaMetas(){
+        Intent intent = new Intent(this, MetasDeAhorro.class);
     }
 }
