@@ -31,6 +31,10 @@ public class EditarActivityMetas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_meta);
 
+        if (getIntent().getExtras() != null) {
+            correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+        }
+
 
 
         txtNombreMeta = findViewById(R.id.textoNombreMetaEditar);
@@ -63,7 +67,7 @@ public class EditarActivityMetas extends AppCompatActivity {
             id= (int) savedInstanceState.getSerializable("ID");
         }
         DbNombreMetas dbNombreMetas = new DbNombreMetas(EditarActivityMetas.this);
-        metaInfo= dbNombreMetas.verMetas(id);
+        metaInfo= dbNombreMetas.verMetas(correoElectronicoS, id);
 
         if(metaInfo!= null){
             txtNombreMeta.setText((metaInfo.getNombreMeta()));

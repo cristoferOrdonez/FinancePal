@@ -37,13 +37,16 @@ public class MetasDeAhorro extends AppCompatActivity {
         setContentView(R.layout.activity_metas_de_ahorro);
         listaMetas= findViewById(R.id.listaMetas);
 
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+
+
         listaMetas.setLayoutManager(new LinearLayoutManager(this));
 
         DbNombreMetas dbNombreMetas= new DbNombreMetas(MetasDeAhorro.this);
 
         listaArrayMetasInfo=new ArrayList<>();
 
-        ListaMetasAdapter adapter=new ListaMetasAdapter(dbNombreMetas.mostrarMetas());
+        ListaMetasAdapter adapter=new ListaMetasAdapter(dbNombreMetas.mostrarMetas(correoElectronicoS), correoElectronicoS);
         listaMetas.setAdapter(adapter);
 
 
@@ -63,7 +66,6 @@ public class MetasDeAhorro extends AppCompatActivity {
             }
         });
 
-        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         Toast.makeText(this, "METAS DE AHORRO", Toast.LENGTH_SHORT).show();
 

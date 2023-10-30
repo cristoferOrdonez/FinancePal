@@ -32,6 +32,8 @@ public class VerMeta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_meta);
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+
 
 
 
@@ -58,6 +60,8 @@ public class VerMeta extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent( VerMeta.this, EditarActivityMetas.class);
                 intent.putExtra("ID" , id);
+                intent.putExtra("correoElectronico", correoElectronicoS);
+
                 startActivity(intent);
             }
         });
@@ -77,7 +81,7 @@ public class VerMeta extends AppCompatActivity {
             id= (int) savedInstanceState.getSerializable("ID");
         }
         DbNombreMetas dbNombreMetas = new DbNombreMetas(VerMeta.this);
-        metaInfo= dbNombreMetas.verMetas(id);
+        metaInfo= dbNombreMetas.verMetas(correoElectronicoS,id);
 
         if(metaInfo!= null){
             txtNombreMeta.setText((metaInfo.getNombreMeta()));

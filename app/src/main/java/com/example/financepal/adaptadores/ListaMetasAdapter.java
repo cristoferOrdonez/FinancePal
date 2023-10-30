@@ -19,9 +19,11 @@ import java.util.ArrayList;
 public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.MetaViewHolder> {
 
     ArrayList<MetasInfo> listaMetas;
+    String correoElectronico;
 
-    public ListaMetasAdapter( ArrayList<MetasInfo> listaMetas){
-        this.listaMetas=listaMetas;
+    public ListaMetasAdapter(ArrayList<MetasInfo> listaMetas, String correoElectronico) {
+        this.listaMetas = listaMetas;
+        this.correoElectronico = correoElectronico;
     }
     @NonNull
     @Override
@@ -63,6 +65,7 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
                     Context context = view.getContext();
                     Intent intent =new Intent(context, VerMeta.class );
                     intent.putExtra("ID", listaMetas.get(getAdapterPosition()).getId());
+                    intent.putExtra("correoElectronico", correoElectronico); // Pasa el correo electrónico con el Intent
                     context.startActivity(intent );
                 }
             });

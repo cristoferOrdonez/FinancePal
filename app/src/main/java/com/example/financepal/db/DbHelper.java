@@ -20,11 +20,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(" CREATE TABLE " + TABLE_METAS + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nombreMeta TEXT NOT NULL," +
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_METAS + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "correoUsuario TEXT, " +
+                "nombreMeta TEXT NOT NULL, " +
                 "montoMeta INTEGER, " +
-                "fechaMeta TEXT)" );
+                "fechaMeta TEXT)");
     }
 
     @Override

@@ -21,6 +21,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso_informacion_metas_de_ahorro);
+        correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         nombreMeta = findViewById(R.id.textoNombreMetaEditar);
         montoMeta = findViewById(R.id.textoMontoMetaEditar);
@@ -33,7 +34,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
             public void onClick(View view) {
 
                 DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
-                long id = dbNombreMetas.insertarMeta(nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
+                long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
                 //Se inserta la info a la tabla
                 limpiar();
 
