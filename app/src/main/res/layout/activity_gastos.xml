@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Gastos">
 
+    <ImageView
+        android:id="@+id/botonMasIngresos"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_mas" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorGastos"
         android:layout_width="match_parent"
@@ -42,4 +52,5 @@
         app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorGastos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
