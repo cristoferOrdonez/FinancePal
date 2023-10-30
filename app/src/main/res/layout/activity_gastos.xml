@@ -6,4 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".Gastos">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorGastos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloSuperiorGastos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MIS GASTOS"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorGastos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorGastos"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/verdeOscuro"
+        android:onClick="volver"
+        android:text="Volver"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorGastos"
+        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorGastos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
