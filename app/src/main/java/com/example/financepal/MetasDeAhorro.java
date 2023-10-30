@@ -1,6 +1,8 @@
 package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,9 +12,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.adaptadores.ListaMetasAdapter;
 import com.example.financepal.db.DbHelper;
+import com.example.financepal.db.DbNombreMetas;
+import com.example.financepal.entidades.MetasInfo;
 
 import java.sql.SQLDataException;
+import java.util.ArrayList;
 
 public class MetasDeAhorro extends AppCompatActivity {
 
@@ -21,11 +27,24 @@ public class MetasDeAhorro extends AppCompatActivity {
 
     Button botonNuevaMeta;
 
+    RecyclerView listaMetas;
+
+     ArrayList<MetasInfo> listaArrayMetasInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metas_de_ahorro);
+        listaMetas= findViewById(R.id.listaMetas);
+
+        listaMetas.setLayoutManager(new LinearLayoutManager(this));
+
+        DbNombreMetas dbNombreMetas= new DbNombreMetas(MetasDeAhorro.this);
+
+        listaArrayMetasInfo=new ArrayList<>();
+
+        ListaMetasAdapter adapter=new ListaMetasAdapter(dbNombreMetas.mostrarMetas());
+        listaMetas.setAdapter(adapter);
 
 
         botonInicio = findViewById(R.id.botonAtrasInicioMETAS);

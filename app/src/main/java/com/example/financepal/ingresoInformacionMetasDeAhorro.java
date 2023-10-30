@@ -3,13 +3,11 @@ package com.example.financepal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.financepal.db.DbNombreMetas;
 
@@ -24,10 +22,10 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingreso_informacion_metas_de_ahorro);
 
-        nombreMeta = findViewById(R.id.textoNombreMeta);
-        montoMeta = findViewById(R.id.textoMontoMeta);
-        fechaMeta = findViewById(R.id.textoFechaMeta);
-        botonGuardarMeta = findViewById(R.id.botonGuardarMetas);
+        nombreMeta = findViewById(R.id.textoNombreMetaEditar);
+        montoMeta = findViewById(R.id.textoMontoMetaEditar);
+        fechaMeta = findViewById(R.id.textoFechaMetaEditar);
+        botonGuardarMeta = findViewById(R.id.botonGuardarMetasEditar);
 
 
         botonGuardarMeta.setOnClickListener(new View.OnClickListener() {

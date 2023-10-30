@@ -13,36 +13,69 @@
         android:theme="@style/Theme.FinancePal"
         tools:targetApi="31">
         <activity
+            android:name=".VerMeta"
+            android:exported="false" />
+
+        <activity
             android:name=".ingresoInformacionMetasDeAhorro"
             android:parentActivityName=".MetasDeAhorro">
             <meta-data
-            android:name="android.support.PARENT_ACTiVITY"
-            android:value=".MetasDeAhorro"/>
+                android:name="android.support.PARENT_ACTiVITY"
+                android:value=".MetasDeAhorro" />
         </activity>
 
+
+        <activity
+            android:name=".entidades.MetasInfo"
+            android:exported="false" />
+
+
+        <activity android:name=".EditarActivityMetas"
+            android:parentActivityName=".MetasDeAhorro">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MetasDeAhorro" />
+
+        </activity>
+
+
+        <activity
+            android:name=".adaptadores.ListaMetasAdapter"
+            android:exported="false" />
 
 
         <activity
             android:name=".MisDatos"
             android:exported="false" />
+
+
         <activity
             android:name=".Historico"
             android:exported="false" />
+
         <activity
             android:name=".Balance"
             android:exported="false" />
+
         <activity
             android:name=".PantallaPrincipal"
             android:exported="false" />
+
         <activity
             android:name=".Registro"
             android:exported="false" />
+
+
+
         <activity
             android:name=".MetasDeAhorro"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
