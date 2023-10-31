@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".AgregarGasto">
 
+    <Button
+        android:id="@+id/botonCrearGuardarCrearModificarIngresos"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:onClick="detectarIntencionBoton"
+        android:text="Crear - Guardar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="524dp" />
+
+    <EditText
+        android:id="@+id/editTextMontoCrearModificarIngresos"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_buttons"
+        android:ems="10"
+        android:hint="monto"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreCrearModificarGastos" />
+
+    <EditText
+        android:id="@+id/editTextRecurrenciaCrearModificarGastos"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_buttons"
+        android:ems="10"
+        android:hint="recurrencia"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <EditText
+        android:id="@+id/editTextNombreCrearModificarGastos"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="128dp"
+        android:background="@drawable/background_buttons"
+        android:ems="10"
+        android:hint="nombre o razón"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonCancelarCrearModificarIngresos"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:onClick="cambiarAIngresos"
+        android:text="Cancelar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_buttons"
+
+        app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIngresos"
+        tools:layout_editor_absoluteX="71dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_buttons"
+
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        tools:layout_editor_absoluteX="70dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
