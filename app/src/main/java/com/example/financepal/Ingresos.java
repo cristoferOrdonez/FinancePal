@@ -13,11 +13,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.financepal.adaptadores.AdaptadorIngresos;
+import com.example.financepal.db.DbIngresos;
+import com.example.financepal.entidades.Ingreso;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -48,7 +50,7 @@ public class Ingresos extends AppCompatActivity {
 
     }
 
-    public void mostrarDialogo(String nombre){
+    public void mostrarDialogo(long id){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -65,7 +67,7 @@ public class Ingresos extends AppCompatActivity {
             public void onClick(View view) {
 
                 dialog.dismiss();
-                cambiarParaModificarIngreso(nombre);
+                cambiarParaModificarIngreso(id);
 
             }
         });
@@ -76,7 +78,7 @@ public class Ingresos extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    eliminarIngreso(nombre);
+                    eliminarIngreso(id);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -146,12 +148,12 @@ public class Ingresos extends AppCompatActivity {
 
     }
 
-    public void cambiarParaModificarIngreso(String nombre){
+    public void cambiarParaModificarIngreso(long id){
 
         Intent myIntent = new Intent(this, CrearModificarIngresos.class);
         myIntent.putExtra("funcionBoton", "Guardar");
         myIntent.putExtra("correoElectronico", correoElectronicoS);
-        myIntent.putExtra("nombre", nombre);
+        myIntent.putExtra("id", id);
         startActivity(myIntent);
         finishAffinity();
 
@@ -161,28 +163,29 @@ public class Ingresos extends AppCompatActivity {
 
         listViewIngresos = findViewById(R.id.listViewIngresos);
 
-        AdaptadorIngresos adaptador = null;
-        try {
-            adaptador = new AdaptadorIngresos(this, getData());
-            listViewIngresos.setAdapter(adaptador);
-        }catch(IOException e){
-            Toast.makeText(this, "Aun no has creado ningún ingreso.", Toast.LENGTH_SHORT).show();
-        }
+        DbIngresos dbIngresos = new DbIngresos(Ingresos.this);
+
+        list = dbIngresos.mostrarIngresos(correoElectronicoS);
+
+        AdaptadorIngresos adaptador = new AdaptadorIngresos(this, list); ///
+        listViewIngresos.setAdapter(adaptador);
 
         listViewIngresos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Ingreso ing = list.get(i);
 
-                String nombre = ing.nombre;
+                long id = ing.id;
 
-                mostrarDialogo(nombre);
+                mostrarDialogo(id);
             }
         });
 
     }
 
-    public void eliminarIngreso(String nombre) throws IOException {
+    public void eliminarIngreso(long id) throws IOException {
+
+        /*
 
         String nombreAr;
         InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
@@ -210,7 +213,16 @@ public class Ingresos extends AppCompatActivity {
         br.close();
         archivo.close();
 
+         */
+
+        DbIngresos dbIngresos = new DbIngresos(this);
+
+        if(dbIngresos.elimnarIngreso(id)){
+            Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();
+        }
+
         establecerLista();
+
 
     }
 

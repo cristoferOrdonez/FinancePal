@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbIngresos;
+import com.example.financepal.entidades.Ingreso;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,7 +21,10 @@ import java.io.OutputStreamWriter;
 
 public class CrearModificarIngresos extends AppCompatActivity {
 
-    String correoElectronicoS, nombre, infoIngreso;
+    String correoElectronicoS;
+
+    Ingreso infoIngreso;
+    long id;
     Button botonCrearGuardarIngreso;
     EditText editTextNombre, editTextMonto;
 
@@ -81,6 +87,14 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
         if(verificarInformacion()){
 
+            DbIngresos dbIngresos = new DbIngresos(this);
+
+            dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString(), editTextMonto.getText().toString());
+
+            cambiarAIngresos(view);
+
+            /*
+
             String nombreEdit = editTextNombre.getText().toString();
             int montoEdit = Integer.parseInt(editTextMonto.getText().toString());
             String infoIngreso = "nombre: " + nombreEdit + "; monto: " + montoEdit + ";\n";
@@ -126,6 +140,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             }
 
+
+             */
         }
 
     }
@@ -134,7 +150,16 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
         if(getIntent().getStringExtra("funcionBoton").equals("Guardar")){
 
-            nombre = getIntent().getStringExtra("nombre");
+            id = getIntent().getExtras().getLong("id");
+
+            DbIngresos dbIngresos = new DbIngresos(this);
+
+            infoIngreso = dbIngresos.verIngreso(correoElectronicoS, id);
+
+            editTextNombre.setText(infoIngreso.nombre);
+            editTextMonto.setText(infoIngreso.monto);
+
+            /*
 
             InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
             BufferedReader br = new BufferedReader(archivo);
@@ -169,6 +194,10 @@ public class CrearModificarIngresos extends AppCompatActivity {
             archivo.close();
             br.close();
 
+             */
+
+
+
         }
 
     }
@@ -179,6 +208,20 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             String nombreEdit = editTextNombre.getText().toString();
             String montoEdit = editTextMonto.getText().toString();
+
+            DbIngresos dbIngresos = new DbIngresos(this);
+
+            boolean correcto = dbIngresos.editarIngreso(id, nombreEdit, montoEdit);
+
+            if(correcto){
+                Toast.makeText(this, "Se ha modificado el ingreso.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Error al modificar el ingreso.", Toast.LENGTH_SHORT).show();
+            }
+
+            cambiarAIngresos(view);
+
+            /*
 
             String infoNuevoIngreso = "nombre: " + nombreEdit + "; monto: " + montoEdit + ";";
 
@@ -221,6 +264,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
                 archivo.close();
 
             }
+
+             */
 
         }
 

@@ -1,12 +1,12 @@
-package com.example.financepal;
+package com.example.financepal.entidades;
 
 public class Ingreso {
 
     public String nombre;
     public String monto;
-    public int id;
+    public long id;
 
-    public Ingreso(int id, String nombre, String monto) {
+    public Ingreso(long id, String nombre, String monto) {
         this.nombre = nombre;
         this.monto = monto;
         this.id = id;
@@ -29,11 +29,11 @@ public class Ingreso {
         this.monto = monto;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
