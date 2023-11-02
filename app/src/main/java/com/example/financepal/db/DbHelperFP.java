@@ -37,7 +37,7 @@ public class DbHelperFP extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) { //
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_USUARIOS);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_INGRESOS);
         onCreate(sqLiteDatabase);
