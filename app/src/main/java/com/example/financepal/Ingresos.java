@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,13 +15,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.AdaptadorIngresos;
-import com.example.financepal.db.DbIngresos;
+import com.example.financepal.db.DbFP;
 import com.example.financepal.entidades.Ingreso;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,7 @@ public class Ingresos extends AppCompatActivity {
 
     }
 
-    public void mostrarDialogo(long id){
+    public void mostrarDialogo(long id) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -98,37 +96,6 @@ public class Ingresos extends AppCompatActivity {
 
     }
 
-    public List<Ingreso> getData() throws IOException {
-
-        String nombre;
-        int monto;
-        list = new ArrayList<>();
-
-        InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
-        BufferedReader br = new BufferedReader(archivo);
-
-        String linea = br.readLine();
-
-        int i = 1;
-
-        while(linea != null){
-
-            nombre = linea.substring(8, linea.indexOf("; monto"));
-            monto = Integer.parseInt(linea.substring(linea.indexOf("monto: ") + 7, linea.length() - 1));
-            NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
-            list.add(new Ingreso(i, nombre, col.format(monto) + " COP")); //Hay que ponernos de acuerdo con el formato
-            i++;
-            linea = br.readLine();
-
-        }
-
-        archivo.close();
-        br.close();
-
-        return list;
-
-    }
-
     public void volver(View view){
 
         Intent myIntent = new Intent(this, PantallaPrincipal.class);
@@ -163,11 +130,11 @@ public class Ingresos extends AppCompatActivity {
 
         listViewIngresos = findViewById(R.id.listViewIngresos);
 
-        DbIngresos dbIngresos = new DbIngresos(Ingresos.this);
+        DbFP dbIngresos = new DbFP(this);
 
         list = dbIngresos.mostrarIngresos(correoElectronicoS);
 
-        AdaptadorIngresos adaptador = new AdaptadorIngresos(this, list); ///
+        AdaptadorIngresos adaptador = new AdaptadorIngresos(this, list);
         listViewIngresos.setAdapter(adaptador);
 
         listViewIngresos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -185,37 +152,7 @@ public class Ingresos extends AppCompatActivity {
 
     public void eliminarIngreso(long id) throws IOException {
 
-        /*
-
-        String nombreAr;
-        InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
-        BufferedReader br = new BufferedReader(archivo);
-        String linea = br.readLine();
-        String contenido = "";
-
-        while(linea != null){
-
-            nombreAr = linea.substring(8, linea.indexOf("; monto"));
-
-            if(!nombreAr.equals(nombre))
-                contenido += linea + "\n";
-
-            linea = br.readLine();
-
-        }
-
-        OutputStreamWriter archivoNuevo = new OutputStreamWriter(openFileOutput(correoElectronicoS + "_INGRESOS.txt", Context.MODE_PRIVATE));
-        archivoNuevo.write(contenido);
-        archivoNuevo.flush();
-        archivoNuevo.close();
-        Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();
-
-        br.close();
-        archivo.close();
-
-         */
-
-        DbIngresos dbIngresos = new DbIngresos(this);
+        DbFP dbIngresos = new DbFP(this);
 
         if(dbIngresos.elimnarIngreso(id)){
             Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();

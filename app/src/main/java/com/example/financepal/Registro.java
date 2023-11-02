@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbFP;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.List;
 
 public class Registro extends AppCompatActivity {
 
@@ -36,8 +39,8 @@ public class Registro extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void onClick(View view) {
-        Intent miIntent = new Intent(Registro.this, MainActivity.class);
+    public void cambiarAAcceso(View view) {
+        Intent miIntent = new Intent(this, MainActivity.class);
         startActivity(miIntent);
         finishAffinity();
     }
@@ -47,24 +50,28 @@ public class Registro extends AppCompatActivity {
         boolean flag = true;
         String mensajeError = "";
 
-        if(this.nombres.getText().toString().equals("")) {
+        if(this.nombres.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado nombres validos\n";
             flag = false;
         }
-        if(this.apellidos.getText().toString().equals("")) {
+        if(this.apellidos.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado apellidos validos\n";
             flag = false;
         }
-        if(this.edad.getText().toString().equals("") || Integer.parseInt(this.edad.getText().toString()) > 150) {
+        if(this.edad.getText().toString().trim().equals("") || Integer.parseInt(this.edad.getText().toString().trim()) > 150) {
             mensajeError += "No ha ingresado una edad valida\n";
             flag = false;
         }
-        if(!this.correoElectronicoR.getText().toString().contains("@") || this.correoElectronicoR.getText().toString().replaceAll("@","").equals("")){
+        if(!this.correoElectronicoR.getText().toString().contains("@") || this.correoElectronicoR.getText().toString().replaceAll("@","").trim().equals("") || correoElectronicoR.getText().toString().contains(" ")){
             mensajeError += "No ha ingresado un correo electronico valido\n";
             flag = false;
         }
         if(this.contrasenaR.getText().toString().length() < 8){
             mensajeError += "Debe ingresar una contraseña de por lo menos 8 caracteres\n";
+            flag = false;
+        }
+        if(this.contrasenaR.getText().toString().contains(" ")){
+            mensajeError += "La contraseña no puede contener espacios en blanco\n";
             flag = false;
         }
 
@@ -76,11 +83,29 @@ public class Registro extends AppCompatActivity {
     }
 
     public void Registrar(View view) throws IOException {
-        String nombres = this.nombres.getText().toString();
-        String apellidos = this.apellidos.getText().toString();
-        String edad = this.edad.getText().toString();
+        String nombres = this.nombres.getText().toString().trim();
+        String apellidos = this.apellidos.getText().toString().trim();
+        String edad = this.edad.getText().toString().trim();
         String correoElectronicoR = this.correoElectronicoR.getText().toString();
         String contrasenaR = this.contrasenaR.getText().toString();
+
+        DbFP dbUsuarios = new DbFP(this);
+
+        if(!verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos())){
+
+            long i = dbUsuarios.agregarUsuario(nombres, apellidos, edad, correoElectronicoR.toLowerCase(), contrasenaR);
+            Toast.makeText(this, "Se ha registrado con exitosamente.", Toast.LENGTH_SHORT).show();
+
+            cambiarAAcceso(view);
+
+        } else {
+
+            Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+
+        }
+
+        /*
+
         String infoNuevoUsuario = "nombres: " + nombres + "; apellidos: " + apellidos + "; edad: " + edad + "; correoElectronico: " + correoElectronicoR.toLowerCase() + "; contrasena: " + contrasenaR + ";\n";
 
         try{
@@ -128,6 +153,25 @@ public class Registro extends AppCompatActivity {
             startActivity(miIntent);
             finishAffinity();
         }
+
+         */
+
+    }
+
+    public boolean verificarRepeticion(List<String> correos) {
+
+        boolean repeticion = false;
+
+        for(String correo : correos){
+
+            repeticion = correo.equalsIgnoreCase(correoElectronicoR.getText().toString().trim());
+
+            if(repeticion)
+                break;
+
+        }
+
+        return repeticion;
 
     }
 
