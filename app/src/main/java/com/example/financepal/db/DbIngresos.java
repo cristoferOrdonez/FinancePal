@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class DbIngresos extends DbHelperIngresos {
+public class DbIngresos extends DbHelperFP {
 
     Context context;
     public DbIngresos(@Nullable Context context) {
@@ -25,7 +25,7 @@ public class DbIngresos extends DbHelperIngresos {
     public long insertarIngreso(String correoUsuario, String nombreIngreso, String montoIngreso) {
         long id = 0;
         try {
-            DbHelperIngresos dbHelper = new DbHelperIngresos(context);
+            DbHelperFP dbHelper = new DbHelperFP(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -34,9 +34,12 @@ public class DbIngresos extends DbHelperIngresos {
             values.put("montoIngreso", montoIngreso);
 
             id = db.insert(TABLE_INGRESOS, null, values);
+
+            db.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return id;
     }
 
@@ -52,34 +55,36 @@ public class DbIngresos extends DbHelperIngresos {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(Integer.parseInt(cursorIngresos.getString(3))) + " COP");
+                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(Long.parseLong(cursorIngresos.getString(3))) + " COP");
 
                 listaMetas.add(ingresoInfo);
             } while (cursorIngresos.moveToNext());
         }
         cursorIngresos.close();
 
+        db.close();
         return listaMetas;
     }
-    public Ingreso verIngreso(String correoUsuario, long id) {
+    public Ingreso verIngreso(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         Ingreso IngresoInfo = null;
         Cursor cursorIngresos;
 
-        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuario = ? AND id = ? LIMIT 1", new String[]{correoUsuario, String.valueOf(id)});
+        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE id = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
             IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getString(3));
         }
         cursorIngresos.close();
 
+        db.close();
         return IngresoInfo;
     }
 
     public boolean editarIngreso(long id, String nombreIngreso, String montoIngreso) {
         boolean correcto = false;
 
-        DbHelperIngresos dbHelper = new DbHelperIngresos(context);
+        DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
@@ -107,7 +112,7 @@ public class DbIngresos extends DbHelperIngresos {
     public boolean elimnarIngreso(long id) {
         boolean correcto = false;
 
-        DbHelperIngresos dbHelper = new DbHelperIngresos(context);
+        DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
@@ -122,6 +127,31 @@ public class DbIngresos extends DbHelperIngresos {
         }
 
         return correcto;
+    }
+
+    public List obtenerNombresMetas(String correoUsuario){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<String> nombres = new ArrayList<String>();
+
+        Cursor cursorIngresos = null;
+
+        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuario = ?", new String[]{correoUsuario});
+
+
+        if (cursorIngresos.moveToFirst()) {
+            do {
+                nombres.add(cursorIngresos.getString(2));
+
+            } while (cursorIngresos.moveToNext());
+        }
+        cursorIngresos.close();
+
+        db.close();
+
+        return nombres;
+
     }
 
 }

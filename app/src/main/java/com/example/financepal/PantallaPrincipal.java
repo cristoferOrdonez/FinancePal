@@ -31,6 +31,8 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
+
+        /*
         String nombre = "";
 
         try {
@@ -62,6 +64,8 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         Toast.makeText(this, "INICIO", Toast.LENGTH_LONG).show();
         Toast.makeText(this,"Bienvenido " + nombre, Toast.LENGTH_SHORT).show();
+
+         */
 
     }
 

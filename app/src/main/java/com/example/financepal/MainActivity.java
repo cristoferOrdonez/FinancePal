@@ -8,9 +8,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbUsuarios;
+import com.example.financepal.entidades.Usuario;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,12 +37,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registro(View view) {
-        Intent miIntent = new Intent(MainActivity.this, Registro.class);
+        Intent miIntent = new Intent(this, Registro.class);
         startActivity(miIntent);
         finishAffinity();
     }
 
     public void acceder(View view) {
+
+        DbUsuarios dbUsuarios = new DbUsuarios(this);
+
+        if(verificarExistencia(dbUsuarios.obtenerCorreosElectronicos())){
+
+            Usuario usuario = dbUsuarios.verUsuario(editTextCorreoElectronico.getText().toString().toLowerCase());
+
+            if(editTextContrasena.getText().toString().equals(usuario.contrasena)){
+
+                Intent intent = new Intent(this, PantallaPrincipal.class);
+                intent.putExtra("correoElectronico", usuario.correoElectronico);
+                startActivity(intent);
+                finishAffinity();
+
+            } else {
+
+                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        } else {
+
+            Toast.makeText(this, "El correo electronico ingresado no se encuentra registrado.", Toast.LENGTH_SHORT).show();
+            editTextCorreoElectronico.setText("");
+            editTextContrasena.setText("");
+
+        }
+
+        /*
+
         try {
             InputStreamReader archivo = new InputStreamReader(openFileInput("InfoUsuariosFinancePal.txt"));
             BufferedReader br = new BufferedReader(archivo);
@@ -80,6 +115,25 @@ public class MainActivity extends AppCompatActivity {
             editTextContrasena.setText("");
 
         }
+
+         */
+
+    }
+
+    public boolean verificarExistencia(List<String> correos){
+
+        boolean existencia = false;
+
+        for(String correo : correos){
+
+            existencia = correo.equalsIgnoreCase(editTextCorreoElectronico.getText().toString());
+
+            if(existencia)
+                break;
+
+        }
+
+        return existencia;
 
     }
 

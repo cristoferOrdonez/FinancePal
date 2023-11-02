@@ -2,7 +2,6 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,8 @@ import android.widget.Toast;
 
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.Ingreso;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.List;
 
 public class CrearModificarIngresos extends AppCompatActivity {
 
@@ -50,7 +45,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
     }
 
-    public void cambiarAIngresos(View view){
+    public void cambiarAIngresos(View view) {
 
         Intent myIntent = new Intent(this, Ingresos.class);
         myIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -59,14 +54,14 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
     }
 
-    public boolean verificarInformacion(){
+    public boolean verificarInformacion() {
 
         String mensaje = "";
 
-        if(editTextNombre.getText().toString().equals(""))
+        if(editTextNombre.getText().toString().trim().equals(""))
             mensaje += "Nombre o razón invalida\n";
 
-        if(editTextMonto.getText().toString().equals("") || Integer.parseInt(editTextMonto.getText().toString()) <= 0) {
+        if(editTextMonto.getText().toString().trim().equals("") || Integer.parseInt(editTextMonto.getText().toString().trim()) <= 0) {
             mensaje += "Monto invalido";
             editTextMonto.setText("");
         }
@@ -83,65 +78,26 @@ public class CrearModificarIngresos extends AppCompatActivity {
         }
     }
 
-    public void crearIngreso(View view) throws IOException {
+    public void crearIngreso(View view) {
 
         if(verificarInformacion()){
 
             DbIngresos dbIngresos = new DbIngresos(this);
 
-            dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString(), editTextMonto.getText().toString());
+            List<String> nombresMetas = dbIngresos.obtenerNombresMetas(correoElectronicoS);
 
-            cambiarAIngresos(view);
+            if(!verificarRepeticion(nombresMetas)) {
 
-            /*
-
-            String nombreEdit = editTextNombre.getText().toString();
-            int montoEdit = Integer.parseInt(editTextMonto.getText().toString());
-            String infoIngreso = "nombre: " + nombreEdit + "; monto: " + montoEdit + ";\n";
-
-            try{
-                InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
-                BufferedReader br = new BufferedReader(archivo);
-                String linea = br.readLine();
-                String contenido = "";
-
-                while (linea != null){
-
-                    contenido += linea + "\n";
-                    linea = br.readLine();
-
-                }
-
-                if(!contenido.contains(nombreEdit)) {
-                    contenido += infoIngreso;
-                    OutputStreamWriter archivoNuevo = new OutputStreamWriter(openFileOutput(correoElectronicoS + "_INGRESOS.txt", Context.MODE_PRIVATE));
-                    archivoNuevo.write(contenido);
-                    archivoNuevo.flush();
-                    archivoNuevo.close();
-                    Toast.makeText(this, "Se ha creado exitosamente el ingreso.", Toast.LENGTH_SHORT).show();
-                    cambiarAIngresos(view);
-                } else {
-                    Toast.makeText(this, "Ya existe un ingreso con el nombre indicado.", Toast.LENGTH_SHORT).show();
-                }
-
-                editTextNombre.setText("");
-                editTextMonto.setText("");
-                br.close();
-                archivo.close();
-
-            }catch(IOException e){
-
-                OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput(correoElectronicoS + "_INGRESOS.txt", Context.MODE_PRIVATE));
-                archivo.write(infoIngreso);
-                archivo.flush();
-                archivo.close();
-                Toast.makeText(this, "Se ha creado exitosamente el ingreso.", Toast.LENGTH_SHORT).show();
+                dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), editTextMonto.getText().toString().trim());
+                Toast.makeText(this, "Se ha creado el ingreso exitosamente.", Toast.LENGTH_SHORT).show();
                 cambiarAIngresos(view);
+
+            } else {
+
+                Toast.makeText(this, "Ya existe un ingreso con el nombre indicado", Toast.LENGTH_SHORT).show();
 
             }
 
-
-             */
         }
 
     }
@@ -154,130 +110,78 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             DbIngresos dbIngresos = new DbIngresos(this);
 
-            infoIngreso = dbIngresos.verIngreso(correoElectronicoS, id);
+            infoIngreso = dbIngresos.verIngreso(id);
 
             editTextNombre.setText(infoIngreso.nombre);
             editTextMonto.setText(infoIngreso.monto);
 
-            /*
-
-            InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
-            BufferedReader br = new BufferedReader(archivo);
-
-            String nombreAr;
-
-            String linea = br.readLine();
-
-            while(linea != null){
-
-                nombreAr = linea.substring(8, linea.indexOf("; monto"));
-
-                if(nombreAr.equals(nombre)) {
-
-                    infoIngreso = linea;
-
-                    String monto = linea.substring(linea.indexOf("monto: ") + 7,linea.length() - 1);
-
-
-
-                    editTextNombre.setText(nombre);
-                    editTextMonto.setText(monto);
-
-                    break;
-
-                }
-
-                linea = br.readLine();
-
-            }
-
-            archivo.close();
-            br.close();
-
-             */
-
-
-
         }
 
     }
 
-    public void modificarIngreso(View view) throws IOException {
+    public void modificarIngreso(View view) {
 
         if(verificarInformacion()){
 
-            String nombreEdit = editTextNombre.getText().toString();
-            String montoEdit = editTextMonto.getText().toString();
+            String nombreEdit = editTextNombre.getText().toString().trim();
+            String montoEdit = editTextMonto.getText().toString().trim();
 
-            DbIngresos dbIngresos = new DbIngresos(this);
+            if(infoIngreso.nombre.equals(nombreEdit) && infoIngreso.monto.equals(montoEdit)) {
 
-            boolean correcto = dbIngresos.editarIngreso(id, nombreEdit, montoEdit);
-
-            if(correcto){
-                Toast.makeText(this, "Se ha modificado el ingreso.", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Error al modificar el ingreso.", Toast.LENGTH_SHORT).show();
-            }
-
-            cambiarAIngresos(view);
-
-            /*
-
-            String infoNuevoIngreso = "nombre: " + nombreEdit + "; monto: " + montoEdit + ";";
-
-            if(infoNuevoIngreso.equals(infoIngreso)){
-
-                Toast.makeText(this, "No ha cambiado ningún dato.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No ha modificado ningún dato.", Toast.LENGTH_SHORT).show();
 
             } else {
 
-                InputStreamReader archivo = new InputStreamReader(openFileInput(correoElectronicoS + "_INGRESOS.txt"));
-                BufferedReader br = new BufferedReader(archivo);
-                String linea = br.readLine();
-                String contenido = "";
+                DbIngresos dbIngresos = new DbIngresos(this);
 
-                while(linea != null){
+                if(verificarRepeticion(dbIngresos.obtenerNombresMetas(correoElectronicoS)) && !nombreEdit.equalsIgnoreCase(infoIngreso.nombre)) {
 
-                    contenido += linea + "\n";
-                    linea = br.readLine();
-
-                }
-
-                if(contenido.contains(nombreEdit) && !nombreEdit.equals(nombre)){
-
-                    editTextNombre.setText(nombre);
-                    Toast.makeText(this, "Ya existe un ingreso con el nombre indicado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Ya existe un ingreso con el nombre indicado.", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    OutputStreamWriter archivoNuevo = new OutputStreamWriter(openFileOutput(correoElectronicoS + "_INGRESOS.txt", Context.MODE_PRIVATE));
-                    archivoNuevo.write(contenido.replaceAll(infoIngreso, infoNuevoIngreso));
-                    archivoNuevo.flush();
-                    archivoNuevo.close();
-                    Toast.makeText(this, "Se ha modificado el ingreso correctamente.", Toast.LENGTH_SHORT).show();
-                    editTextNombre.setText("");
-                    editTextMonto.setText("");
+                    boolean correcto = dbIngresos.editarIngreso(id, nombreEdit, montoEdit);
+
+                    if (correcto) {
+                        Toast.makeText(this, "Se ha modificado el ingreso.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Error al modificar el ingreso.", Toast.LENGTH_SHORT).show();
+                    }
+
                     cambiarAIngresos(view);
 
                 }
-                br.close();
-                archivo.close();
 
             }
-
-             */
 
         }
 
     }
 
-    public void detectarIntencionBoton(View view) throws IOException {
+    public void detectarIntencionBoton(View view) {
 
         if(botonCrearGuardarIngreso.getText().toString().equals("Crear")){
             crearIngreso(view);
         } else {
             modificarIngreso(view);
         }
+
+    }
+
+    public boolean verificarRepeticion(List<String> nombres) {
+
+        boolean repeticion = false;
+
+        for(String nombre : nombres){
+
+            repeticion = nombre.equalsIgnoreCase(editTextNombre.getText().toString().trim());
+
+            if(repeticion)
+                break;
+
+        }
+
+        return repeticion;
 
     }
 
