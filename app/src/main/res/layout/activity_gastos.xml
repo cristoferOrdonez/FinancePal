@@ -45,12 +45,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/verdeOscuro"
-        android:onClick="volver"
+        android:onClick="cambiarAPantallaPrincipal"
         android:text="Volver"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorGastos"
         app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorGastos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonAgregarGasto"
+        android:layout_width="87dp"
+        android:layout_height="81dp"
+        android:background="#00FFFFFF"
+        android:onClick="cambiarANuevoGasto"
+        android:text="."
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/botonMasIngresos"
+        app:layout_constraintEnd_toEndOf="@+id/botonMasIngresos"
+        app:layout_constraintStart_toStartOf="@+id/botonMasIngresos"
+        app:layout_constraintTop_toTopOf="@+id/botonMasIngresos"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

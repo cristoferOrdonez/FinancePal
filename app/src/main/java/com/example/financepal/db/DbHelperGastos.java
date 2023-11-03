@@ -8,9 +8,10 @@ import androidx.annotation.Nullable;
 
 public class DbHelperGastos extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NOMBRE = "gastos.db";
-    public static final String TABLE_GASTOS = "t_gastosu"
+    public static final String TABLE_GASTOS = "t_gastosu";
+    public static final String TABLE_CATEGORIAS_GASTO = "t_categ_gastosu";
 
     public DbHelperGastos(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -18,18 +19,29 @@ public class DbHelperGastos extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORIAS_GASTO+"(" +
+                "idcatgasto INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "correocatgasto TEXT NOT NULL," +
+                "nombrecatgasto TEXT NOT NULL," +
+                "desccatgasto TEXT NOT NULL)");
+
         sqLiteDatabase.execSQL("CREATE TABLE " +TABLE_GASTOS +"(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "correo TEXT NOT NULL," +
-                "nombre TEXT NOT NULL," +
-                "monto BIGINT NOT NULL," +
-                "prioridad TEXT NOT NULL," +
-                "recurrencia TINYINT NOT NULL)");
+                "correogasto TEXT NOT NULL," +
+                "nombregasto TEXT NOT NULL," +
+                "idcatgasto1 INTEGER NOT NULL," +
+                "montogasto BIGINT NOT NULL," +
+                "prioridadgasto TEXT NOT NULL," +
+                "recurrenciagasto TINYINT NOT NULL," +
+                "FOREIGN KEY(idcatgasto1) REFERENCES "+TABLE_CATEGORIAS_GASTO+"(idcatgasto))");
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE "+TABLE_GASTOS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_GASTOS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_CATEGORIAS_GASTO);
         onCreate(sqLiteDatabase);
     }
 }
