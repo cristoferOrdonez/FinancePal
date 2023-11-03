@@ -85,4 +85,12 @@
 
     </TableLayout>
 
+    <Button
+        android:id="@+id/botonEntrarGastos"
+        android:layout_width="253dp"
+        android:layout_height="49dp"
+        android:text="GASTOS"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="101dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
