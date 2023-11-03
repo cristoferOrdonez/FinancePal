@@ -2,7 +2,6 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +9,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
+import com.example.financepal.db.DbIngresos;
+import com.example.financepal.db.DbUsuarios;
+import com.example.financepal.entidades.Usuario;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.List;
 
 public class MisDatos extends AppCompatActivity {
 
-    String nombresS, apellidosS, edadS, correoElectronicoS, contrasenaS, infoUsuario;
+    String correoElectronicoS;
     EditText editTextNombres, editTextApellidos, editTextEdad, editTextCorreoElectronico, editTextContrasena;
     ImageView botonInicio, botonBalance, botonHistorico;
     @Override
@@ -41,52 +42,10 @@ public class MisDatos extends AppCompatActivity {
         editTextContrasena = findViewById(R.id.editTextContrasenaRMISDATOS);
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
-
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput("InfoUsuariosFinancePal.txt"));
-            BufferedReader br = new BufferedReader(archivo);
-
-            String correoElectronico;
-
-            String linea = br.readLine();
-
-            while(linea != null){
-
-                correoElectronico = linea.substring(linea.indexOf("correoElectronico") + "correoElectronico: ".length(), linea.indexOf("contrasena") - 2);
-
-                if(correoElectronico.equalsIgnoreCase(correoElectronicoS)) {
-
-                    infoUsuario = linea;
-
-                    nombresS = linea.substring(9, linea.indexOf("; apellidos"));
-                    apellidosS = linea.substring(linea.indexOf("apellidos") + "apellidos: ".length(), linea.indexOf("edad") - 2);
-                    edadS = linea.substring(linea.indexOf("edad") + "edad: ".length(), linea.indexOf("correoElectronico") - 2);
-                    contrasenaS = linea.substring(linea.indexOf("contrasena") + "contrasena: ".length(), linea.length() - 1);
-
-                    editTextNombres.setText(nombresS);
-                    editTextApellidos.setText(apellidosS);
-                    editTextEdad.setText(edadS);
-                    editTextCorreoElectronico.setText(correoElectronicoS);
-                    editTextContrasena.setText(contrasenaS);
-
-                    break;
-
-                }
-
-                linea = br.readLine();
-
-            }
-
-            archivo.close();
-            br.close();
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Toast.makeText(this, "MIS DATOS", Toast.LENGTH_SHORT).show();
+        establecerEditText();
 
     }
+
 
     public void cambiarAInicio(View view){
 
@@ -120,24 +79,28 @@ public class MisDatos extends AppCompatActivity {
         boolean flag = true;
         String mensajeError = "";
 
-        if(editTextNombres.getText().toString().equals("")) {
+        if(editTextNombres.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado nombres validos\n";
             flag = false;
         }
-        if(editTextApellidos.getText().toString().equals("")) {
+        if(editTextApellidos.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado apellidos validos\n";
             flag = false;
         }
-        if(editTextEdad.getText().toString().equals("") || Integer.parseInt(editTextEdad.getText().toString()) > 150) {
+        if(editTextEdad.getText().toString().trim().equals("") || Integer.parseInt(editTextEdad.getText().toString().trim()) > 150) {
             mensajeError += "No ha ingresado una edad valida\n";
             flag = false;
         }
-        if(!editTextCorreoElectronico.getText().toString().contains("@") || editTextCorreoElectronico.getText().toString().replaceAll("@","").equals("")){
+        if(!editTextCorreoElectronico.getText().toString().contains("@") || editTextCorreoElectronico.getText().toString().replaceAll("@","").trim().equals("") || editTextCorreoElectronico.getText().toString().contains(" ")){
             mensajeError += "No ha ingresado un correo electronico valido\n";
             flag = false;
         }
         if(editTextContrasena.getText().toString().length() < 8){
             mensajeError += "Debe ingresar una contraseña de por lo menos 8 caracteres\n";
+            flag = false;
+        }
+        if(editTextContrasena.getText().toString().contains(" ")){
+            mensajeError += "La contraseña no puede contener espacios en blanco\n";
             flag = false;
         }
 
@@ -148,54 +111,83 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void actualizarInformacion(View view) throws IOException {
+    public void actualizarInformacion(View view) {
 
-        String nombres = editTextNombres.getText().toString();
-        String apellidos = editTextApellidos.getText().toString();
+        DbUsuarios dbUsuarios = new DbUsuarios(this);
+
+        Usuario usuario = dbUsuarios.verUsuario(correoElectronicoS);
+
+        String nombres = editTextNombres.getText().toString().trim();
+        String apellidos = editTextApellidos.getText().toString().trim();
         String edad = editTextEdad.getText().toString();
         String correoElectronico = editTextCorreoElectronico.getText().toString();
         String contrasena = editTextContrasena.getText().toString();
-        String infoNuevoUsuario = "nombres: " + nombres + "; apellidos: " + apellidos + "; edad: " + edad + "; correoElectronico: " + correoElectronico.toLowerCase() + "; contrasena: " + contrasena + ";";
 
-        if(infoNuevoUsuario.equals(infoUsuario)){
-            Toast.makeText(this, "No ha cambiado ningun dato.", Toast.LENGTH_SHORT).show();
+        if(nombres.equals(usuario.getNombres()) &&
+        apellidos.equals(usuario.getApellidos()) &&
+        edad.equals(usuario.getEdad()) &&
+        correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
+        contrasena.equals(usuario.getContrasena())){
+
+            Toast.makeText(this, "No ha cambiado ningún dato.", Toast.LENGTH_SHORT).show();
+
         } else {
-            InputStreamReader archivo = new InputStreamReader(openFileInput("InfoUsuariosFinancePal.txt"));
-            BufferedReader br = new BufferedReader(archivo);
-            String linea = br.readLine();
-            String contenido = "";
 
-            while(linea != null){
+            if(verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos()) && !correoElectronico.trim().equalsIgnoreCase(correoElectronicoS)) {
 
-                contenido += linea + "\n";
-                linea = br.readLine();
-
-            }
-
-            if(contenido.contains(correoElectronico.toLowerCase()) && !correoElectronico.toLowerCase().equals(correoElectronicoS)){
-
-                editTextCorreoElectronico.setText(correoElectronicoS);
-                Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "El correo electronico ingresado ya se encuentra ingresado en otra cuenta.", Toast.LENGTH_SHORT).show();
 
             } else {
 
-                OutputStreamWriter archivoNuevo = new OutputStreamWriter(openFileOutput("InfoUsuariosFinancePal.txt", Context.MODE_PRIVATE));
-                archivoNuevo.write(contenido.replaceAll(infoUsuario, infoNuevoUsuario));
-                archivoNuevo.flush();
-                archivoNuevo.close();
-                Intent miIntent = new Intent(this, PantallaPrincipal.class);
-                miIntent.putExtra("correoElectronico", correoElectronicoS);
-                startActivity(miIntent);
-                Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
-                finishAffinity();
+                if (dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena)) {
+
+                    if(new DbIngresos(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
+
+                        Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
+                        correoElectronicoS = correoElectronico;
+                        cambiarAInicio(view);
+
+                    }
+
+                } else {
+
+                    Toast.makeText(this, "Error al actualizar la información.", Toast.LENGTH_SHORT).show();
+
+                }
 
             }
-            br.close();
-            archivo.close();
+
         }
 
     }
 
+    public void establecerEditText() {
 
+        Usuario usuario = new DbUsuarios(this).verUsuario(correoElectronicoS);
+
+        editTextNombres.setText(usuario.getNombres());
+        editTextApellidos.setText(usuario.getApellidos());
+        editTextEdad.setText(usuario.getEdad());
+        editTextCorreoElectronico.setText(usuario.getCorreoElectronico());
+        editTextContrasena.setText(usuario.getContrasena());
+
+    }
+
+    public boolean verificarRepeticion (List<String> correos) {
+
+        boolean repeticion = false;
+
+        for(String correo : correos){
+
+            repeticion = correo.equalsIgnoreCase(editTextCorreoElectronico.getText().toString().trim());
+
+            if(repeticion)
+                break;
+
+        }
+
+        return repeticion;
+
+    }
 
 }

@@ -84,7 +84,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             DbIngresos dbIngresos = new DbIngresos(this);
 
-            List<String> nombresMetas = dbIngresos.obtenerNombresMetas(correoElectronicoS);
+            List<String> nombresMetas = dbIngresos.obtenerNombresIngresos(correoElectronicoS);
 
             if(!verificarRepeticion(nombresMetas)) {
 
@@ -112,8 +112,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             infoIngreso = dbIngresos.verIngreso(id);
 
-            editTextNombre.setText(infoIngreso.nombre);
-            editTextMonto.setText(infoIngreso.monto);
+            editTextNombre.setText(infoIngreso.getNombre());
+            editTextMonto.setText(infoIngreso.getMonto());
 
         }
 
@@ -126,7 +126,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
             String nombreEdit = editTextNombre.getText().toString().trim();
             String montoEdit = editTextMonto.getText().toString().trim();
 
-            if(infoIngreso.nombre.equals(nombreEdit) && infoIngreso.monto.equals(montoEdit)) {
+            if(infoIngreso.getNombre().equals(nombreEdit) && infoIngreso.getMonto().equals(montoEdit)) {
 
                 Toast.makeText(this, "No ha modificado ningún dato.", Toast.LENGTH_SHORT).show();
 
@@ -134,7 +134,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
                 DbIngresos dbIngresos = new DbIngresos(this);
 
-                if(verificarRepeticion(dbIngresos.obtenerNombresMetas(correoElectronicoS)) && !nombreEdit.equalsIgnoreCase(infoIngreso.nombre)) {
+                if(verificarRepeticion(dbIngresos.obtenerNombresIngresos(correoElectronicoS)) && !nombreEdit.equalsIgnoreCase(infoIngreso.getNombre())) {
 
                     Toast.makeText(this, "Ya existe un ingreso con el nombre indicado.", Toast.LENGTH_SHORT).show();
 

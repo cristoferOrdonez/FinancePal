@@ -17,6 +17,7 @@ import java.util.Locale;
 public class DbIngresos extends DbHelperFP {
 
     Context context;
+
     public DbIngresos(@Nullable Context context) {
         super(context);
         this.context = context;
@@ -29,7 +30,7 @@ public class DbIngresos extends DbHelperFP {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put("correoUsuario", correoUsuario); // Nuevo campo para almacenar el correo electronico del usuario
+            values.put("correoUsuarioIngresos", correoUsuario); // Nuevo campo para almacenar el correo electronico del usuario
             values.put("nombreIngreso", nombreIngreso);
             values.put("montoIngreso", montoIngreso);
 
@@ -46,10 +47,8 @@ public class DbIngresos extends DbHelperFP {
     public List<Ingreso> mostrarIngresos(String correoUsuario) {
         SQLiteDatabase db = this.getWritableDatabase();
         List<Ingreso> listaMetas = new ArrayList<>();
-        Ingreso ingresoInfo = null;
-        Cursor cursorIngresos = null;
-
-        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuario = ?", new String[]{correoUsuario});
+        Ingreso ingresoInfo;
+        Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ?", new String[]{correoUsuario});
 
         NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
@@ -65,12 +64,13 @@ public class DbIngresos extends DbHelperFP {
         db.close();
         return listaMetas;
     }
+
     public Ingreso verIngreso(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         Ingreso IngresoInfo = null;
         Cursor cursorIngresos;
 
-        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE id = ? LIMIT 1", new String[]{String.valueOf(id)});
+        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE idIngreso = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
             IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getString(3));
@@ -82,7 +82,7 @@ public class DbIngresos extends DbHelperFP {
     }
 
     public boolean editarIngreso(long id, String nombreIngreso, String montoIngreso) {
-        boolean correcto = false;
+        boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -92,13 +92,10 @@ public class DbIngresos extends DbHelperFP {
             values.put("nombreIngreso", nombreIngreso);
             values.put("montoIngreso", montoIngreso);
 
-            int rowsAffected = db.update(TABLE_INGRESOS, values, "id=?", new String[]{String.valueOf(id)});
+            int rowsAffected = db.update(TABLE_INGRESOS, values, "idIngreso = ?", new String[]{String.valueOf(id)});
 
-            if (rowsAffected > 0) {
-                correcto = true;
-            } else {
-                correcto = false;
-            }
+            correcto = (rowsAffected > 0);
+
         } catch (Exception e) {
             e.printStackTrace();
             correcto = false;
@@ -110,17 +107,16 @@ public class DbIngresos extends DbHelperFP {
     }
 
     public boolean elimnarIngreso(long id) {
-        boolean correcto = false;
+        boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL( " DELETE FROM "+ TABLE_INGRESOS + " WHERE id = '" +id+ "' ");
-            correcto=true;
+            db.execSQL(" DELETE FROM " + TABLE_INGRESOS + " WHERE idIngreso = '" + id + "' ");
+            correcto = true;
 
         } catch (Exception e) {
-            e.toString();
             correcto = false;
         } finally {
             db.close();
@@ -129,15 +125,13 @@ public class DbIngresos extends DbHelperFP {
         return correcto;
     }
 
-    public List obtenerNombresMetas(String correoUsuario){
+    public List obtenerNombresIngresos(String correoUsuario) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        List<String> nombres = new ArrayList<String>();
+        List<String> nombres = new ArrayList<>();
 
-        Cursor cursorIngresos = null;
-
-        cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuario = ?", new String[]{correoUsuario});
+        Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ?", new String[]{correoUsuario});
 
 
         if (cursorIngresos.moveToFirst()) {
@@ -152,6 +146,30 @@ public class DbIngresos extends DbHelperFP {
 
         return nombres;
 
+    }
+
+    public boolean actualizarCorreos(String correoAntiguo, String correoNuevo) {
+        boolean correcto;
+
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put("correoUsuarioIngresos", correoNuevo);
+
+            int rowsAffected = db.update(TABLE_INGRESOS, values, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
+
+            correcto = (rowsAffected > 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
     }
 
 }

@@ -23,7 +23,7 @@ import java.util.List;
 public class Ingresos extends AppCompatActivity {
 
     String correoElectronicoS;
-    ImageView botonMas;
+    ImageView botonMas, botonAtras;
     ListView listViewIngresos;
     List<Ingreso> list;
 
@@ -37,6 +37,9 @@ public class Ingresos extends AppCompatActivity {
 
         botonMas = findViewById(R.id.botonMasIngresos);
         botonMas.setOnClickListener(view -> cambiarParaCrearIngreso(view));
+
+        botonAtras = findViewById(R.id.botonAtrasINGRESOS);
+        botonAtras.setOnClickListener(view -> volver(view));
 
         establecerLista();
 
@@ -105,7 +108,6 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("funcionBoton", "Crear");
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(myIntent);
-        finishAffinity();
 
     }
 
@@ -116,7 +118,6 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         myIntent.putExtra("id", id);
         startActivity(myIntent);
-        finishAffinity();
 
     }
 
@@ -136,7 +137,7 @@ public class Ingresos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Ingreso ing = list.get(i);
 
-                long id = ing.id;
+                long id = ing.getId();
 
                 mostrarDialogo(id);
             }

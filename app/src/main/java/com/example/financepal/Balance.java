@@ -29,8 +29,6 @@ public class Balance extends AppCompatActivity {
         botonMisDatos = findViewById(R.id.botonMisDatosBALANCE);
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
-        Toast.makeText(this, "BALANCE", Toast.LENGTH_SHORT).show();
-
     }
 
     public void cambiarAInicio(View view){

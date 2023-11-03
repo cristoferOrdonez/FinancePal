@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
@@ -30,42 +26,6 @@ public class PantallaPrincipal extends AppCompatActivity {
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
-
-
-        /*
-        String nombre = "";
-
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput("InfoUsuariosFinancePal.txt"));
-            BufferedReader br = new BufferedReader(archivo);
-
-            String correoElectronico;
-
-            String linea = br.readLine();
-
-            while(linea != null){
-
-                correoElectronico = linea.substring(linea.indexOf("correoElectronico") + "correoElectronico: ".length(), linea.indexOf("contrasena") - 2);
-
-                if(correoElectronico.equalsIgnoreCase(correoElectronicoS)) {
-
-                    nombre = linea.substring(0, linea.indexOf("edad")).replaceAll("nombres: ", "").replaceAll("; apellidos:", "").replaceAll("; ", "");
-                    break;
-
-                }
-
-                linea = br.readLine();
-
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Toast.makeText(this, "INICIO", Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"Bienvenido " + nombre, Toast.LENGTH_SHORT).show();
-
-         */
 
     }
 
@@ -101,7 +61,6 @@ public class PantallaPrincipal extends AppCompatActivity {
         Intent miIntent = new Intent(this, Ingresos.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
-        finishAffinity();
 
     }
 

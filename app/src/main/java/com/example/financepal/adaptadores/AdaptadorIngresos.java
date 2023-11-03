@@ -51,8 +51,8 @@ public class AdaptadorIngresos extends BaseAdapter {
         textViewNombre = view.findViewById(R.id.textViewNombreINGRESOS);
         textViewMonto = view.findViewById(R.id.textViewMontoINGRESOS);
 
-        textViewNombre.setText(ing.nombre);
-        textViewMonto.setText(ing.monto);
+        textViewNombre.setText(ing.getNombre());
+        textViewMonto.setText(ing.getMonto());
 
         return view;
     }
