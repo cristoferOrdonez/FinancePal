@@ -12,7 +12,7 @@ public class DbHelperGastos extends SQLiteOpenHelper {
     private static final String DATABASE_NOMBRE = "gastos.db";
     public static final String TABLE_GASTOS = "t_gastosu"
 
-    public DbHelperGastos(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DbHelperGastos(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
 
@@ -23,7 +23,7 @@ public class DbHelperGastos extends SQLiteOpenHelper {
                 "correo TEXT NOT NULL," +
                 "nombre TEXT NOT NULL," +
                 "monto BIGINT NOT NULL," +
-                "prioridad ENUM('Baja', 'Media Baja', 'Media', 'Media Alta', 'Alta') NOT NULL," +
+                "prioridad TEXT NOT NULL," +
                 "recurrencia TINYINT NOT NULL)");
     }
 

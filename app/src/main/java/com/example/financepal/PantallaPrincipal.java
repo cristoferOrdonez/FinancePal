@@ -92,6 +92,13 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     }
 
+    public void cambiarAGastos(View view){
+        Intent miIntent = new Intent(this, Gastos.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+        finishAffinity();
+    }
+
     protected void onDestroy() {
         super.onDestroy();
     }
