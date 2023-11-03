@@ -20,13 +20,28 @@ public class Gastos extends AppCompatActivity {
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
         DbHelperGastos dbHelper = new DbHelperGastos(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        if(db!= null){
+        if(db!=null){
             Toast.makeText(this,"BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
         }
         else{
             Toast.makeText(this,"ERROR", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+
+    public void cambiarAPantallaPrincipal(View view){
+        Intent miIntent = new Intent(this, PantallaPrincipal.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+        finishAffinity();
+    }
+
+    public void cambiarANuevoGasto(View view){
+        Intent miIntent = new Intent(this, AgregarGasto.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+        finishAffinity();
     }
 }
 

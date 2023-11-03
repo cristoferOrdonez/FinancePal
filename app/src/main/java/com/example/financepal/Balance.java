@@ -13,9 +13,6 @@ public class Balance extends AppCompatActivity {
     String correoElectronicoS;
     ImageView botonHistorico, botonInicio, botonMisDatos;
 
-
-    ImageView botonInicio, botonHistorico, botonMisDatos;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -10,14 +10,15 @@
         android:id="@+id/botonCrearGuardarCrearModificarIngresos"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:onClick="detectarIntencionBoton"
         android:text="Crear - Guardar"
         android:textColor="@color/white"
         app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintBottom_toTopOf="@+id/botonCancelarCrearModificarIngresos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="524dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextMontoCrearModificarIngresos"
@@ -70,7 +71,7 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:onClick="cambiarAIngresos"
+        android:onClick="cambiaraAtras"
         android:text="Cancelar"
         android:textColor="@color/white"
         app:backgroundTint="@color/verdeOscuro"
@@ -85,8 +86,9 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
 
-        app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIngresos"
-        tools:layout_editor_absoluteX="71dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIngresos" />
 
     <Spinner
         android:id="@+id/spinner2"
@@ -95,6 +97,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
 
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        tools:layout_editor_absoluteX="70dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>
