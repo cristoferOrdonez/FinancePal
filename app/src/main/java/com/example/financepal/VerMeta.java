@@ -88,9 +88,9 @@ public class VerMeta extends AppCompatActivity {
             txtFechaMeta.setText(metaInfo.getFechaMeta());
             txtMontoMeta.setText(String.valueOf(metaInfo.getMontoMeta()));
             guardar.setVisibility(View.INVISIBLE);
-            txtNombreMeta.setInputType(InputType.TYPE_CLASS_TEXT);
-            txtFechaMeta.setInputType(InputType.TYPE_CLASS_DATETIME);
-            txtMontoMeta.setInputType(InputType.TYPE_CLASS_NUMBER);
+            txtNombreMeta.setInputType(InputType.TYPE_NULL);
+            txtFechaMeta.setInputType(InputType.TYPE_NULL);
+            txtMontoMeta.setInputType(InputType.TYPE_NULL);
         }
 
 

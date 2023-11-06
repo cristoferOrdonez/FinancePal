@@ -13,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.entidades.MetasInfo;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditarActivityMetas extends AppCompatActivity {
     String correoElectronicoS;
     EditText txtNombreMeta, txtFechaMeta, txtMontoMeta;
     Button guardar;
+    FloatingActionButton fabEditar, fabElminar;
+
 
     boolean correcto;
     ImageView botonAtras;
@@ -40,6 +43,12 @@ public class EditarActivityMetas extends AppCompatActivity {
         txtNombreMeta = findViewById(R.id.textoNombreMetaEditar);
         txtFechaMeta = findViewById(R.id.textoFechaMetaEditar);
         txtMontoMeta = findViewById(R.id.textoMontoMetaEditar);
+
+
+        fabEditar = findViewById(R.id.fabEditarMeta);
+        fabEditar.setVisibility(View.INVISIBLE);
+        fabElminar=findViewById(R.id.fabEliminarMeta);
+        fabElminar.setVisibility(View.INVISIBLE);
 
         guardar =findViewById(R.id.botonGuardarMetasEditar);
 
