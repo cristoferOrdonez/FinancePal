@@ -7,13 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHelperGastos;
 
+import java.util.List;
+
 public class Gastos extends AppCompatActivity {
     String correoElectronicoS;
+    ListView ListViewGastos;
+    List<InfoGasto> lst;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,8 @@ public class Gastos extends AppCompatActivity {
         DbGastos db2 = new DbGastos(this);
         db2.insertarprimeraCategoria(correoElectronicoS);
 
+
+        ListView ListViewGastos = findViewById(R.id.listViewGastos);
     }
 
 
