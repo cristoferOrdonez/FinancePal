@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorMetasDeAhorro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloSuperiorMetasDeAhorro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="METAS DE AHORRO"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintEnd_toEndOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorMetasDeAhorro" />
+
+    <ImageView
+        android:id="@+id/botonAtrasInicioMETAS"
+        android:layout_width="62dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorMetasDeAhorro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <Button
+        android:id="@+id/botonNuevaMeta"
+        android:layout_width="67dp"
+        android:layout_height="57dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintEnd_toEndOf="@+id/recuadroSuperiorMetasDeAhorro"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toEndOf="@+id/tituloSuperiorMetasDeAhorro"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaMetas"
+        android:layout_width="409dp"
+        android:layout_height="663dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorMetasDeAhorro" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

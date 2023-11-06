@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ingresoInformacionMetasDeAhorro">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verdeClaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloSuperiorMetasDeAhorroEditar"
+        android:layout_width="203dp"
+        android:layout_height="37dp"
+        android:text="REGISTRO METAS"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintVertical_bias="0.481" />
+
+    <EditText
+        android:id="@+id/textoNombreMetaEditar"
+        android:layout_width="236dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Nombre de la meta"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2" />
+
+    <EditText
+        android:id="@+id/textoFechaMetaEditar"
+        android:layout_width="231dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="dd/mm/aaaa"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoNombreMetaEditar" />
+
+    <EditText
+        android:id="@+id/textoMontoMetaEditar"
+        android:layout_width="233dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Monto"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoFechaMetaEditar" />
+
+    <Button
+        android:id="@+id/botonGuardarMetasEditar"
+        android:layout_width="133dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:text="Guardar"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoMontoMetaEditar" />
+
+    <ImageView
+        android:id="@+id/botonAtrasRegistroMetasdeAhorro"
+        android:layout_width="52dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorMetasDeAhorroEditar"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
+        app:layout_constraintVertical_bias="0.125"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
