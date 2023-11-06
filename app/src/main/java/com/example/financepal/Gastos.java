@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHelperGastos;
 
 public class Gastos extends AppCompatActivity {
@@ -20,12 +21,16 @@ public class Gastos extends AppCompatActivity {
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
         DbHelperGastos dbHelper = new DbHelperGastos(this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         if(db!=null){
-            Toast.makeText(this,"BASE DE DATOS CREADA", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"BASE DE DATOS CREADA", Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(this,"ERROR", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"ERROR", Toast.LENGTH_SHORT).show();
         }
+
+        DbGastos db2 = new DbGastos(this);
+        db2.insertarprimeraCategoria(correoElectronicoS);
 
     }
 
