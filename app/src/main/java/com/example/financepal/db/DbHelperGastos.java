@@ -34,8 +34,6 @@ public class DbHelperGastos extends SQLiteOpenHelper {
                 "prioridadgasto TEXT NOT NULL," +
                 "recurrenciagasto TINYINT NOT NULL," +
                 "FOREIGN KEY(idcatgasto1) REFERENCES "+TABLE_CATEGORIAS_GASTO+"(idcatgasto))");
-
-
     }
 
     @Override
