@@ -36,9 +36,10 @@ public class CustomAdapterGastos extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        TextView editTextNombreCrearModificarGastos;
-        TextView editTextMontoCrearModificarIGastos;
-        TextView editTextRecurrenciaCrearModificarGastos;
+        TextView textViewNombreGastos;
+        TextView textViewMontoGastos;
+        TextView textViewCategoriaGastos;
+        TextView textViewRecurrenciaGastos;
 
         InfoGasto g = lst.get(i);
 
@@ -46,13 +47,15 @@ public class CustomAdapterGastos extends BaseAdapter {
             view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view, null);
         }
 
-        editTextNombreCrearModificarGastos = view.findViewById(R.id.editTextNombreCrearModificarGastos);
-        editTextMontoCrearModificarIGastos = view.findViewById(R.id.editTextMontoCrearModificarIGastos);
-        editTextRecurrenciaCrearModificarGastos = view.findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
+        textViewNombreGastos = view.findViewById(R.id.textViewNombreGastos);
+        textViewMontoGastos = view.findViewById(R.id.textViewMontoGastos);
+        textViewCategoriaGastos = view.findViewById(R.id.textViewCategoriaGastos);
+        textViewRecurrenciaGastos = view.findViewById(R.id.textViewRecurrenciaGastos);
 
-        editTextNombreCrearModificarGastos.setText(g.nombre);
-        editTextMontoCrearModificarIGastos.setText(g.monto);
-        editTextRecurrenciaCrearModificarGastos.setText(g.recurrencia);
+        textViewNombreGastos.setText(g.nombre);
+        textViewMontoGastos.setText(g.monto);
+        textViewCategoriaGastos.setText(g.recurrencia);
+        textViewRecurrenciaGastos;
         return view;
     }
 }
