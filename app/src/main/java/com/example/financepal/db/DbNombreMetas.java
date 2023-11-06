@@ -12,7 +12,7 @@ import com.example.financepal.entidades.MetasInfo;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class DbNombreMetas extends  DbHelper{
+public class DbNombreMetas extends  DbHelperFP{
     Context context;
     public DbNombreMetas(@Nullable Context context) {
         super(context);
@@ -22,7 +22,7 @@ public class DbNombreMetas extends  DbHelper{
     public long insertarMeta(String correoUsuario, String nombreMeta, String fechaMeta, Integer montoMeta) {
         long id = 0;
         try {
-            DbHelper dbHelper = new DbHelper(context);
+            DbHelperFP dbHelper = new DbHelperFP(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -83,7 +83,7 @@ public class DbNombreMetas extends  DbHelper{
     public boolean editarMeta(int id, String nombreMeta, String fechaMeta, Integer montoMeta) {
         boolean correcto = false;
 
-        DbHelper dbHelper = new DbHelper(context);
+        DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
@@ -112,7 +112,7 @@ public class DbNombreMetas extends  DbHelper{
     public boolean elimnarMeta(int id) {
         boolean correcto = false;
 
-        DbHelper dbHelper = new DbHelper(context);
+        DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {

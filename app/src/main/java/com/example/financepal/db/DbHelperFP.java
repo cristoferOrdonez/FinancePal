@@ -14,6 +14,9 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
     public static final String TABLE_USUARIOS = "t_usuarios";
 
+    public static final String TABLE_METAS="t_metas";
+
+
 
 
     public DbHelperFP(@Nullable Context context) {
@@ -36,13 +39,21 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "correoUsuarioUsuarios TEXT NOT NULL," +
                 "contrasenaUsuario TEXT NOT NULL)");
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_METAS + "(" +
+                "idMetas INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "correoUsuario TEXT, " +
+                "nombreMeta TEXT NOT NULL, " +
+                "montoMeta INTEGER, " +
+                "fechaMeta TEXT)");
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
         sqLiteDatabase.execSQL("DROP TABLE "+ TABLE_INGRESOS);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_USUARIOS);
+        sqLiteDatabase.execSQL("DROP TABLE "+ TABLE_METAS);
         onCreate(sqLiteDatabase);
 
     }

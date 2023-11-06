@@ -96,4 +96,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloSuperiorInicio" />
 
+    <Button
+        android:id="@+id/buttonMetasdeAhorroINICIO"
+        android:layout_width="318dp"
+        android:layout_height="54dp"
+        android:text="Boton metas de ahorro"
+        app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonIngresos" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

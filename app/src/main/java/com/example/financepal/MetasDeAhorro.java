@@ -13,7 +13,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.ListaMetasAdapter;
-import com.example.financepal.db.DbHelper;
+import com.example.financepal.db.DbHelperFP;
+import com.example.financepal.db.DbHelperFP;
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.entidades.MetasInfo;
 
@@ -69,7 +70,7 @@ public class MetasDeAhorro extends AppCompatActivity {
 
         Toast.makeText(this, "METAS DE AHORRO", Toast.LENGTH_SHORT).show();
 
-        DbHelper dbHelper= new DbHelper(MetasDeAhorro.this);
+        DbHelperFP dbHelper= new DbHelperFP(MetasDeAhorro.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
     }

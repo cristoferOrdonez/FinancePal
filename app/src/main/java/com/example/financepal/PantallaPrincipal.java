@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     String correoElectronicoS;
     ImageView botonBalance, botonHistorico, botonMisDatos;
+
+    Button buttonMetasdeAhorro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,15 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         botonMisDatos = findViewById(R.id.botonMisDatosINICIO);
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
+
+        buttonMetasdeAhorro = findViewById(R.id.buttonMetasdeAhorroINICIO);
+        buttonMetasdeAhorro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarAMetasDeAhorro(view);
+            }
+        });
+
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
@@ -104,6 +116,12 @@ public class PantallaPrincipal extends AppCompatActivity {
         finishAffinity();
 
     }
+    public void cambiarAMetasDeAhorro(View view) {
+        Intent miIntent = new Intent(this, MetasDeAhorro.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+    }
+
 
     protected void onDestroy() {
         super.onDestroy();
