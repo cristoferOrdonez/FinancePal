@@ -11,7 +11,7 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:onClick="detectarIntencionBoton"
+        android:onClick="agregarGastos"
         android:text="Crear - Guardar"
         android:textColor="@color/white"
         app:backgroundTint="@color/verdeOscuro"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPrioridadGasto" />
 
     <EditText
         android:id="@+id/editTextNombreCrearModificarGastos"
@@ -80,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerCategoriaGasto"
         android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIGastos" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerPrioridadGasto"
         android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -99,5 +99,5 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategoriaGasto" />
 </androidx.constraintlayout.widget.ConstraintLayout>
