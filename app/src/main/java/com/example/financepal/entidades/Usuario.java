@@ -28,7 +28,7 @@ public class Usuario {
 
     public String getEdad() {
         return edad;
-    }
+    }//
 
     public String getCorreoElectronico() {
         return correoElectronico;

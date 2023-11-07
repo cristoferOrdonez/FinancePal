@@ -15,6 +15,7 @@ import com.example.financepal.entidades.Usuario;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MisDatos extends AppCompatActivity {
 
@@ -145,7 +146,7 @@ public class MisDatos extends AppCompatActivity {
                     if(new DbIngresos(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
 
                         Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
-                        correoElectronicoS = correoElectronico;
+                        correoElectronicoS = correoElectronico.toLowerCase();
                         cambiarAInicio(view);
 
                     }
