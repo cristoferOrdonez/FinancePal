@@ -66,7 +66,7 @@ public class DbNombreMetas extends  DbHelperFP{
         MetasInfo metaInfo = null;
         Cursor cursorMetas;
 
-        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuario = ? AND id = ? LIMIT 1", new String[]{correoUsuario, String.valueOf(id)});
+        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuario = ? AND idMetas = ? LIMIT 1", new String[]{correoUsuario, String.valueOf(id)});
 
         if (cursorMetas.moveToFirst()) {
             metaInfo = new MetasInfo();
@@ -92,7 +92,7 @@ public class DbNombreMetas extends  DbHelperFP{
             values.put("fechaMeta", fechaMeta);
             values.put("montoMeta", montoMeta);
 
-            int rowsAffected = db.update(TABLE_METAS, values, "id=?", new String[]{String.valueOf(id)});
+            int rowsAffected = db.update(TABLE_METAS, values, "idMetas=?", new String[]{String.valueOf(id)});
 
             if (rowsAffected > 0) {
                 correcto = true;
@@ -116,7 +116,7 @@ public class DbNombreMetas extends  DbHelperFP{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL( " DELETE FROM "+ TABLE_METAS + " WHERE id = '" +id+ "' ");
+            db.execSQL( " DELETE FROM "+ TABLE_METAS + " WHERE idMetas = '" +id+ "' ");
             correcto=true;
 
 

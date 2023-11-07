@@ -10,6 +10,7 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION=1;
     private static final String DATABASE_NOMBRE = "ingresos.db";
+
     public static final String TABLE_INGRESOS = "t_ingresos";
 
     public static final String TABLE_USUARIOS = "t_usuarios";
@@ -41,11 +42,12 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_METAS + "(" +
                 "idMetas INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "correoUsuario TEXT, " +
+                "correoUsuarioMeta TEXT, " +
                 "nombreMeta TEXT NOT NULL, " +
                 "montoMeta INTEGER, " +
                 "fechaMeta TEXT)");
     }
+
 
 
     @Override
@@ -53,9 +55,15 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("DROP TABLE "+ TABLE_INGRESOS);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_USUARIOS);
+
         sqLiteDatabase.execSQL("DROP TABLE "+ TABLE_METAS);
+
         onCreate(sqLiteDatabase);
 
     }
 
+
 }
+
+
+

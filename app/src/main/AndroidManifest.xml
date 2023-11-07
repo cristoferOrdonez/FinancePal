@@ -15,6 +15,7 @@
         <activity
             android:name=".CrearModificarIngresos"
             android:exported="false" />
+
         <activity
             android:name=".Ingresos"
             android:exported="false" />
@@ -38,23 +39,16 @@
             android:exported="false" />
         <activity
             android:name=".ingresoInformacionMetasDeAhorro"
-            android:parentActivityName=".MetasDeAhorro">
-            <meta-data
-                android:name="android.support.PARENT_ACTiVITY"
-                android:value=".MetasDeAhorro" />
-        </activity>
+            android:parentActivityName=".MetasDeAhorro"/>
+          
         <activity
             android:name=".entidades.MetasInfo"
             android:exported="false" />
 
         <activity android:name=".EditarActivityMetas"
-            android:parentActivityName=".MetasDeAhorro">
+            android:parentActivityName=".MetasDeAhorro"/>
 
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MetasDeAhorro" />
 
-        </activity>
         <activity
             android:name=".adaptadores.ListaMetasAdapter"
             android:exported="false" />

@@ -29,8 +29,6 @@ public class Historico extends AppCompatActivity {
         botonMisDatos = findViewById(R.id.botonMisDatosHISTORICO);
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
-        Toast.makeText(this, "HISTORICO", Toast.LENGTH_SHORT).show();
-
     }
 
     public void cambiarAInicio(View view){

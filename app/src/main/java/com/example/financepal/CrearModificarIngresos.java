@@ -9,9 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.financepal.db.DbFP;
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.Ingreso;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -83,9 +82,9 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
         if(verificarInformacion()){
 
-            DbFP dbIngresos = new DbFP(this);
+            DbIngresos dbIngresos = new DbIngresos(this);
 
-            List<String> nombresMetas = dbIngresos.obtenerNombresMetas(correoElectronicoS);
+            List<String> nombresMetas = dbIngresos.obtenerNombresIngresos(correoElectronicoS);
 
             if(!verificarRepeticion(nombresMetas)) {
 
@@ -99,6 +98,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             }
 
+
+
         }
 
     }
@@ -109,12 +110,12 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             id = getIntent().getExtras().getLong("id");
 
-            DbFP dbIngresos = new DbFP(this);
+            DbIngresos dbIngresos = new DbIngresos(this);
 
             infoIngreso = dbIngresos.verIngreso(id);
 
-            editTextNombre.setText(infoIngreso.nombre);
-            editTextMonto.setText(infoIngreso.monto);
+            editTextNombre.setText(infoIngreso.getNombre());
+            editTextMonto.setText(infoIngreso.getMonto());
 
         }
 
@@ -127,15 +128,15 @@ public class CrearModificarIngresos extends AppCompatActivity {
             String nombreEdit = editTextNombre.getText().toString().trim();
             String montoEdit = editTextMonto.getText().toString().trim();
 
-            if(infoIngreso.nombre.equals(nombreEdit) && infoIngreso.monto.equals(montoEdit)) {
+            if(infoIngreso.getNombre().equals(nombreEdit) && infoIngreso.getMonto().equals(montoEdit)) {
 
                 Toast.makeText(this, "No ha modificado ningún dato.", Toast.LENGTH_SHORT).show();
 
             } else {
 
-                DbFP dbIngresos = new DbFP(this);
+                DbIngresos dbIngresos = new DbIngresos(this);
 
-                if(verificarRepeticion(dbIngresos.obtenerNombresMetas(correoElectronicoS)) && !nombreEdit.equalsIgnoreCase(infoIngreso.nombre)) {
+                if(verificarRepeticion(dbIngresos.obtenerNombresIngresos(correoElectronicoS)) && !nombreEdit.equalsIgnoreCase(infoIngreso.getNombre())) {
 
                     Toast.makeText(this, "Ya existe un ingreso con el nombre indicado.", Toast.LENGTH_SHORT).show();
 

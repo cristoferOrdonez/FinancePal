@@ -2,19 +2,15 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.financepal.db.DbFP;
+import com.example.financepal.db.DbUsuarios;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.List;
 
 public class Registro extends AppCompatActivity {
@@ -89,7 +85,7 @@ public class Registro extends AppCompatActivity {
         String correoElectronicoR = this.correoElectronicoR.getText().toString();
         String contrasenaR = this.contrasenaR.getText().toString();
 
-        DbFP dbUsuarios = new DbFP(this);
+        DbUsuarios dbUsuarios = new DbUsuarios(this);
 
         if(!verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos())){
 
@@ -103,58 +99,6 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado", Toast.LENGTH_SHORT).show();
 
         }
-
-        /*
-
-        String infoNuevoUsuario = "nombres: " + nombres + "; apellidos: " + apellidos + "; edad: " + edad + "; correoElectronico: " + correoElectronicoR.toLowerCase() + "; contrasena: " + contrasenaR + ";\n";
-
-        try{
-
-            InputStreamReader archivo = new InputStreamReader(openFileInput("InfoUsuariosFinancePal.txt"));
-            BufferedReader br = new BufferedReader(archivo);
-            String linea = br.readLine();
-            String contenido = "";
-
-            while(linea != null){
-
-                contenido += linea + "\n";
-                linea = br.readLine();
-
-            }
-            if(!contenido.contains(correoElectronicoR)) {
-                contenido += infoNuevoUsuario;
-                OutputStreamWriter archivoNuevo = new OutputStreamWriter(openFileOutput("InfoUsuariosFinancePal.txt", Context.MODE_PRIVATE));
-                archivoNuevo.write(contenido);
-                archivoNuevo.flush();
-                archivoNuevo.close();
-                Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
-                Intent miIntent = new Intent(this, MainActivity.class);
-                startActivity(miIntent);
-                finishAffinity();
-            } else {
-                Toast.makeText(this, "El correo electronico ingresado ya se encuentra registrado.", Toast.LENGTH_SHORT).show();
-            }
-
-            this.nombres.setText("");
-            this.apellidos.setText("");
-            this.edad.setText("");
-            this.correoElectronicoR.setText("");
-            this.contrasenaR.setText("");
-            br.close();
-            archivo.close();
-
-        }catch(IOException e){
-            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("InfoUsuariosFinancePal.txt", Context.MODE_PRIVATE));
-            archivo.write(infoNuevoUsuario);
-            archivo.flush();
-            archivo.close();
-            Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
-            Intent miIntent = new Intent(Registro.this, MainActivity.class);
-            startActivity(miIntent);
-            finishAffinity();
-        }
-
-         */
 
     }
 

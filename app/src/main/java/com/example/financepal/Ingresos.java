@@ -15,21 +15,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.AdaptadorIngresos;
-import com.example.financepal.db.DbFP;
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.Ingreso;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Ingresos extends AppCompatActivity {
 
     String correoElectronicoS;
-    ImageView botonMas;
+    ImageView botonMas, botonAtras;
     ListView listViewIngresos;
     List<Ingreso> list;
 
@@ -43,6 +40,9 @@ public class Ingresos extends AppCompatActivity {
 
         botonMas = findViewById(R.id.botonMasIngresos);
         botonMas.setOnClickListener(view -> cambiarParaCrearIngreso(view));
+
+        botonAtras = findViewById(R.id.botonAtrasINGRESOS);
+        botonAtras.setOnClickListener(view -> volver(view));
 
         establecerLista();
 
@@ -111,7 +111,6 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("funcionBoton", "Crear");
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(myIntent);
-        finishAffinity();
 
     }
 
@@ -122,7 +121,6 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         myIntent.putExtra("id", id);
         startActivity(myIntent);
-        finishAffinity();
 
     }
 
@@ -130,7 +128,7 @@ public class Ingresos extends AppCompatActivity {
 
         listViewIngresos = findViewById(R.id.listViewIngresos);
 
-        DbFP dbIngresos = new DbFP(this);
+        DbIngresos dbIngresos = new DbIngresos(this);
 
         list = dbIngresos.mostrarIngresos(correoElectronicoS);
 
@@ -142,7 +140,7 @@ public class Ingresos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Ingreso ing = list.get(i);
 
-                long id = ing.id;
+                long id = ing.getId();
 
                 mostrarDialogo(id);
             }
@@ -152,7 +150,7 @@ public class Ingresos extends AppCompatActivity {
 
     public void eliminarIngreso(long id) throws IOException {
 
-        DbFP dbIngresos = new DbFP(this);
+        DbIngresos dbIngresos = new DbIngresos(this);
 
         if(dbIngresos.elimnarIngreso(id)){
             Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();
