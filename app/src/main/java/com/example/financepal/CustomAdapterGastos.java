@@ -18,11 +18,11 @@ import java.util.List;
 public class CustomAdapterGastos extends BaseAdapter {
 
     Context context;
-    ArrayList<UsuarioGastos> lst;
+    List<UsuarioGastos> lst;
     private DbGastos db;
 
 
-    public CustomAdapterGastos(Context context, ArrayList<UsuarioGastos> lst) {
+    public CustomAdapterGastos(Context context, List<UsuarioGastos> lst) {
         this.context = context;
         this.lst = lst;
     }
@@ -50,11 +50,11 @@ public class CustomAdapterGastos extends BaseAdapter {
         TextView textViewCategoriaGastos;
         TextView textViewRecurrenciaGastos;
 
-        UsuarioGastos g = lst.get(i);
 
-        if(view==null){
-            view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view, null);
-        }
+
+        view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view, null);
+
+        UsuarioGastos g = lst.get(i);
 
         textViewNombreGastos = view.findViewById(R.id.textViewNombreGastos);
         textViewMontoGastos = view.findViewById(R.id.textViewMontoGastos);
@@ -62,9 +62,10 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewRecurrenciaGastos = view.findViewById(R.id.textViewRecurrenciaGastos);
 
         textViewNombreGastos.setText(g.getNombregasto());
-        textViewMontoGastos.setText(g.getMontogasto());
-        textViewCategoriaGastos.setText(db.mostrarNombreCategoria(g.getIdcatgasto(),g.getCorreogasto()));
-        textViewRecurrenciaGastos.setText(g.getRecurrenciagasto());
+        textViewMontoGastos.setText(String.valueOf(g.getMontogasto()));
+        textViewCategoriaGastos.setText(db.mostrarNombreCategoria(g));
+        String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));
+        textViewRecurrenciaGastos.setText(prioridad);
         return view;
     }
 }

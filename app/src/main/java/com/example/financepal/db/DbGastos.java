@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DbGastos extends DbHelperGastos {
 
@@ -86,26 +87,31 @@ public class DbGastos extends DbHelperGastos {
         }
     }
 
-    public ArrayList<UsuarioGastos> buscarUsuario(String idcorreo){
+    public List<UsuarioGastos> buscarUsuario(String idcorreo){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+idcorreo+"'",null);
-        ArrayList<UsuarioGastos> lista = new ArrayList<UsuarioGastos>();
+        List<UsuarioGastos> lista = new ArrayList<>();
         UsuarioGastos usuario = null;
-        if(datos!=null){
-            if(datos.moveToFirst()){
-                do{
-                    usuario = new UsuarioGastos();
-                    usuario.setCorreogasto(datos.getString(1));
-                    usuario.setNombregasto(datos.getString(2));
-                    usuario.setIdcatgasto(datos.getInt(3));
-                    usuario.setIdprioridad(datos.getInt(4));
-                    usuario.setMontogasto(datos.getInt(5));
-                    usuario.setRecurrenciagasto(datos.getInt(6));
-                    lista.add(usuario);
-                }while(datos.moveToNext());
+        try{
+            if(datos!=null){
+                if(datos.moveToFirst()){
+                    do{
+                        usuario = new UsuarioGastos();
+                        usuario.setCorreogasto(datos.getString(1));
+                        usuario.setNombregasto(datos.getString(2));
+                        usuario.setIdcatgasto(datos.getInt(3));
+                        usuario.setIdprioridad(datos.getInt(4));
+                        usuario.setMontogasto(datos.getInt(5));
+                        usuario.setRecurrenciagasto(datos.getInt(6));
+                        lista.add(usuario);
+                    }while(datos.moveToNext());
+                }
             }
+        }catch(Exception e){
+            e.toString();
         }
+
         db.close();
         return lista;
     }
@@ -129,13 +135,24 @@ public class DbGastos extends DbHelperGastos {
         return id;
     }
 
-    public String mostrarNombreCategoria(int idcatgasto, String correocatgasto){
+    public String mostrarNombreCategoria(UsuarioGastos g){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT nombrecatgasto FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE idcatgasto='"+idcatgasto+"' AND correocatgasto='"+correocatgasto+"'",null);
-        return datos.getString(0);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto='"+g.getCorreogasto()+"' OR correocatgasto='0000'",null);
+        datos.moveToFirst();
+        String nombre = datos.getString(2);
+        return nombre;
     }
 
+
+    public String mostrarNombrePrioridad(UsuarioGastos g){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_PRIORIDAD+" WHERE idprioridad='"+g.getIdprioridad()+"'",null);
+        datos.moveToFirst();
+        String nombre = datos.getString(1);
+        return nombre;
+    }
 
 
 }
