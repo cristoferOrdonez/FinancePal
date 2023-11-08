@@ -2,6 +2,7 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import java.util.List;
 public class Gastos extends AppCompatActivity {
     String correoElectronicoS;
     ListView ListViewGastos;
-    List<InfoGasto> lst;
+    List<UsuarioGastos> lista;
 
     private DbGastos db;
 
@@ -36,21 +37,19 @@ public class Gastos extends AppCompatActivity {
         db = new DbGastos(this);
         setContentView(R.layout.activity_gastos);
         listarDatos();
-
+        db.close();
 
     }
 
     public void listarDatos(){
-        ListView ListViewGastos = findViewById(R.id.listViewGastos);
-        ArrayList<UsuarioGastos>lista=db.buscarUsuario(correoElectronicoS);
-        if(!lista.isEmpty()){
-
+        try{
+            ListViewGastos = (ListView) findViewById(R.id.listViewGastos);
+            lista=db.buscarUsuario(correoElectronicoS);
             CustomAdapterGastos adapter = new CustomAdapterGastos(this,lista);
             ListViewGastos.setAdapter(adapter);
-            ListViewGastos.setVisibility(View.VISIBLE);
         }
-        else{
-            ListViewGastos.setVisibility(View.INVISIBLE);
+        catch (Exception e){
+            Toast.makeText(this, e.toString(),Toast.LENGTH_LONG);
         }
 
     }
