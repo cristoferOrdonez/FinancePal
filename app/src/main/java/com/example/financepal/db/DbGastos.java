@@ -33,7 +33,7 @@ public class DbGastos extends DbHelperGastos {
     }*/
 
 
-    public long insertarNuevaCategoria(UsuarioCategoriasGasto u){
+    public boolean insertarNuevaCategoria(UsuarioCategoriasGasto u){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long id=0;
@@ -58,7 +58,7 @@ public class DbGastos extends DbHelperGastos {
         }
 
 
-        return id;
+        return correcto;
     }
 
     public Cursor mostrarCategoriasGasto(String idcorreo){
