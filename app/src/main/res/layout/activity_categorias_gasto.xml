@@ -27,7 +27,7 @@
             android:id="@+id/tituloSuperiorCategGastos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MIS GASTOS"
+            android:text="CATEGORÍAS"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -41,7 +41,7 @@
             android:layout_width="91dp"
             android:layout_height="49dp"
             android:backgroundTint="@color/verdeOscuro"
-            android:onClick="cambiarAPantallaPrincipal"
+            android:onClick="cambiaraAtras"
             android:text="Volver"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
@@ -50,19 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.47" />
-
-        <Button
-            android:id="@+id/botonCategoriasGasto"
-            android:layout_width="98dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/verdeOscuro"
-            android:onClick="cambiarACategoriaGastos"
-            android:text="Categorias"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/listViewCategGastos"
@@ -91,7 +78,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="25dp"
             android:background="#00FFFFFF"
-            android:onClick="cambiarANuevoGasto"
+            android:onClick="cambiaraNuevaCateg"
             android:text="."
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"

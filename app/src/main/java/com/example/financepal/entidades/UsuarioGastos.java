@@ -3,16 +3,32 @@ package com.example.financepal.entidades;
 public class UsuarioGastos {
 
     private String correogasto, nombregasto;
-    private int idcatgasto, idprioridad, montogasto, recurrenciagasto;
+    private int idcatgasto;
+    private int idprioridad;
+    private int montogasto;
+    private int recurrenciagasto;
 
-    public UsuarioGastos(String correogasto, String nombregasto, int idcatgasto, int idprioridad, int montogasto, int recurrenciagasto) {
+    private int idgastos;
+
+    public int getIdgastos() {
+        return idgastos;
+    }
+
+    public void setIdgastos(int idgastos) {
+        this.idgastos = idgastos;
+    }
+
+    public UsuarioGastos(String correogasto, String nombregasto, int idcatgasto, int idprioridad, int montogasto, int recurrenciagasto, int idgastos) {
         this.correogasto = correogasto;
         this.nombregasto = nombregasto;
         this.idcatgasto = idcatgasto;
         this.idprioridad = idprioridad;
         this.montogasto = montogasto;
         this.recurrenciagasto = recurrenciagasto;
+        this.idgastos = idgastos;
     }
+
+
 
     public UsuarioGastos(){
 
