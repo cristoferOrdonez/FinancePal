@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.ArrayList;
@@ -32,21 +33,28 @@ public class DbGastos extends DbHelperGastos {
     }*/
 
 
-    public long insertarNuevaCategoria(String correo, String nombre, String descripcion){
+    public long insertarNuevaCategoria(UsuarioCategoriasGasto u){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long id=0;
+        boolean correcto;
 
         try{
             ContentValues values= new ContentValues();
-            values.put("correocatgasto",correo);
-            values.put("nombrecatgasto",nombre);
-            values.put("desccatgasto", descripcion);
+            values.put("correocatgasto",u.getCorreocatgasto());
+            values.put("nombrecatgasto",u.getNombrecatgasto());
+            values.put("desccatgasto", u.getDesccatgasto());
 
             id = db.insert(TABLE_CATEGORIAS_GASTO,null,values);
+
+            correcto= id!=-1;
         }
         catch(Exception e){
-            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT);
+            e.printStackTrace();
+            correcto = false;
+        }
+        finally {
+            db.close();
         }
 
 
@@ -98,6 +106,7 @@ public class DbGastos extends DbHelperGastos {
                 if(datos.moveToFirst()){
                     do{
                         usuario = new UsuarioGastos();
+                        usuario.setIdgastos(datos.getInt(0));
                         usuario.setCorreogasto(datos.getString(1));
                         usuario.setNombregasto(datos.getString(2));
                         usuario.setIdcatgasto(datos.getInt(3));
@@ -114,6 +123,78 @@ public class DbGastos extends DbHelperGastos {
 
         db.close();
         return lista;
+    }
+
+    public boolean editarGasto(UsuarioGastos g){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        boolean correcto;
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put("correogasto",g.getCorreogasto());
+            values.put("nombregasto",g.getNombregasto());
+            values.put("idcatgasto1",g.getIdcatgasto());
+            values.put("idprioridad1",g.getIdprioridad());
+            values.put("montogasto",g.getMontogasto());
+            values.put("recurrenciagasto",g.getRecurrenciagasto());
+
+            int rowsAffected = db.update(TABLE_GASTOS, values, "idgastos = ?", new String[]{String.valueOf(g.getIdgastos())});
+
+            correcto = (rowsAffected > 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
+    public UsuarioGastos buscarGasto(int id){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE idgastos="+id,null);
+        UsuarioGastos usuario = null;
+        try{
+            if(datos!=null){
+                if(datos.moveToFirst()){
+                    usuario = new UsuarioGastos();
+                    usuario.setIdgastos(datos.getInt(0));
+                    usuario.setCorreogasto(datos.getString(1));
+                    usuario.setNombregasto(datos.getString(2));
+                    usuario.setIdcatgasto(datos.getInt(3));
+                    usuario.setIdprioridad(datos.getInt(4));
+                    usuario.setMontogasto(datos.getInt(5));
+                    usuario.setRecurrenciagasto(datos.getInt(6));
+                }
+            }
+        }catch(Exception e){
+            e.toString();
+        }
+
+        db.close();
+        return usuario;
+    }
+
+    public boolean eliminarGasto(int id){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        boolean correcto;
+        try {
+            db.execSQL( " DELETE FROM "+ TABLE_GASTOS + " WHERE idgastos = '" +id+ "' ");
+            correcto=true;
+
+        } catch (Exception e) {
+            e.toString();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
     }
 
     public long insertarGasto(UsuarioGastos g){

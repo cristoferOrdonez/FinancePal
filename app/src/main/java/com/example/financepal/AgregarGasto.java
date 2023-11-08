@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 import com.example.financepal.entidades.UsuarioPrioridadesGasto;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +25,8 @@ public class AgregarGasto extends AppCompatActivity {
 
     String correoElectronicoS;
     private DbGastos db;
+
+    Button botonCrearGuardarGasto;
     EditText nombre, monto, recurrencia;
     Spinner spinnerPrioridadGasto, spinnerCategoriaGasto;
     ArrayList<String> prioridadgasto, categoriagasto;
@@ -50,6 +51,15 @@ public class AgregarGasto extends AppCompatActivity {
         List<UsuarioPrioridadesGasto> listPrioridades = llenarSpinnerPrioridades();
         ArrayAdapter<UsuarioPrioridadesGasto> arrayAdapter2 = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listPrioridades);
         spinnerPrioridadGasto.setAdapter(arrayAdapter2);
+
+        botonCrearGuardarGasto = findViewById(R.id.botonCrearGuardarCrearModificarGastos);
+        botonCrearGuardarGasto.setText(getIntent().getStringExtra("funcionBoton"));
+
+        try {
+            establecerEditText();
+        } catch (IOException e) {
+            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -79,6 +89,57 @@ public class AgregarGasto extends AppCompatActivity {
                 monto.setText("");
                 recurrencia.setText("");
             }
+
+            cambiaraAtras(view);
+
+        }
+
+    }
+
+    private void modificarGasto(View view) {
+        UsuarioGastos usuario = new UsuarioGastos();
+        int id = getIntent().getExtras().getInt("id");
+        usuario.setIdgastos(id);
+        usuario.setCorreogasto(correoElectronicoS);
+        usuario.setNombregasto(nombre.getText().toString());
+        usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
+        usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
+        usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+        usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+        boolean res= db.editarGasto(usuario);
+
+        if (res) {
+            Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
+        }
+
+        cambiaraAtras(view);
+    }
+
+    public void detectarIntencionBoton(View view) {
+
+        if(botonCrearGuardarGasto.getText().toString().equals("Crear")){
+            agregarGastos(view);
+        } else {
+            modificarGasto(view);
+        }
+
+    }
+
+
+
+    public void establecerEditText() throws IOException {
+
+        if(getIntent().getStringExtra("funcionBoton").equals("Guardar")){
+
+            int id = getIntent().getExtras().getInt("id");
+            UsuarioGastos infousuario = db.buscarGasto(id);
+
+            nombre.setText(""+infousuario.getNombregasto());
+            monto.setText(""+infousuario.getMontogasto());
+            spinnerPrioridadGasto.setSelection(infousuario.getIdprioridad()-1);
+            recurrencia.setText(""+infousuario.getRecurrenciagasto());
 
         }
 
