@@ -14,10 +14,10 @@ import com.example.financepal.entidades.UsuarioCategoriasGasto;
 
 public class AgregarCategoriaGasto extends AppCompatActivity {
     String correoElectronicoS;
+    private DbGastos db;
     EditText EditTextNombreCatGastos;
     EditText EditTextDescCatGastos;
     Button BotonCrearGuardarCatGastos;
-    private DbGastos db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
 
         EditTextDescCatGastos=findViewById(R.id.editTextDescCatGastos);
         EditTextNombreCatGastos=findViewById(R.id.editTextNombreCatGastos);
+        db = new DbGastos(this);
 
         BotonCrearGuardarCatGastos = findViewById(R.id.botonCrearGuardarCatGastos);
         //BotonCrearGuardarCatGastos.setText(getIntent().getStringExtra("funcionBoton"));
@@ -45,7 +46,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
     }
 
     private void agregarCatGasto(View view) {
-        long res;
+        boolean res;
         if(EditTextNombreCatGastos.getText().toString().isEmpty()||EditTextDescCatGastos.getText().toString().isEmpty()){
             Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
         }
@@ -56,14 +57,14 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
             usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString());
 
             res= db.insertarNuevaCategoria(usuario);
-            /*if (res) {
+            if (res) {
                 Toast.makeText(this, "Se ha agregado la categoría.", Toast.LENGTH_SHORT).show();
                 cambiaraAtras(view);
             } else {
                 Toast.makeText(this, "Error al agregar.", Toast.LENGTH_SHORT).show();
                 EditTextDescCatGastos.setText("");
                 EditTextNombreCatGastos.setText("");
-            }*/
+            }
         }
     }
 
