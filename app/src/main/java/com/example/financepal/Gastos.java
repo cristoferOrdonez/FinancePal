@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 
 import java.io.IOException;
 
+import com.example.financepal.adaptadores.CustomAdapterGastos;
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.entidades.UsuarioGastos;
 
@@ -42,13 +43,13 @@ public class Gastos extends AppCompatActivity {
 
     public void listarDatos(){
         try{
-            ListViewGastos = (ListView) findViewById(R.id.listViewCategGastos);
+            ListViewGastos = (ListView) findViewById(R.id.listViewGastosu);
             lista=db.buscarUsuario(correoElectronicoS);
             CustomAdapterGastos adapter = new CustomAdapterGastos(this,lista);
             ListViewGastos.setAdapter(adapter);
         }
         catch (Exception e){
-            Toast.makeText(this, e.toString(),Toast.LENGTH_LONG);
+            Toast.makeText(this, e.toString(),Toast.LENGTH_SHORT).show();
         }
 
         ListViewGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {

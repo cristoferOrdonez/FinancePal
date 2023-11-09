@@ -125,6 +125,33 @@ public class DbGastos extends DbHelperGastos {
         return lista;
     }
 
+    public List<UsuarioCategoriasGasto> buscarCategGastos(String idcorreo){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto='"+idcorreo+"' OR correocatgasto='0000'",null);
+        List<UsuarioCategoriasGasto> lista = new ArrayList<>();
+        UsuarioCategoriasGasto usuario = null;
+        try{
+            if(datos!=null){
+                if(datos.moveToFirst()){
+                    do{
+                        usuario = new UsuarioCategoriasGasto();
+                        usuario.setIdcatgasto(datos.getInt(0));
+                        usuario.setCorreocatgasto(idcorreo);
+                        usuario.setNombrecatgasto(datos.getString(2));
+                        usuario.setDesccatgasto(datos.getString(3));
+                        lista.add(usuario);
+                    }while(datos.moveToNext());
+                }
+            }
+        }catch(Exception e){
+            e.toString();
+        }
+
+        db.close();
+        return lista;
+    }
+
     public boolean editarGasto(UsuarioGastos g){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -213,15 +240,17 @@ public class DbGastos extends DbHelperGastos {
         } catch(Exception e){
             Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT);
         }
+        db.close();
         return id;
     }
 
     public String mostrarNombreCategoria(UsuarioGastos g){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto='"+g.getCorreogasto()+"' OR correocatgasto='0000'",null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE idcatgasto="+g.getIdcatgasto(),null);
         datos.moveToFirst();
         String nombre = datos.getString(2);
+        db.close();
         return nombre;
     }
 
@@ -232,6 +261,7 @@ public class DbGastos extends DbHelperGastos {
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_PRIORIDAD+" WHERE idprioridad='"+g.getIdprioridad()+"'",null);
         datos.moveToFirst();
         String nombre = datos.getString(1);
+        db.close();
         return nombre;
     }
 

@@ -82,10 +82,13 @@
     <Spinner
         android:id="@+id/spinnerCategoriaGasto"
         android:layout_width="270dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/background_buttons"
+        android:layout_height="wrap_content"
 
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner1"
+        android:dropDownWidth="wrap_content"
+        android:gravity="center_vertical"
+        android:popupBackground="@color/Gris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIGastos" />
@@ -93,10 +96,13 @@
     <Spinner
         android:id="@+id/spinnerPrioridadGasto"
         android:layout_width="270dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/background_buttons"
 
+        android:background="@drawable/spinner1"
+        android:dropDownWidth="wrap_content"
+        android:gravity="center_vertical"
+        android:popupBackground="@color/Gris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategoriaGasto" />

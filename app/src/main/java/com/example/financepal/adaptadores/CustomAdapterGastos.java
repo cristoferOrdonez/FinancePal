@@ -1,4 +1,4 @@
-package com.example.financepal;
+package com.example.financepal.adaptadores;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,12 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.financepal.InfoGasto;
 import com.example.financepal.R;
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.entidades.UsuarioGastos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomAdapterGastos extends BaseAdapter {
@@ -52,7 +50,7 @@ public class CustomAdapterGastos extends BaseAdapter {
 
 
 
-        view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view, null);
+        view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view_gastos, null);
 
         UsuarioGastos g = lst.get(i);
 
@@ -63,7 +61,8 @@ public class CustomAdapterGastos extends BaseAdapter {
 
         textViewNombreGastos.setText(g.getNombregasto());
         textViewMontoGastos.setText(String.valueOf(g.getMontogasto()));
-        textViewCategoriaGastos.setText(db.mostrarNombreCategoria(g));
+        String categoria = "Categoria: "+db.mostrarNombreCategoria(g);
+        textViewCategoriaGastos.setText(categoria);
         String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));
         textViewRecurrenciaGastos.setText(prioridad);
         return view;

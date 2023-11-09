@@ -45,11 +45,11 @@ public class AgregarGasto extends AppCompatActivity {
         spinnerPrioridadGasto = (Spinner) findViewById(R.id.spinnerPrioridadGasto);
 
         List<UsuarioCategoriasGasto> listCategorias = llenarSpinnerCategorias();
-        ArrayAdapter<UsuarioCategoriasGasto> arrayAdapter1 = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listCategorias);
+        ArrayAdapter<UsuarioCategoriasGasto> arrayAdapter1 = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listCategorias);
         spinnerCategoriaGasto.setAdapter(arrayAdapter1);
 
         List<UsuarioPrioridadesGasto> listPrioridades = llenarSpinnerPrioridades();
-        ArrayAdapter<UsuarioPrioridadesGasto> arrayAdapter2 = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listPrioridades);
+        ArrayAdapter<UsuarioPrioridadesGasto> arrayAdapter2 = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listPrioridades);
         spinnerPrioridadGasto.setAdapter(arrayAdapter2);
 
         botonCrearGuardarGasto = findViewById(R.id.botonCrearGuardarCrearModificarGastos);
@@ -65,7 +65,7 @@ public class AgregarGasto extends AppCompatActivity {
 
     public void agregarGastos(View view){
         if(nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
-            Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG);
+            Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
         }
         else{
             UsuarioGastos usuario = new UsuarioGastos();
@@ -77,14 +77,14 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
             long res= db.insertarGasto(usuario);
             if(res==-1){
-                Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT);
+                Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT).show();
                 nombre.setText("");
                 monto.setText("");
                 recurrencia.setText("");
 
             }
             else{
-                Toast.makeText(AgregarGasto.this,"Gasto Agregado",Toast.LENGTH_SHORT);
+                Toast.makeText(AgregarGasto.this,"Gasto Agregado",Toast.LENGTH_SHORT).show();
                 nombre.setText("");
                 monto.setText("");
                 recurrencia.setText("");
