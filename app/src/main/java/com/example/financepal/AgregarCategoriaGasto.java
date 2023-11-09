@@ -65,6 +65,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
                 EditTextDescCatGastos.setText("");
                 EditTextNombreCatGastos.setText("");
             }
+            db.close();
         }
     }
 

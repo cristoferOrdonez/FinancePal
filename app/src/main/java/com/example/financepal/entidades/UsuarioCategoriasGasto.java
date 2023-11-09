@@ -37,4 +37,8 @@ public class UsuarioCategoriasGasto {
     public void setDesccatgasto(String desccatgasto) {
         this.desccatgasto = desccatgasto;
     }
+
+    public String toString(){
+        return nombrecatgasto;
+    }
 }
