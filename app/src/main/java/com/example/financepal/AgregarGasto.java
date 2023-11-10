@@ -38,11 +38,11 @@ public class AgregarGasto extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_gasto);
         db = new DbGastos(this);
 
-        nombre = (EditText) findViewById(R.id.editTextNombreCrearModificarGastos);
-        monto = (EditText) findViewById(R.id.editTextMontoCrearModificarIGastos);
-        recurrencia = (EditText) findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
-        spinnerCategoriaGasto = (Spinner) findViewById(R.id.spinnerCategoriaGasto);
-        spinnerPrioridadGasto = (Spinner) findViewById(R.id.spinnerPrioridadGasto);
+        nombre = findViewById(R.id.editTextNombreCrearModificarGastos);
+        monto = findViewById(R.id.editTextMontoCrearModificarIGastos);
+        recurrencia = findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
+        spinnerCategoriaGasto = findViewById(R.id.spinnerCategoriaGasto);
+        spinnerPrioridadGasto = findViewById(R.id.spinnerPrioridadGasto);
 
         List<UsuarioCategoriasGasto> listCategorias = llenarSpinnerCategorias();
         ArrayAdapter<UsuarioCategoriasGasto> arrayAdapter1 = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listCategorias);
