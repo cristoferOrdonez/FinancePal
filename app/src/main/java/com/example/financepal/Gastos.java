@@ -115,7 +115,7 @@ public class Gastos extends AppCompatActivity {
 
     public void eliminarGasto(int id) throws IOException {
         if(db.eliminarGasto(id)){
-            Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Se ha eliminado el gasto.", Toast.LENGTH_SHORT).show();
         }
         listarDatos();
     }

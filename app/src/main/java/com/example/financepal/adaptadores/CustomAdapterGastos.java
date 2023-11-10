@@ -1,11 +1,14 @@
 package com.example.financepal.adaptadores;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import java.text.NumberFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import java.util.Locale;
 
 import com.example.financepal.R;
 import com.example.financepal.db.DbGastos;
@@ -40,6 +43,7 @@ public class CustomAdapterGastos extends BaseAdapter {
         return i;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         db = new DbGastos(context);
@@ -48,6 +52,8 @@ public class CustomAdapterGastos extends BaseAdapter {
         TextView textViewCategoriaGastos;
         TextView textViewRecurrenciaGastos;
 
+        Locale locale = new Locale("es", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 
 
         view= LayoutInflater.from(context).inflate(R.layout.activity_custom_list_view_gastos, null);
@@ -60,7 +66,7 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewRecurrenciaGastos = view.findViewById(R.id.textViewRecurrenciaGastos);
 
         textViewNombreGastos.setText(g.getNombregasto());
-        textViewMontoGastos.setText(String.valueOf(g.getMontogasto()));
+        textViewMontoGastos.setText(currencyFormatter.format(g.getMontogasto())+" COP");
         String categoria = "Categoria: "+db.mostrarNombreCategoria(g);
         textViewCategoriaGastos.setText(categoria);
         String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));

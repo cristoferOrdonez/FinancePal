@@ -22,7 +22,7 @@ public class DbGastos extends DbHelperGastos {
         this.context=context;
     }
 
-    /*public void insertarprimeraCategoria(String correo){
+    public void insertarprimeraCategoria(String correo){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("INSERT INTO "+TABLE_CATEGORIAS_GASTO+" (correocatgasto,nombrecatgasto,desccatgasto) VALUES" +
@@ -30,7 +30,7 @@ public class DbGastos extends DbHelperGastos {
                 "('"+correo+"','Transporte','Gastos relacionados con transporte')," +
                 "('"+correo+"','Impuestos','Gastos relacionados con el pago de impuestos')," +
                 "('"+correo+"','Mercado','Gastos relacionados con el mercado')");
-    }*/
+    }
 
 
     public boolean insertarNuevaCategoria(UsuarioCategoriasGasto u){
@@ -65,7 +65,7 @@ public class DbGastos extends DbHelperGastos {
         try{
             DbHelperGastos dbHelper = new DbHelperGastos(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-            Cursor datos = db.rawQuery("SELECT * FROM " + TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto = '0000' OR correocatgasto ='"+idcorreo+"'",null);
+            Cursor datos = db.rawQuery("SELECT * FROM " + TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto ='"+idcorreo+"'",null);
             if(datos.moveToFirst()){
                 return datos;
             }
@@ -98,7 +98,7 @@ public class DbGastos extends DbHelperGastos {
     public List<UsuarioGastos> buscarUsuario(String idcorreo){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+idcorreo+"'",null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+idcorreo+"' ORDER BY idgastos DESC",null);
         List<UsuarioGastos> lista = new ArrayList<>();
         UsuarioGastos usuario = null;
         try{
@@ -128,7 +128,7 @@ public class DbGastos extends DbHelperGastos {
     public List<UsuarioCategoriasGasto> buscarCategGastos(String idcorreo){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE correocatgasto='"+idcorreo+"' OR correocatgasto='0000'",null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE (correocatgasto='"+idcorreo+"')",null);
         List<UsuarioCategoriasGasto> lista = new ArrayList<>();
         UsuarioCategoriasGasto usuario = null;
         try{
@@ -150,6 +150,55 @@ public class DbGastos extends DbHelperGastos {
 
         db.close();
         return lista;
+    }
+
+    public UsuarioCategoriasGasto buscarCategGasto(int id){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE idcatgasto="+id,null);
+        UsuarioCategoriasGasto usuario = null;
+        try{
+            if(datos!=null){
+                if(datos.moveToFirst()){
+                    do{
+                        usuario = new UsuarioCategoriasGasto();
+                        usuario.setIdcatgasto(datos.getInt(0));
+                        usuario.setCorreocatgasto(datos.getString(1));
+                        usuario.setNombrecatgasto(datos.getString(2));
+                        usuario.setDesccatgasto(datos.getString(3));
+                    }while(datos.moveToNext());
+                }
+            }
+        }catch(Exception e){
+            e.toString();
+        }
+
+        db.close();
+        return usuario;
+    }
+
+    public boolean editarCatGasto(UsuarioCategoriasGasto g){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        boolean correcto;
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put("nombrecatgasto",g.getNombrecatgasto());
+            values.put("desccatgasto",g.getDesccatgasto());
+
+            int rowsAffected = db.update(TABLE_CATEGORIAS_GASTO, values, "idcatgasto = ?", new String[]{String.valueOf(g.getIdcatgasto())});
+
+            correcto = (rowsAffected > 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
     }
 
     public boolean editarGasto(UsuarioGastos g){
@@ -183,7 +232,7 @@ public class DbGastos extends DbHelperGastos {
     public UsuarioGastos buscarGasto(int id){
         DbHelperGastos dbHelper = new DbHelperGastos(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE idgastos="+id,null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE idgastos="+id+" ORDER BY idgastos DESC",null);
         UsuarioGastos usuario = null;
         try{
             if(datos!=null){
@@ -212,6 +261,25 @@ public class DbGastos extends DbHelperGastos {
         boolean correcto;
         try {
             db.execSQL( " DELETE FROM "+ TABLE_GASTOS + " WHERE idgastos = '" +id+ "' ");
+            correcto=true;
+
+        } catch (Exception e) {
+            e.toString();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
+    public boolean eliminarCatGasto(int id){
+        DbHelperGastos dbHelper = new DbHelperGastos(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        boolean correcto;
+        try {
+            db.execSQL( "DELETE FROM "+TABLE_GASTOS+" WHERE idcatgasto1="+id);
+            db.execSQL( " DELETE FROM "+ TABLE_CATEGORIAS_GASTO + " WHERE idcatgasto="+id);
             correcto=true;
 
         } catch (Exception e) {
