@@ -23,6 +23,7 @@
             android:gravity="center|left"
             android:paddingLeft="30dp"
 
+            android:paddingRight="10dp"
             android:text="TextView"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -32,9 +33,10 @@
             android:id="@+id/textViewMontoGastos"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:paddingLeft="30dp"
-            android:gravity="center|left"
             android:layout_weight="33"
+            android:gravity="center|left"
+            android:paddingLeft="30dp"
+            android:paddingRight="10dp"
             android:text="TextView" />
         <View style="@style/Divider.Horizontal"/>
 

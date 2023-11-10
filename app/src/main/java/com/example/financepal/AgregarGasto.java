@@ -64,16 +64,17 @@ public class AgregarGasto extends AppCompatActivity {
     }
 
     public void agregarGastos(View view){
-        if(nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
+        if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
             Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
         }
         else{
             UsuarioGastos usuario = new UsuarioGastos();
             usuario.setCorreogasto(correoElectronicoS);
-            usuario.setNombregasto(nombre.getText().toString());
+            usuario.setNombregasto(nombre.getText().toString().stripLeading().stripTrailing());
             usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
             usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+
             usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
             long res= db.insertarGasto(usuario);
             if(res==-1){
@@ -97,24 +98,33 @@ public class AgregarGasto extends AppCompatActivity {
     }
 
     private void modificarGasto(View view) {
-        UsuarioGastos usuario = new UsuarioGastos();
-        int id = getIntent().getExtras().getInt("id");
-        usuario.setIdgastos(id);
-        usuario.setCorreogasto(correoElectronicoS);
-        usuario.setNombregasto(nombre.getText().toString());
-        usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
-        usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
-        usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
-        usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
-        boolean res= db.editarGasto(usuario);
-
-        if (res) {
-            Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
+        try{
+            UsuarioGastos usuario = new UsuarioGastos();
+            int id = getIntent().getExtras().getInt("id");
+            usuario.setIdgastos(id);
+            usuario.setCorreogasto(correoElectronicoS);
+            usuario.setNombregasto(nombre.getText().toString());
+            usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
+            usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
+            usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+            usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+            if(nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
+                Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
+            }
+            else{
+                boolean res= db.editarGasto(usuario);
+                if (res) {
+                    Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            cambiaraAtras(view);
+        }
+        catch(NumberFormatException e){
+            Toast.makeText(this, "Ingrese todos los campos.", Toast.LENGTH_SHORT).show();
         }
 
-        cambiaraAtras(view);
     }
 
     public void detectarIntencionBoton(View view) {
@@ -126,7 +136,6 @@ public class AgregarGasto extends AppCompatActivity {
         }
 
     }
-
 
 
     public void establecerEditText() throws IOException {

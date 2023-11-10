@@ -26,6 +26,7 @@
             android:layout_height="60dp"
             android:paddingLeft="30dp"
             android:paddingTop="8dp"
+            android:paddingRight="30dp"
             android:text="TextView" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

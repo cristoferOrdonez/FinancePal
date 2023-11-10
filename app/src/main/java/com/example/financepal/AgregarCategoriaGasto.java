@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
+import com.example.financepal.entidades.UsuarioGastos;
+
+import java.io.IOException;
 
 public class AgregarCategoriaGasto extends AppCompatActivity {
     String correoElectronicoS;
@@ -30,19 +33,52 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
         db = new DbGastos(this);
 
         BotonCrearGuardarCatGastos = findViewById(R.id.botonCrearGuardarCatGastos);
-        //BotonCrearGuardarCatGastos.setText(getIntent().getStringExtra("funcionBoton"));
+        BotonCrearGuardarCatGastos.setText(getIntent().getStringExtra("funcionBoton"));
+
+        try {
+            establecerEditText();
+        } catch (IOException e) {
+            Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void detectarIntencionBoton(View view) {
-
-        agregarCatGasto(view); //ELIMINAR
-
-        /*if(BotonCrearGuardarCatGastos.getText().toString().equals("Crear")){
+        if(BotonCrearGuardarCatGastos.getText().toString().equals("Crear")){
             agregarCatGasto(view);
         } else {
-            //modificarCatGasto(view);
-        }*/
+            modificarCatGasto(view);
+        }
 
+    }
+
+    public void establecerEditText() throws IOException {
+
+        if(getIntent().getStringExtra("funcionBoton").equals("Guardar")){
+
+            int id = getIntent().getExtras().getInt("id");
+            UsuarioCategoriasGasto infousuario = db.buscarCategGasto(id);
+
+            EditTextNombreCatGastos.setText(infousuario.getNombrecatgasto());
+            EditTextDescCatGastos.setText(infousuario.getDesccatgasto());
+
+        }
+
+    }
+
+    private void modificarCatGasto(View view) {
+        UsuarioCategoriasGasto usuario = new UsuarioCategoriasGasto();
+        usuario.setIdcatgasto(getIntent().getExtras().getInt("id"));
+        usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString());
+        usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString());
+        boolean res= db.editarCatGasto(usuario);
+
+        if (res) {
+            Toast.makeText(this, "Se ha modificado la categoria.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error al modificar la categoria.", Toast.LENGTH_SHORT).show();
+        }
+
+        cambiaraAtras(view);
     }
 
     private void agregarCatGasto(View view) {

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbGastos;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,6 +20,7 @@ public class Registro extends AppCompatActivity {
 
     //Declaracion variables de informacion
     EditText nombres, apellidos, edad, correoElectronicoR, contrasenaR;
+    DbGastos db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class Registro extends AppCompatActivity {
         edad = findViewById(R.id.editTextEdadMISDATOS);
         correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         contrasenaR = findViewById(R.id.editTextContrasenaRMISDATOS);
+
+        db = new DbGastos(this);
 
     }
 
@@ -102,6 +107,7 @@ public class Registro extends AppCompatActivity {
                 archivoNuevo.write(contenido);
                 archivoNuevo.flush();
                 archivoNuevo.close();
+                db.insertarprimeraCategoria(correoElectronicoR);
                 Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
                 Intent miIntent = new Intent(this, MainActivity.class);
                 startActivity(miIntent);
@@ -117,6 +123,7 @@ public class Registro extends AppCompatActivity {
             this.contrasenaR.setText("");
             br.close();
             archivo.close();
+
 
         }catch(IOException e){
             OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("InfoUsuariosFinancePal.txt", Context.MODE_PRIVATE));
