@@ -20,7 +20,7 @@ public class Registro extends AppCompatActivity {
 
     //Declaracion variables de informacion
     EditText nombres, apellidos, edad, correoElectronicoR, contrasenaR;
-    DbGastos db;
+    private DbGastos db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class Registro extends AppCompatActivity {
         correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         contrasenaR = findViewById(R.id.editTextContrasenaRMISDATOS);
 
-        db = new DbGastos(this);
+
 
     }
 
@@ -107,7 +107,9 @@ public class Registro extends AppCompatActivity {
                 archivoNuevo.write(contenido);
                 archivoNuevo.flush();
                 archivoNuevo.close();
+                db = new DbGastos(this);
                 db.insertarprimeraCategoria(correoElectronicoR);
+                db.close();
                 Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
                 Intent miIntent = new Intent(this, MainActivity.class);
                 startActivity(miIntent);
@@ -130,6 +132,9 @@ public class Registro extends AppCompatActivity {
             archivo.write(infoNuevoUsuario);
             archivo.flush();
             archivo.close();
+            db = new DbGastos(this);
+            db.insertarprimeraCategoria(correoElectronicoR);
+            db.close();
             Toast.makeText(this, "Se ha registrado exitosamente.", Toast.LENGTH_SHORT).show();
             Intent miIntent = new Intent(Registro.this, MainActivity.class);
             startActivity(miIntent);
