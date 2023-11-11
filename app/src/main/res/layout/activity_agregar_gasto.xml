@@ -88,7 +88,7 @@
         android:background="@drawable/spinner1"
         android:dropDownWidth="wrap_content"
         android:gravity="center_vertical"
-        android:popupBackground="@color/Gris"
+        android:popupBackground="@drawable/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIGastos" />
