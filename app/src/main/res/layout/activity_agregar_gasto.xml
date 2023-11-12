@@ -81,14 +81,15 @@
 
     <Spinner
         android:id="@+id/spinnerCategoriaGasto"
+        style="@android:style/Widget.DeviceDefault.Light.Spinner"
         android:layout_width="270dp"
-        android:layout_height="wrap_content"
 
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/spinner1"
         android:dropDownWidth="wrap_content"
+        android:dropDownSelector="@android:drawable/arrow_down_float"
         android:gravity="center_vertical"
-        android:popupBackground="@drawable/spinner1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMontoCrearModificarIGastos" />
@@ -102,7 +103,6 @@
         android:background="@drawable/spinner1"
         android:dropDownWidth="wrap_content"
         android:gravity="center_vertical"
-        android:popupBackground="@color/Gris"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategoriaGasto" />

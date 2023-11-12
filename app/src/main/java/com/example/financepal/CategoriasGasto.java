@@ -202,6 +202,5 @@ public class CategoriasGasto extends AppCompatActivity {
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         miIntent.putExtra("funcionBoton", "Crear");
         startActivity(miIntent);
-        finishAffinity();
     }
 }

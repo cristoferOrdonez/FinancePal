@@ -108,18 +108,18 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
             usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
             usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
-            if(nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
-                Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
+            if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
+                Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT).show();
             }
             else{
                 boolean res= db.editarGasto(usuario);
                 if (res) {
                     Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
+                    cambiaraAtras(view);
                 } else {
                     Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
                 }
             }
-            cambiaraAtras(view);
         }
         catch(NumberFormatException e){
             Toast.makeText(this, "Ingrese todos los campos.", Toast.LENGTH_SHORT).show();

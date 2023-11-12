@@ -12,6 +12,7 @@ import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DbGastos extends DbHelperGastos {
@@ -150,6 +151,16 @@ public class DbGastos extends DbHelperGastos {
 
         db.close();
         return lista;
+    }
+
+    public HashMap<Integer,String> verificarRepetidosCategGasto(String idcorreo){
+        List<UsuarioCategoriasGasto> lista =buscarCategGastos(idcorreo);
+        HashMap<Integer,String> nombres= new HashMap<>();
+        for ( UsuarioCategoriasGasto i:lista){
+            nombres.put(i.getIdcatgasto(),i.getNombrecatgasto());
+
+        }
+        return nombres;
     }
 
     public UsuarioCategoriasGasto buscarCategGasto(int id){
