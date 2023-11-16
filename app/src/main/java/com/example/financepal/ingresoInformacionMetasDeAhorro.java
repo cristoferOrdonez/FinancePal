@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.financepal.db.DbNombreMetas;
+import android.text.TextUtils;
+import android.widget.Toast;
+
 
 public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
     String correoElectronicoS;
@@ -32,12 +35,16 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         botonGuardarMeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
-                long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
-                //Se inserta la info a la tabla
-                limpiar();
-
+                // Verificar que los campos no estén vacíos
+                if (camposLlenos()) {
+                    DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
+                    long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
+                    //Se inserta la info a la tabla
+                    limpiar();
+                } else {
+                    // Mostrar un mensaje al usuario indicando que todos los campos son obligatorios
+                    Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -50,6 +57,12 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         });
 
 
+    }
+    private boolean camposLlenos() {
+        // Verificar que los campos no estén vacíos ni sean espacios en blanco
+        return !TextUtils.isEmpty(nombreMeta.getText().toString().trim()) &&
+                !TextUtils.isEmpty(fechaMeta.getText().toString().trim()) &&
+                !TextUtils.isEmpty(montoMeta.getText().toString().trim());
     }
 
     private void limpiar() {

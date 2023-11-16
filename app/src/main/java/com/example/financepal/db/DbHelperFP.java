@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelperFP extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION=1;
+    private static final int DATABASE_VERSION=2;
     private static final String DATABASE_NOMBRE = "ingresos.db";
 
     public static final String TABLE_INGRESOS = "t_ingresos";
@@ -42,10 +42,10 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_METAS + "(" +
                 "idMetas INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "correoUsuarioMeta TEXT, " +
+                "correoUsuarioMetas TEXT NOT NULL, " +
                 "nombreMeta TEXT NOT NULL, " +
-                "montoMeta INTEGER, " +
-                "fechaMeta TEXT)");
+                "montoMeta INTEGER NOT NULL, " +
+                "fechaMeta TEXT NOT NULL)");
     }
 
 

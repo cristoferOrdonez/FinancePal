@@ -19,14 +19,14 @@ public class DbNombreMetas extends  DbHelperFP{
         this.context = context;
     }
 
-    public long insertarMeta(String correoUsuario, String nombreMeta, String fechaMeta, Integer montoMeta) {
+    public long insertarMeta(String correoUsuarioMetas, String nombreMeta, String fechaMeta, Integer montoMeta) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put("correoUsuario", correoUsuario); // Nuevo campo para almacenar el correo electronico del usuario
+            values.put("correoUsuarioMetas", correoUsuarioMetas); // Nuevo campo para almacenar el correo electronico del usuario
             values.put("nombreMeta", nombreMeta);
             values.put("fechaMeta", fechaMeta);
             values.put("montoMeta", montoMeta);
@@ -44,7 +44,7 @@ public class DbNombreMetas extends  DbHelperFP{
         MetasInfo metasInfo = null;
         Cursor cursorMetas = null;
 
-        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuario = ?", new String[]{correoUsuario});
+        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuarioMetas = ?", new String[]{correoUsuario});
 
         if (cursorMetas.moveToFirst()) {
             do {
@@ -66,7 +66,7 @@ public class DbNombreMetas extends  DbHelperFP{
         MetasInfo metaInfo = null;
         Cursor cursorMetas;
 
-        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuario = ? AND idMetas = ? LIMIT 1", new String[]{correoUsuario, String.valueOf(id)});
+        cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuarioMetas = ? AND idMetas = ? LIMIT 1", new String[]{correoUsuario, String.valueOf(id)});
 
         if (cursorMetas.moveToFirst()) {
             metaInfo = new MetasInfo();
