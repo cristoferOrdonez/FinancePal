@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/textViewNombreGastos"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_weight="32"
+            android:gravity="center|left"
+            android:paddingLeft="30dp"
+
+            android:paddingRight="10dp"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewMontoGastos"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_weight="33"
+            android:gravity="center|left"
+            android:paddingLeft="30dp"
+            android:paddingRight="10dp"
+            android:text="TextView" />
+        <View style="@style/Divider.Horizontal"/>
+
+
+    </LinearLayout>
+    <View style="@style/Divider.Vertical"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/textViewRecurrenciaGastos"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:paddingTop="12dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewCategoriaGastos"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="35"
+            android:gravity="center|left"
+            android:paddingLeft="20dp"
+
+            android:text="TextView" />
+        <View style="@style/Divider.Horizontal"/>
+    </LinearLayout>
+
+</LinearLayout>
