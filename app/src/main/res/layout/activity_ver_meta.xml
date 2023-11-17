@@ -148,16 +148,17 @@
         android:layout_marginTop="24dp"
         android:background="@color/verdeOscuro"
         android:clickable="true"
-        android:tint="@android:color/white"
+        android:foreground="@drawable/baseline_edit"
 
+        android:tint="@color/verdeOscuro"
         app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toEndOf="@+id/botonGuardarMetasEditar"
         app:layout_constraintTop_toBottomOf="@+id/textoMontoMetaEditar"
         app:layout_constraintVertical_bias="0.028"
-        app:rippleColor="@color/white"
+        app:rippleColor="@color/verdeOscuro"
         app:srcCompat="@drawable/baseline_edit"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -168,6 +169,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/verdeOscuro"
         android:clickable="true"
+        android:foreground="@drawable/baseline_folder_delete_24"
         android:tint="@color/verdeOscuro"
         app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"

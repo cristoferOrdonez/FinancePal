@@ -9,6 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+
         android:orientation="vertical">
 
         <TextView
@@ -16,23 +19,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textColor="@color/verdeOscuro"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/viewFechaMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textColor="@color/verdeOscuro"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/viewMontoMeta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textColor="@color/verdeOscuro"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/verdeOscuro" />
     </LinearLayout>
 </LinearLayout>

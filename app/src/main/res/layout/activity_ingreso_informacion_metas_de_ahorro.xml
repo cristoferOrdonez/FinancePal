@@ -78,6 +78,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:text="Guardar"
+        android:textColor="@color/white"
         app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.271"
