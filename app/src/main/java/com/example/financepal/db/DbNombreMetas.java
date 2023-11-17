@@ -9,6 +9,17 @@ import androidx.annotation.Nullable;
 
 import com.example.financepal.entidades.MetasInfo;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -131,6 +142,36 @@ public class DbNombreMetas extends  DbHelperFP{
         }
 
         return correcto;
+    }
+
+
+    public void eliminarMetasVencidas(String correoUsuario) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<MetasInfo> listaMetas = mostrarMetas(correoUsuario);
+
+        for (MetasInfo meta : listaMetas) {
+            // Verificar si la fecha de la meta es anterior a la fecha actual
+            if (esFechaAnterior(meta.getFechaMeta())) {
+                // Eliminar la meta
+                elimnarMeta(meta.getId());
+            }
+        }
+    }
+
+    private boolean esFechaAnterior(String fechaMeta) {
+        try {
+            // Obtener la fecha actual
+            Date fechaActual = new Date();
+            // Convertir la fecha de la meta a un objeto Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy", Locale.getDefault());
+            Date fechaMetaDate = dateFormat.parse(fechaMeta);
+
+            // Comparar las fechas
+            return fechaMetaDate != null && fechaMetaDate.before(fechaActual);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public boolean elimnarMeta(int id) {

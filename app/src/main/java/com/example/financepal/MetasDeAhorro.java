@@ -73,6 +73,8 @@ public class MetasDeAhorro extends AppCompatActivity {
         DbHelperFP dbHelper= new DbHelperFP(MetasDeAhorro.this);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        eliminarMetasVencidas();
+
     }
 
     public void cambiarAInicio(View view){
@@ -90,6 +92,24 @@ public class MetasDeAhorro extends AppCompatActivity {
         startActivity(miIntent);
         finishAffinity();
 
+    }
+
+    private void eliminarMetasVencidas() {
+        // Llamar al método eliminarMetasVencidas de DbNombreMetas
+        DbNombreMetas dbNombreMetas = new DbNombreMetas(MetasDeAhorro.this);
+        dbNombreMetas.eliminarMetasVencidas(correoElectronicoS);
+
+        // Puedes agregar un mensaje de éxito o realizar otras acciones después de eliminar las metas vencidas
+        Toast.makeText(this, "Metas vencidas eliminadas", Toast.LENGTH_SHORT).show();
+
+        // También podrías actualizar la lista de metas en la interfaz de usuario si es necesario
+        // (por ejemplo, si usas un RecyclerView)
+        actualizarListaMetas();
+    }
+    private void actualizarListaMetas() {
+        DbNombreMetas dbNombreMetas = new DbNombreMetas(MetasDeAhorro.this);
+        ListaMetasAdapter adapter = new ListaMetasAdapter(dbNombreMetas.mostrarMetas(correoElectronicoS), correoElectronicoS);
+        listaMetas.setAdapter(adapter);
     }
 
 
