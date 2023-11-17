@@ -27,7 +27,9 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "idIngreso INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "correoUsuarioIngresos TEXT, " +
                 "nombreIngreso TEXT NOT NULL, " +
-                "montoIngreso TEXT)");
+                "montoIngreso TEXT," +
+                "fechaMesIngreso TEXT NOT NULL," +
+                "fechaYearIngreso TEXT NOT NULL)");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_USUARIOS + "(" +
                 "idUsuario INTEGER PRIMARY KEY AUTOINCREMENT," +

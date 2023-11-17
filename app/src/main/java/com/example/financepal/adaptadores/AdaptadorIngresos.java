@@ -42,6 +42,7 @@ public class AdaptadorIngresos extends BaseAdapter {
 
         TextView textViewNombre;
         TextView textViewMonto;
+        TextView textViewFecha;
 
         Ingreso ing = list.get(i);
 
@@ -50,9 +51,11 @@ public class AdaptadorIngresos extends BaseAdapter {
 
         textViewNombre = view.findViewById(R.id.textViewNombreINGRESOS);
         textViewMonto = view.findViewById(R.id.textViewMontoINGRESOS);
+        textViewFecha = view.findViewById(R.id.textViewFechaINGRESOS);
 
         textViewNombre.setText(ing.getNombre());
         textViewMonto.setText(ing.getMonto());
+        textViewFecha.setText("Fecha: " + ing.getFecha());
 
         return view;
     }
