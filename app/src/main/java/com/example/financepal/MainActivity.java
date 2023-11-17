@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.PantallaPrincipal;
 import com.example.financepal.db.DbUsuarios;
 import com.example.financepal.entidades.Usuario;
 

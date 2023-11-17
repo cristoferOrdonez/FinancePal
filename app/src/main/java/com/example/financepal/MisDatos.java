@@ -11,10 +11,13 @@ import android.widget.Toast;
 
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbUsuarios;
+import com.example.financepal.db.DbNombreMetas;
+
 import com.example.financepal.entidades.Usuario;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MisDatos extends AppCompatActivity {
 
@@ -125,43 +128,40 @@ public class MisDatos extends AppCompatActivity {
         String contrasena = editTextContrasena.getText().toString();
 
         if(nombres.equals(usuario.getNombres()) &&
-        apellidos.equals(usuario.getApellidos()) &&
-        edad.equals(usuario.getEdad()) &&
-        correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
-        contrasena.equals(usuario.getContrasena())){
+                apellidos.equals(usuario.getApellidos()) &&
+                edad.equals(usuario.getEdad()) &&
+                correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
+                contrasena.equals(usuario.getContrasena())){
 
             Toast.makeText(this, "No ha cambiado ningún dato.", Toast.LENGTH_SHORT).show();
 
         } else {
+            ///
 
             if(verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos()) && !correoElectronico.trim().equalsIgnoreCase(correoElectronicoS)) {
 
                 Toast.makeText(this, "El correo electronico ingresado ya se encuentra ingresado en otra cuenta.", Toast.LENGTH_SHORT).show();
 
             } else {
+                DbIngresos dbIngresos = new DbIngresos(this);
+                DbNombreMetas dbNombreMetas = new DbNombreMetas(this);
 
-                if (dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena)) {
+                boolean usuarioActualizado = dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena);
 
-                    if(new DbIngresos(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
+                boolean ingresosActualizados = dbIngresos.actualizarCorreos(correoElectronicoS, correoElectronico);
+                boolean metasActualizadas = dbNombreMetas.actualizarCorreosMetas(correoElectronicoS, correoElectronico);
 
-                        Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
-                        correoElectronicoS = correoElectronico;
-                        cambiarAInicio(view);
-
-                    }
-
+                if (usuarioActualizado && ingresosActualizados && metasActualizadas) {
+                    Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
+                    correoElectronicoS = correoElectronico.toLowerCase();
+                    cambiarAInicio(view);
                 } else {
-
-                    Toast.makeText(this, "Error al actualizar la información.", Toast.LENGTH_SHORT).show();
-
-                }
-
+                    Toast.makeText(this, "Error al actualizar la información. Por favor, inténtelo de nuevo.", Toast.LENGTH_SHORT).show();
             }
-
         }
-
     }
-
+}
+////
     public void establecerEditText() {
 
         Usuario usuario = new DbUsuarios(this).verUsuario(correoElectronicoS);

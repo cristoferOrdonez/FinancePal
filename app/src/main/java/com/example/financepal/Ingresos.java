@@ -18,9 +18,6 @@ import com.example.financepal.adaptadores.AdaptadorIngresos;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.Ingreso;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ingresos extends AppCompatActivity {

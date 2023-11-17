@@ -73,7 +73,7 @@ public class DbUsuarios extends DbHelperFP {
             values.put("nombresUsuario", nombresUsuario);
             values.put("apellidosUsuario", apellidosUsuario);
             values.put("edadUsuario", edadUsuario);
-            values.put("correoUsuarioUsuarios", correoUsuario);
+            values.put("correoUsuarioUsuarios", correoUsuario.toLowerCase());
             values.put("contrasenaUsuario", contrasenaUsuario);
 
             int rowsAffected = db.update(TABLE_USUARIOS, values, "correoUsuarioUsuarios = ?", new String[]{correoInicial});

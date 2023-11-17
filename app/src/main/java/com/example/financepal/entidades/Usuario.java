@@ -2,14 +2,12 @@ package com.example.financepal.entidades;
 
 public class Usuario {
 
-
     private long id;
     private String nombres;
     private String apellidos;
     private String edad;
     private String correoElectronico;
     private String contrasena;
-
 
     public Usuario(long id, String nombres, String apellidos, String edad, String correoElectronico, String contrasena) {
         this.id = id;
@@ -24,46 +22,20 @@ public class Usuario {
         return nombres;
     }
 
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-
     public String getApellidos() {
         return apellidos;
     }
 
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-
     public String getEdad() {
         return edad;
-    }
-
-    public void setEdad(String edad) {
-        this.edad = edad;
-    }
+    }//
 
     public String getCorreoElectronico() {
         return correoElectronico;
     }
 
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
     public String getContrasena() {
         return contrasena;
-    }
-
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
 }

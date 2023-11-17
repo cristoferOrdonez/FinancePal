@@ -109,6 +109,30 @@ public class DbNombreMetas extends  DbHelperFP{
         return correcto;
     }
 
+    public boolean actualizarCorreosMetas(String correoAntiguo, String correoNuevo) {
+        boolean correcto;
+
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put("correoUsuarioMetas", correoNuevo.toLowerCase());
+
+            int rowsAffected = db.update(TABLE_METAS, values, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
+
+            correcto = (rowsAffected > 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            correcto = false;
+        } finally {
+            db.close();
+        }
+
+        return correcto;
+    }
+
     public boolean elimnarMeta(int id) {
         boolean correcto = false;
 

@@ -156,7 +156,7 @@ public class DbIngresos extends DbHelperFP {
 
         try {
             ContentValues values = new ContentValues();
-            values.put("correoUsuarioIngresos", correoNuevo);
+            values.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
 
             int rowsAffected = db.update(TABLE_INGRESOS, values, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
 
