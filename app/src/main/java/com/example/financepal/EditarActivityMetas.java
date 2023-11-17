@@ -2,7 +2,10 @@ package com.example.financepal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +54,8 @@ public class EditarActivityMetas extends AppCompatActivity {
         fabElminar.setVisibility(View.INVISIBLE);
 
         guardar =findViewById(R.id.botonGuardarMetasEditar);
+        configurarFechaEditText();
+
 
         botonAtras= findViewById(R.id.botonAtrasRegistroMetasdeAhorro);
 
@@ -111,6 +116,36 @@ public class EditarActivityMetas extends AppCompatActivity {
 
 
     }
+
+    private void configurarFechaEditText() {
+        // Establecer el límite de caracteres para la fecha
+        int maxLength = 7; // mm/aaaa
+        txtFechaMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+
+        // Agregar un TextWatcher a txtFechaMeta
+        txtFechaMeta.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                if (count == 1 && start == 1) {
+                    // Agregar automáticamente el '/' después del mes
+                    txtFechaMeta.setText(new StringBuilder(charSequence).insert(2, "/").toString());
+                    txtFechaMeta.setSelection(3); // Mover el cursor después del '/'
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+    }
+
+
+
+
     public void cambiarAMetasDeAhorro(View view) {
 
         Intent miIntent = new Intent(this, MetasDeAhorro.class);
