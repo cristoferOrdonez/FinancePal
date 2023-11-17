@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/recuadroSuperiorCategGastos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/verdeClaro"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tituloSuperiorCategGastos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MIS GASTOS"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/listViewGastosu"
+            android:layout_width="382dp"
+            android:layout_height="716dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorCategGastos">
+
+        </ListView>
+
+        <ImageView
+            android:id="@+id/botonMasIngresos"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@mipmap/boton_mas" />
+
+        <Button
+            android:id="@+id/botonAgregarCategGasto"
+            android:layout_width="93dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="#00FFFFFF"
+            android:onClick="cambiarANuevoGasto"
+            android:text="."
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="86dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/botonVolver"
+            app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorCategGastos"
+            app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+        <Button
+            android:id="@+id/botonVolver"
+            android:layout_width="97dp"
+            android:layout_height="46dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/verdeOscuro"
+            android:onClick="cambiarAPantallaPrincipal"
+            android:text="."
+            android:textColor="@color/verdeClaro"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorCategGastos"
+            app:layout_constraintHorizontal_bias="0.178"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.555" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="68dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toEndOf="@+id/tituloSuperiorCategGastos"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/sym_contact_card" />
+
+        <Button
+            android:id="@+id/botonCategoriasGasto"
+            android:layout_width="98dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/verdeOscuro"
+            android:onClick="cambiarACategoriaGastos"
+            android:text="."
+            android:textColor="@color/verdeClaro"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tituloSuperiorCategGastos"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
