@@ -19,7 +19,9 @@ import com.example.financepal.entidades.UsuarioPrioridadesGasto;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AgregarGasto extends AppCompatActivity {
 
@@ -68,58 +70,88 @@ public class AgregarGasto extends AppCompatActivity {
             Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_LONG).show();
         }
         else{
-            UsuarioGastos usuario = new UsuarioGastos();
-            usuario.setCorreogasto(correoElectronicoS);
-            usuario.setNombregasto(nombre.getText().toString().stripLeading().stripTrailing());
-            usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
-            usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
-            usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+            if(!verificarInformacion()){
+                UsuarioGastos usuario = new UsuarioGastos();
+                usuario.setCorreogasto(correoElectronicoS);
+                usuario.setNombregasto(nombre.getText().toString().stripLeading().stripTrailing());
+                usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
+                usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
+                usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
 
-            usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
-            long res= db.insertarGasto(usuario);
-            if(res==-1){
-                Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT).show();
-                nombre.setText("");
-                monto.setText("");
-                recurrencia.setText("");
+                usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+                long res= db.insertarGasto(usuario);
+                if(res==-1){
+                    Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT).show();
+                    nombre.setText("");
+                    monto.setText("");
+                    recurrencia.setText("");
 
+                }
+                else{
+                    Toast.makeText(AgregarGasto.this,"Gasto Agregado",Toast.LENGTH_SHORT).show();
+                    nombre.setText("");
+                    monto.setText("");
+                    recurrencia.setText("");
+                }
+
+                cambiaraAtras(view);
             }
             else{
-                Toast.makeText(AgregarGasto.this,"Gasto Agregado",Toast.LENGTH_SHORT).show();
-                nombre.setText("");
-                monto.setText("");
-                recurrencia.setText("");
+                Toast.makeText(this, "El nombre del gasto ya existe. Intente otra vez.", Toast.LENGTH_SHORT).show();
             }
 
-            cambiaraAtras(view);
 
         }
 
     }
 
+    public boolean verificarInformacion(){
+        HashMap<Integer,String> nombres = db.verificarRepetidosGasto(correoElectronicoS);
+        boolean repetido=false;
+        for (Map.Entry<Integer, String> set :
+                nombres.entrySet()) {
+
+            if(set.getValue().equalsIgnoreCase(nombre.getText().toString().trim().stripLeading().stripTrailing())){
+                if(set.getKey() == getIntent().getExtras().getInt("id")){
+                }
+                else{
+                    repetido=true;
+                }
+                break;
+            }
+        }
+        return repetido;
+    }
+
     private void modificarGasto(View view) {
         try{
-            UsuarioGastos usuario = new UsuarioGastos();
-            int id = getIntent().getExtras().getInt("id");
-            usuario.setIdgastos(id);
-            usuario.setCorreogasto(correoElectronicoS);
-            usuario.setNombregasto(nombre.getText().toString());
-            usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
-            usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
-            usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
-            usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
-            if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
-                Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT).show();
-            }
-            else{
-                boolean res= db.editarGasto(usuario);
-                if (res) {
-                    Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
-                    cambiaraAtras(view);
-                } else {
-                    Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
+            if(!verificarInformacion()){
+                UsuarioGastos usuario = new UsuarioGastos();
+                int id = getIntent().getExtras().getInt("id");
+                usuario.setIdgastos(id);
+                usuario.setCorreogasto(correoElectronicoS);
+                usuario.setNombregasto(nombre.getText().toString());
+                usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
+                usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
+                usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+                usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+                if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
+                    Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    boolean res= db.editarGasto(usuario);
+                    if (res) {
+                        Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
+                        cambiaraAtras(view);
+                    } else {
+                        Toast.makeText(this, "Error al modificar el gasto.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
+            else{
+                Toast.makeText(this, "El nombre del gasto ya existe. Intente otra vez.", Toast.LENGTH_SHORT).show();
+            }
+
         }
         catch(NumberFormatException e){
             Toast.makeText(this, "Ingrese todos los campos.", Toast.LENGTH_SHORT).show();
