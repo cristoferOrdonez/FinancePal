@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelperGastos extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NOMBRE = "gastos.db";
     public static final String TABLE_GASTOS = "t_gastosu";
     public static final String TABLE_CATEGORIAS_GASTO = "t_categ_gastosu";
@@ -49,6 +49,8 @@ public class DbHelperGastos extends SQLiteOpenHelper {
                 "idprioridad1 INTEGER NOT NULL," +
                 "montogasto BIGINT NOT NULL," +
                 "recurrenciagasto TINYINT NOT NULL," +
+                "fechamesgasto TEXT NOT NULL," +
+                "fechaanogasto TEXT NOT NULL," +
                 "FOREIGN KEY(idcatgasto1) REFERENCES "+TABLE_CATEGORIAS_GASTO+"(idcatgasto)," +
                 "FOREIGN KEY(idprioridad1) REFERENCES "+ TABLE_PRIORIDAD+" (idprioridad))");
     }
