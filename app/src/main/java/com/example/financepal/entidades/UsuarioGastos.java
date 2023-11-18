@@ -2,13 +2,29 @@ package com.example.financepal.entidades;
 
 public class UsuarioGastos {
 
-    private String correogasto, nombregasto;
+    private String correogasto, nombregasto, fechamesgasto, fechaanogasto;
     private int idcatgasto;
     private int idprioridad;
     private int montogasto;
     private int recurrenciagasto;
 
     private int idgastos;
+
+    public UsuarioGastos(String correogasto, String nombregasto, String fechamesgasto, String fechaanogasto, int idcatgasto, int idprioridad, int montogasto, int recurrenciagasto, int idgastos) {
+        this.correogasto = correogasto;
+        this.nombregasto = nombregasto;
+        this.fechamesgasto = fechamesgasto;
+        this.fechaanogasto = fechaanogasto;
+        this.idcatgasto = idcatgasto;
+        this.idprioridad = idprioridad;
+        this.montogasto = montogasto;
+        this.recurrenciagasto = recurrenciagasto;
+        this.idgastos = idgastos;
+    }
+
+    public UsuarioGastos(){
+
+    }
 
     public int getIdgastos() {
         return idgastos;
@@ -18,21 +34,22 @@ public class UsuarioGastos {
         this.idgastos = idgastos;
     }
 
-    public UsuarioGastos(String correogasto, String nombregasto, int idcatgasto, int idprioridad, int montogasto, int recurrenciagasto, int idgastos) {
-        this.correogasto = correogasto;
-        this.nombregasto = nombregasto;
-        this.idcatgasto = idcatgasto;
-        this.idprioridad = idprioridad;
-        this.montogasto = montogasto;
-        this.recurrenciagasto = recurrenciagasto;
-        this.idgastos = idgastos;
+    public String getFechamesgasto() {
+        return fechamesgasto;
     }
 
-
-
-    public UsuarioGastos(){
-
+    public void setFechamesgasto(String fechamesgasto) {
+        this.fechamesgasto = fechamesgasto;
     }
+
+    public String getFechaanogasto() {
+        return fechaanogasto;
+    }
+
+    public void setFechaanogasto(String fechaanogasto) {
+        this.fechaanogasto = fechaanogasto;
+    }
+
 
     public String getCorreogasto() {
         return correogasto;
