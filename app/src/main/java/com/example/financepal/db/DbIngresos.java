@@ -25,7 +25,7 @@ public class DbIngresos extends DbHelperFP {
         this.context = context;
     }
 
-    public long insertarIngreso(String correoUsuario, String nombreIngreso, String montoIngreso) {
+    public long insertarIngreso(String correoUsuario, String nombreIngreso, int montoIngreso) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
@@ -60,7 +60,7 @@ public class DbIngresos extends DbHelperFP {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(Long.parseLong(cursorIngresos.getString(3))) + " COP", cursorIngresos.getString(4) + "/" + cursorIngresos.getString(5));
+                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getInt(3)) + " COP", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
 
                 listaIngresos.add(ingresoInfo);
             } while (cursorIngresos.moveToNext());
@@ -79,7 +79,7 @@ public class DbIngresos extends DbHelperFP {
         cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE idIngreso = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
-            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getString(3), cursorIngresos.getString(4) + "/" + cursorIngresos.getString(5));
+            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getInt(3) + "", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
         }
         cursorIngresos.close();
 
@@ -87,7 +87,7 @@ public class DbIngresos extends DbHelperFP {
         return IngresoInfo;
     }
 
-    public boolean editarIngreso(long id, String nombreIngreso, String montoIngreso) {
+    public boolean editarIngreso(long id, String nombreIngreso, int montoIngreso) {
         boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -152,30 +152,6 @@ public class DbIngresos extends DbHelperFP {
 
         return nombres;
 
-    }
-
-    public boolean actualizarCorreos(String correoAntiguo, String correoNuevo) {
-        boolean correcto;
-
-        DbHelperFP dbHelper = new DbHelperFP(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        try {
-            ContentValues values = new ContentValues();
-            values.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
-
-            int rowsAffected = db.update(TABLE_INGRESOS, values, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
-
-            correcto = (rowsAffected > 0);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            correcto = false;
-        } finally {
-            db.close();
-        }
-
-        return correcto;
     }
 
 }

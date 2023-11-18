@@ -20,7 +20,7 @@ public class DbUsuarios extends DbHelperFP {
         this.context = context;
     }
 
-    public long agregarUsuario(String nombresUsuario, String apellidosUsuario, String edadUsuaio, String correoUsuario, String contrasenaUsuario) {
+    public long agregarUsuario(String nombresUsuario, String apellidosUsuario, int edadUsuaio, String correoUsuario, String contrasenaUsuario) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
@@ -53,7 +53,7 @@ public class DbUsuarios extends DbHelperFP {
         cursorUsuarios = db.rawQuery("SELECT * FROM " + TABLE_USUARIOS + " WHERE correoUsuarioUsuarios = ? LIMIT 1", new String[]{correoUsuario});
 
         if (cursorUsuarios.moveToFirst()) {
-            UsuarioInfo = new Usuario(cursorUsuarios.getInt(0), cursorUsuarios.getString(1), cursorUsuarios.getString(2), cursorUsuarios.getString(3), cursorUsuarios.getString(4), cursorUsuarios.getString(5));
+            UsuarioInfo = new Usuario(cursorUsuarios.getInt(0), cursorUsuarios.getString(1), cursorUsuarios.getString(2), cursorUsuarios.getInt(3), cursorUsuarios.getString(4), cursorUsuarios.getString(5));
         }
         cursorUsuarios.close();
 
@@ -62,7 +62,7 @@ public class DbUsuarios extends DbHelperFP {
         return UsuarioInfo;
     }
 
-    public boolean actualizarUsuario(String correoInicial, String nombresUsuario, String apellidosUsuario, String edadUsuario, String correoUsuario, String contrasenaUsuario) {
+    public boolean actualizarUsuario(String correoInicial, String nombresUsuario, String apellidosUsuario, int edadUsuario, String correoUsuario, String contrasenaUsuario) {
         boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
