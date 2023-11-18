@@ -38,8 +38,8 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
     public void onBindViewHolder(@NonNull MetaViewHolder holder, int position) {
         holder.viewNombreMeta.setText(listaMetas.get(position).getNombreMeta());
         holder.viewFechaMeta.setText(listaMetas.get(position).getFechaMeta());
-        holder.viewMontoMeta.setText(String.valueOf(listaMetas.get(position).getMontoMeta()));
-        holder.viewMontoMensual.setText(String.valueOf(listaMetas.get(position).getMontoMensual())); // Nueva línea
+        holder.viewMontoMeta.setText(String.valueOf(listaMetas.get(position).getMontoTotalFormateado()));
+        holder.viewMontoMensual.setText(String.valueOf(listaMetas.get(position).getMontoMensualFormateado())); // Nueva línea
 
 
 

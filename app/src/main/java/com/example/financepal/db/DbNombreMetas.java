@@ -13,6 +13,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class DbNombreMetas extends  DbHelperFP{
         ArrayList<MetasInfo> listaMetas = new ArrayList<>();
         MetasInfo metasInfo = null;
         Cursor cursorMetas = null;
+        NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
+
 
         cursorMetas = db.rawQuery("SELECT * FROM " + TABLE_METAS + " WHERE correoUsuarioMetas = ?", new String[]{correoUsuario});
 
@@ -69,6 +72,9 @@ public class DbNombreMetas extends  DbHelperFP{
                 metasInfo.setNombreMeta(cursorMetas.getString(2));
                 metasInfo.setMontoMeta(cursorMetas.getInt(3));
                 metasInfo.setFechaMeta(cursorMetas.getString(4));
+
+                metasInfo.setMontoTotalFormateado(col.format(cursorMetas.getInt(3)));
+                metasInfo.setMontoMensualFormateado(col.format(calcularMontoMensual(cursorMetas.getString(4), cursorMetas.getInt(3))));
 
                 metasInfo.setMontoMensual(calcularMontoMensual(metasInfo.getFechaMeta(), metasInfo.getMontoMeta()));
 

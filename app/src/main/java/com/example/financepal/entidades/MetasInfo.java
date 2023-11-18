@@ -11,6 +11,10 @@ public class MetasInfo {
 
     private double montoMensual;
 
+    private String montoMensualFormateado;
+    private String montoTotalFormateado;
+
+
     public int getId() {
         return id;
     }
@@ -44,4 +48,12 @@ public class MetasInfo {
     }
     public void setMontoMensual(double montoMensual){this.montoMensual= montoMensual;}
     public double getMontoMensual(){return montoMensual;}
+
+    public void setMontoMensualFormateado(String montoMensualFormateado){ this.montoMensualFormateado=montoMensualFormateado;}
+
+    public String getMontoMensualFormateado() {return montoMensualFormateado;}
+
+    public void setMontoTotalFormateado(String montoMetaFormateado){this.montoTotalFormateado=montoMetaFormateado;}
+
+    public String getMontoTotalFormateado(){return  montoTotalFormateado;}
 }
