@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
@@ -81,6 +85,12 @@ public class PantallaPrincipal extends AppCompatActivity {
         startActivity(miIntent);
     }
 
+
+    public void cambiarAGastos(View view){
+        Intent miIntent = new Intent(this, Gastos.class);
+        miIntent.putExtra("correoElectronico", correoElectronicoS);
+        startActivity(miIntent);
+    }
 
     protected void onDestroy() {
         super.onDestroy();

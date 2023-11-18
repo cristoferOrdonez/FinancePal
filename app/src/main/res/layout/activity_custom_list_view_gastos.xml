@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_listado_de_elementos">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textViewNombreGastos"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="32"
+            android:gravity="center|start"
+            android:paddingLeft="15dp"
+            android:textColor="@color/verdeOscuro"
+            android:paddingRight="15dp"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewMontoGastos"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_weight="33"
+            android:textColor="@color/verdeOscuro"
+            android:gravity="center|start"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="TextView" />
+
+
+    </LinearLayout>
+    <View style="@style/Divider.Vertical"
+        android:background="@color/verdeOscuro"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/textViewFechaGastos"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="10"
+            android:gravity="center|left"
+            android:textColor="@color/verdeOscuro"
+            android:paddingLeft="15dp"
+            android:paddingTop="2dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewRecurrenciaGastos"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textColor="@color/verdeOscuro"
+            android:paddingLeft="15dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewCategoriaGastos"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_weight="50"
+            android:textColor="@color/verdeOscuro"
+            android:gravity="center|left"
+            android:paddingLeft="15dp"
+            android:text="TextView" />
+
+    </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

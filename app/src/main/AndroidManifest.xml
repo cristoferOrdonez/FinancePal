@@ -13,6 +13,18 @@
         android:theme="@style/Theme.FinancePal"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarCategoriaGasto"
+            android:exported="false" />
+        <activity
+            android:name=".CategoriasGasto"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarGasto"
+            android:exported="false" />
+        <activity
+            android:name=".Gastos"
+            android:exported="false" />
+        <activity
             android:name=".CrearModificarIngresos"
             android:exported="false" />
 

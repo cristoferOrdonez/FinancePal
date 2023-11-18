@@ -13,23 +13,46 @@
         android:paddingLeft="15sp"
         android:background="@drawable/background_listado_de_elementos">
 
-        <TextView
-            android:id="@+id/textViewNombreINGRESOS"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="50"
-            android:gravity="center|left"
-            android:textColor="@color/verdeOscuro"
-            android:text="TextView" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewMontoINGRESOS"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="50"
-            android:gravity="center|left"
-            android:textColor="@color/verdeOscuro"
-            android:text="TextView" />
+            <LinearLayout
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewNombreINGRESOS"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    android:gravity="center|left"
+                    android:text="TextView"
+                    android:textColor="@color/verdeOscuro" />
+
+                <TextView
+                    android:id="@+id/textViewMontoINGRESOS"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="50"
+                    android:gravity="center|left"
+                    android:text="TextView"
+                    android:textColor="@color/verdeOscuro" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewFechaINGRESOS"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:gravity="left"
+                android:textColor="@color/verdeOscuro" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

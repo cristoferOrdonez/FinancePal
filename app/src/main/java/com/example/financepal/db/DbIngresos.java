@@ -11,6 +11,8 @@ import com.example.financepal.entidades.Ingreso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,16 +25,20 @@ public class DbIngresos extends DbHelperFP {
         this.context = context;
     }
 
-    public long insertarIngreso(String correoUsuario, String nombreIngreso, String montoIngreso) {
+    public long insertarIngreso(String correoUsuario, String nombreIngreso, int montoIngreso) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+            GregorianCalendar calendario = new GregorianCalendar();
+
             ContentValues values = new ContentValues();
             values.put("correoUsuarioIngresos", correoUsuario); // Nuevo campo para almacenar el correo electronico del usuario
             values.put("nombreIngreso", nombreIngreso);
             values.put("montoIngreso", montoIngreso);
+            values.put("fechaMesIngreso", calendario.get(Calendar.MONTH) + 1);
+            values.put("fechaYearIngreso", calendario.get(Calendar.YEAR));
 
             id = db.insert(TABLE_INGRESOS, null, values);
 
@@ -46,7 +52,7 @@ public class DbIngresos extends DbHelperFP {
 
     public List<Ingreso> mostrarIngresos(String correoUsuario) {
         SQLiteDatabase db = this.getWritableDatabase();
-        List<Ingreso> listaMetas = new ArrayList<>();
+        List<Ingreso> listaIngresos = new ArrayList<>();
         Ingreso ingresoInfo;
         Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ?", new String[]{correoUsuario});
 
@@ -54,15 +60,15 @@ public class DbIngresos extends DbHelperFP {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(Long.parseLong(cursorIngresos.getString(3))) + " COP");
+                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getInt(3)) + " COP", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
 
-                listaMetas.add(ingresoInfo);
+                listaIngresos.add(ingresoInfo);
             } while (cursorIngresos.moveToNext());
         }
         cursorIngresos.close();
 
         db.close();
-        return listaMetas;
+        return listaIngresos;
     }
 
     public Ingreso verIngreso(long id) {
@@ -73,7 +79,7 @@ public class DbIngresos extends DbHelperFP {
         cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE idIngreso = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
-            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getString(3));
+            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getInt(3) + "", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
         }
         cursorIngresos.close();
 
@@ -81,7 +87,7 @@ public class DbIngresos extends DbHelperFP {
         return IngresoInfo;
     }
 
-    public boolean editarIngreso(long id, String nombreIngreso, String montoIngreso) {
+    public boolean editarIngreso(long id, String nombreIngreso, int montoIngreso) {
         boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -146,30 +152,6 @@ public class DbIngresos extends DbHelperFP {
 
         return nombres;
 
-    }
-
-    public boolean actualizarCorreos(String correoAntiguo, String correoNuevo) {
-        boolean correcto;
-
-        DbHelperFP dbHelper = new DbHelperFP(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        try {
-            ContentValues values = new ContentValues();
-            values.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
-
-            int rowsAffected = db.update(TABLE_INGRESOS, values, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
-
-            correcto = (rowsAffected > 0);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            correcto = false;
-        } finally {
-            db.close();
-        }
-
-        return correcto;
     }
 
 }

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbHelperFP;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbUsuarios;
 import com.example.financepal.db.DbNombreMetas;
@@ -78,7 +79,7 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void verificarNuevosDatos(View view) throws IOException {
+    public void verificarNuevosDatos(View view) {
 
         boolean flag = true;
         String mensajeError = "";
@@ -123,35 +124,35 @@ public class MisDatos extends AppCompatActivity {
 
         String nombres = editTextNombres.getText().toString().trim();
         String apellidos = editTextApellidos.getText().toString().trim();
-        String edad = editTextEdad.getText().toString();
+        int edad = Integer.parseInt(editTextEdad.getText().toString());
         String correoElectronico = editTextCorreoElectronico.getText().toString();
         String contrasena = editTextContrasena.getText().toString();
 
         if(nombres.equals(usuario.getNombres()) &&
-                apellidos.equals(usuario.getApellidos()) &&
-                edad.equals(usuario.getEdad()) &&
-                correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
-                contrasena.equals(usuario.getContrasena())){
+        apellidos.equals(usuario.getApellidos()) &&
+        edad==usuario.getEdad() &&
+        correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
+        contrasena.equals(usuario.getContrasena())){
 
             Toast.makeText(this, "No ha cambiado ningún dato.", Toast.LENGTH_SHORT).show();
 
         } else {
-            ///
 
             if(verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos()) && !correoElectronico.trim().equalsIgnoreCase(correoElectronicoS)) {
 
                 Toast.makeText(this, "El correo electronico ingresado ya se encuentra ingresado en otra cuenta.", Toast.LENGTH_SHORT).show();
 
             } else {
-                DbIngresos dbIngresos = new DbIngresos(this);
                 DbNombreMetas dbNombreMetas = new DbNombreMetas(this);
+
+                boolean correosGastosIngresosActu = new DbHelperFP(this).actualizarCorreos(correoElectronicoS, correoElectronico);
+
 
                 boolean usuarioActualizado = dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena);
 
-                boolean ingresosActualizados = dbIngresos.actualizarCorreos(correoElectronicoS, correoElectronico);
                 boolean metasActualizadas = dbNombreMetas.actualizarCorreosMetas(correoElectronicoS, correoElectronico);
 
-                if (usuarioActualizado && ingresosActualizados && metasActualizadas) {
+                if (usuarioActualizado && correosGastosIngresosActu && metasActualizadas) {
                     Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
                     correoElectronicoS = correoElectronico.toLowerCase();
                     cambiarAInicio(view);
@@ -168,7 +169,7 @@ public class MisDatos extends AppCompatActivity {
 
         editTextNombres.setText(usuario.getNombres());
         editTextApellidos.setText(usuario.getApellidos());
-        editTextEdad.setText(usuario.getEdad());
+        editTextEdad.setText("" + usuario.getEdad());
         editTextCorreoElectronico.setText(usuario.getCorreoElectronico());
         editTextContrasena.setText(usuario.getContrasena());
 
