@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".AgregarCategoriaGasto">
 
     <EditText
         android:id="@+id/editTextNombreCatGastos"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
-        android:hint="nombre "
+        android:hint="nombre"
         android:inputType="text"
         android:textColor="@color/black"
         android:textColorHint="@color/colorHint"
@@ -21,22 +22,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextDescCatGastos"
-        android:layout_width="270dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/background_buttons"
-        android:ems="10"
-        android:hint="descripción"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textColorHint="@color/colorHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombreCatGastos" />
 
     <Button
         android:id="@+id/botonCrearGuardarCatGastos"
@@ -64,4 +49,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextDescCatGastos"
+        android:layout_width="270dp"
+        android:layout_height="360dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:background="@drawable/background_buttons"
+        android:gravity="start|top"
+        android:hint="descripción"
+        android:textColor="@color/black"
+        android:textColorHint="@color/colorHint"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNombreCatGastos" />
 </androidx.constraintlayout.widget.ConstraintLayout>
