@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbUsuarios;
 
 import java.io.IOException;
@@ -81,7 +82,7 @@ public class Registro extends AppCompatActivity {
     public void Registrar(View view) throws IOException {
         String nombres = this.nombres.getText().toString().trim();
         String apellidos = this.apellidos.getText().toString().trim();
-        String edad = this.edad.getText().toString().trim();
+        int edad = Integer.parseInt(this.edad.getText().toString());
         String correoElectronicoR = this.correoElectronicoR.getText().toString();
         String contrasenaR = this.contrasenaR.getText().toString();
 
@@ -90,6 +91,9 @@ public class Registro extends AppCompatActivity {
         if(!verificarRepeticion(dbUsuarios.obtenerCorreosElectronicos())){
 
             long i = dbUsuarios.agregarUsuario(nombres, apellidos, edad, correoElectronicoR.toLowerCase(), contrasenaR);
+            DbGastos db = new DbGastos(this);
+            db.insertarprimeraCategoria(correoElectronicoR.toLowerCase());
+            db.close();
             Toast.makeText(this, "Se ha registrado con exitosamente.", Toast.LENGTH_SHORT).show();
 
             cambiarAAcceso(view);

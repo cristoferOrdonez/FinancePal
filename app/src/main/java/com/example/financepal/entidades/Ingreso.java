@@ -4,13 +4,14 @@ public class Ingreso {
 
     private String nombre;
     private String monto;
+    private String fecha;
     private long id;
 
-    public Ingreso(long id, String nombre, String monto) {
+    public Ingreso(long id, String nombre, String monto, String fecha) {
         this.nombre = nombre;
         this.monto = monto;
         this.id = id;
-
+        this.fecha = fecha;
     }
 
     public String getNombre() {
@@ -22,5 +23,11 @@ public class Ingreso {
     }
 
     public long getId() { return id; }
+
+    public String getFecha() { return fecha; }
+
+    public void setFecha(String fecha){
+        this.fecha = fecha;
+    }
 
 }
