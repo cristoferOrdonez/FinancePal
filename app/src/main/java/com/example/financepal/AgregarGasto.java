@@ -70,7 +70,7 @@ public class AgregarGasto extends AppCompatActivity {
         else{
             UsuarioGastos usuario = new UsuarioGastos();
             usuario.setCorreogasto(correoElectronicoS);
-            usuario.setNombregasto(nombre.getText().toString().stripLeading().stripTrailing());
+            usuario.setNombregasto(nombre.getText().toString().trim());
             usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
             usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));

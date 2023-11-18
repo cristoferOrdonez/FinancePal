@@ -88,7 +88,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             if(!verificarRepeticion(nombresMetas)) {
 
-                dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), editTextMonto.getText().toString().trim());
+                dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), Integer.parseInt(editTextMonto.getText().toString()));
                 Toast.makeText(this, "Se ha creado el ingreso exitosamente.", Toast.LENGTH_SHORT).show();
                 cambiarAIngresos(view);
 
@@ -124,7 +124,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
         if(verificarInformacion()){
 
             String nombreEdit = editTextNombre.getText().toString().trim();
-            String montoEdit = editTextMonto.getText().toString().trim();
+            int montoEdit = Integer.parseInt(editTextMonto.getText().toString());
 
             if(infoIngreso.getNombre().equals(nombreEdit) && infoIngreso.getMonto().equals(montoEdit)) {
 

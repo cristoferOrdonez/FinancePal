@@ -5,11 +5,11 @@ public class Usuario {
     private long id;
     private String nombres;
     private String apellidos;
-    private String edad;
+    private int edad;
     private String correoElectronico;
     private String contrasena;
 
-    public Usuario(long id, String nombres, String apellidos, String edad, String correoElectronico, String contrasena) {
+    public Usuario(long id, String nombres, String apellidos, int edad, String correoElectronico, String contrasena) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -26,7 +26,7 @@ public class Usuario {
         return apellidos;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }//
 

@@ -76,8 +76,8 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
             if(!verificarInformacion()){
                 UsuarioCategoriasGasto usuario = new UsuarioCategoriasGasto();
                 usuario.setIdcatgasto(getIntent().getExtras().getInt("id"));
-                usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString().stripLeading().stripTrailing());
-                usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().stripLeading().stripTrailing());
+                usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString().trim());
+                usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().trim());
                 boolean res= db.editarCatGasto(usuario);
 
                 if (res) {
@@ -102,7 +102,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
         for (Map.Entry<Integer, String> set :
                 nombres.entrySet()) {
 
-            if(set.getValue().equalsIgnoreCase(EditTextNombreCatGastos.getText().toString().trim().stripLeading().stripTrailing())){
+            if(set.getValue().equalsIgnoreCase(EditTextNombreCatGastos.getText().toString().trim())){
                 if(set.getKey() == getIntent().getExtras().getInt("id")){
                 }
                 else{
@@ -123,8 +123,8 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
             if(!verificarInformacion()){
                 UsuarioCategoriasGasto usuario = new UsuarioCategoriasGasto();
                 usuario.setCorreocatgasto(correoElectronicoS);
-                usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString().stripLeading().stripTrailing());
-                usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().stripLeading().stripTrailing());
+                usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString().trim());
+                usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().trim());
 
                 res= db.insertarNuevaCategoria(usuario);
                 if (res) {

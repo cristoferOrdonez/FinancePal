@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbHelperFP;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbUsuarios;
 import com.example.financepal.entidades.Usuario;
@@ -76,7 +77,7 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void verificarNuevosDatos(View view) throws IOException {
+    public void verificarNuevosDatos(View view) {
 
         boolean flag = true;
         String mensajeError = "";
@@ -121,13 +122,13 @@ public class MisDatos extends AppCompatActivity {
 
         String nombres = editTextNombres.getText().toString().trim();
         String apellidos = editTextApellidos.getText().toString().trim();
-        String edad = editTextEdad.getText().toString();
+        int edad = Integer.parseInt(editTextEdad.getText().toString());
         String correoElectronico = editTextCorreoElectronico.getText().toString();
         String contrasena = editTextContrasena.getText().toString();
 
         if(nombres.equals(usuario.getNombres()) &&
         apellidos.equals(usuario.getApellidos()) &&
-        edad.equals(usuario.getEdad()) &&
+        edad == usuario.getEdad() &&
         correoElectronico.equalsIgnoreCase(usuario.getCorreoElectronico()) &&
         contrasena.equals(usuario.getContrasena())){
 
@@ -143,13 +144,10 @@ public class MisDatos extends AppCompatActivity {
 
                 if (dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena)) {
 
-                    if(new DbIngresos(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
-
-                        Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
-                        correoElectronicoS = correoElectronico.toLowerCase();
-                        cambiarAInicio(view);
-
-                    }
+                    new DbHelperFP(this).actualizarCorreos(correoElectronicoS, correoElectronico);
+                    Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
+                    correoElectronicoS = correoElectronico.toLowerCase();
+                    cambiarAInicio(view);
 
                 } else {
 
@@ -169,7 +167,7 @@ public class MisDatos extends AppCompatActivity {
 
         editTextNombres.setText(usuario.getNombres());
         editTextApellidos.setText(usuario.getApellidos());
-        editTextEdad.setText(usuario.getEdad());
+        editTextEdad.setText("" + usuario.getEdad());
         editTextCorreoElectronico.setText(usuario.getCorreoElectronico());
         editTextContrasena.setText(usuario.getContrasena());
 
