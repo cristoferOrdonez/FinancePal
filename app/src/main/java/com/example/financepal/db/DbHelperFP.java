@@ -69,6 +69,8 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "idprioridad1 INTEGER NOT NULL," +
                 "montogasto BIGINT NOT NULL," +
                 "recurrenciagasto TINYINT NOT NULL," +
+                "fechamesgasto TEXT NOT NULL," +
+                "fechaanogasto TEXT NOT NULL," +
                 "FOREIGN KEY(idcatgasto1) REFERENCES "+TABLE_CATEGORIAS_GASTO+"(idcatgasto)," +
                 "FOREIGN KEY(idprioridad1) REFERENCES "+ TABLE_PRIORIDAD+" (idprioridad))");
 

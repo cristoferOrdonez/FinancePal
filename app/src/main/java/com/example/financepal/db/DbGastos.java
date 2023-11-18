@@ -12,6 +12,8 @@ import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -114,6 +116,8 @@ public class DbGastos extends DbHelperFP {
                         usuario.setIdprioridad(datos.getInt(4));
                         usuario.setMontogasto(datos.getInt(5));
                         usuario.setRecurrenciagasto(datos.getInt(6));
+                        usuario.setFechamesgasto(datos.getString(7));
+                        usuario.setFechaanogasto(datos.getString(8));
                         lista.add(usuario);
                     }while(datos.moveToNext());
                 }
@@ -256,6 +260,8 @@ public class DbGastos extends DbHelperFP {
                     usuario.setIdprioridad(datos.getInt(4));
                     usuario.setMontogasto(datos.getInt(5));
                     usuario.setRecurrenciagasto(datos.getInt(6));
+                    usuario.setFechamesgasto(datos.getString(7));
+                    usuario.setFechaanogasto(datos.getString(8));
                 }
             }
         }catch(Exception e){
@@ -307,6 +313,7 @@ public class DbGastos extends DbHelperFP {
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        GregorianCalendar calendario = new GregorianCalendar();
         long id=0;
         try{
             values.put("correogasto",g.getCorreogasto());
@@ -315,6 +322,8 @@ public class DbGastos extends DbHelperFP {
             values.put("idprioridad1",g.getIdprioridad());
             values.put("montogasto",g.getMontogasto());
             values.put("recurrenciagasto",g.getRecurrenciagasto());
+            values.put("fechamesgasto", calendario.get(Calendar.MONTH) + 1);
+            values.put("fechaanogasto", calendario.get(Calendar.YEAR));
             id=db.insert(TABLE_GASTOS,null,values);
         } catch(Exception e){
             Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT);

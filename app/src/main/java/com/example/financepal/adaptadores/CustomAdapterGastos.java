@@ -51,6 +51,7 @@ public class CustomAdapterGastos extends BaseAdapter {
         TextView textViewMontoGastos;
         TextView textViewCategoriaGastos;
         TextView textViewRecurrenciaGastos;
+        TextView textViewFechaGastos;
 
         Locale locale = new Locale("es", "US");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
@@ -64,6 +65,7 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewMontoGastos = view.findViewById(R.id.textViewMontoGastos);
         textViewCategoriaGastos = view.findViewById(R.id.textViewCategoriaGastos);
         textViewRecurrenciaGastos = view.findViewById(R.id.textViewRecurrenciaGastos);
+        textViewFechaGastos = view.findViewById(R.id.textViewFechaGastos);
 
         textViewNombreGastos.setText(g.getNombregasto());
         textViewMontoGastos.setText(currencyFormatter.format(g.getMontogasto())+" COP");
@@ -71,6 +73,8 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewCategoriaGastos.setText(categoria);
         String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));
         textViewRecurrenciaGastos.setText(prioridad);
+        String fecha = "Fecha: " + g.getFechamesgasto()+"/"+g.getFechaanogasto();
+        textViewFechaGastos.setText(fecha);
         return view;
     }
 }
