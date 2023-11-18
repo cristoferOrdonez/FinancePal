@@ -9,14 +9,16 @@
         android:layout_height="120dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteY="1dp"
+        android:background="@drawable/background_listado_de_elementos">
 
         <TextView
             android:id="@+id/textViewNombreCat"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingLeft="30dp"
+            android:paddingLeft="15dp"
             android:text="TextView"
+            android:textColor="@color/verdeOscuro"
             android:gravity="center_vertical"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -24,7 +26,8 @@
             android:id="@+id/textViewDescCat"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingLeft="30dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/verdeOscuro"
             android:paddingTop="8dp"
             android:paddingRight="30dp"
             android:text="TextView" />

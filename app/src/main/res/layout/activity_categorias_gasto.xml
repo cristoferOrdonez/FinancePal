@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/recuadroSuperiorCategGastos"
@@ -27,7 +26,7 @@
             android:id="@+id/imageView3"
             android:layout_width="86dp"
             android:layout_height="53dp"
-            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
             app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorCategGastos"
             app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorCategGastos"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,13 +45,36 @@
             app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorCategGastos"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/botonVolver"
+            android:layout_width="91dp"
+            android:layout_height="49dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/verdeOscuro"
+            android:onClick="cambiaraAtras"
+            android:text="."
+            android:textColor="@color/verdeClaro"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
+            app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorCategGastos"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
         <ListView
             android:id="@+id/listViewCategGastos"
-            android:layout_width="382dp"
-            android:layout_height="716dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorCategGastos" >
+            app:layout_constraintStart_toStartOf="parent" >
 
         </ListView>
 
@@ -79,23 +101,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:visibility="visible" />
-
-        <Button
-            android:id="@+id/botonVolver"
-            android:layout_width="91dp"
-            android:layout_height="49dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@color/verdeOscuro"
-            android:onClick="cambiaraAtras"
-            android:text="."
-            android:textColor="@color/verdeClaro"
-            app:backgroundTint="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorCategGastos"
-            app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorCategGastos"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
