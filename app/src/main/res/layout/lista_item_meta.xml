@@ -38,6 +38,14 @@
             android:textColor="@color/verdeOscuro"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/viewMontoMensual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/verdeOscuro"
+            android:textSize="15sp" />
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"

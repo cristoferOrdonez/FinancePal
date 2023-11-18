@@ -18,6 +18,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 import java.lang.reflect.Array;
@@ -64,6 +69,9 @@ public class DbNombreMetas extends  DbHelperFP{
                 metasInfo.setNombreMeta(cursorMetas.getString(2));
                 metasInfo.setMontoMeta(cursorMetas.getInt(3));
                 metasInfo.setFechaMeta(cursorMetas.getString(4));
+
+                metasInfo.setMontoMensual(calcularMontoMensual(metasInfo.getFechaMeta(), metasInfo.getMontoMeta()));
+
 
                 listaMetas.add(metasInfo);
             } while (cursorMetas.moveToNext());
@@ -120,6 +128,20 @@ public class DbNombreMetas extends  DbHelperFP{
         return correcto;
     }
 
+    public double sumarMontosMensuales(String correoUsuario) {
+        double sumaMontosMensuales = 0;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<MetasInfo> listaMetas = mostrarMetas(correoUsuario);
+
+        for (MetasInfo meta : listaMetas) {
+            // Sumar el monto mensual de cada meta
+            sumaMontosMensuales += meta.getMontoMensual();
+        }
+
+        return sumaMontosMensuales;
+    }
+
     public boolean actualizarCorreosMetas(String correoAntiguo, String correoNuevo) {
         boolean correcto;
 
@@ -173,6 +195,41 @@ public class DbNombreMetas extends  DbHelperFP{
             return false;
         }
     }
+
+    public double calcularMontoMensual(String fechaMeta, int montoTotalMeta) {
+        double montoMensual = 0;
+
+        try {
+            // Obtener la fecha actual
+            Date fechaActual = new Date();
+
+            // Convertir la fecha de la meta a un objeto Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy", Locale.getDefault());
+            Date fechaMetaDate = dateFormat.parse(fechaMeta);
+
+            if (fechaMetaDate != null) {
+                // Calcular la diferencia en meses entre la fecha actual y la fecha de la meta
+                Calendar calendarActual = Calendar.getInstance();
+                calendarActual.setTime(fechaActual);
+
+                Calendar calendarMeta = Calendar.getInstance();
+                calendarMeta.setTime(fechaMetaDate);
+
+                int diferenciaMeses = (calendarMeta.get(Calendar.YEAR) - calendarActual.get(Calendar.YEAR)) * 12 +
+                        calendarMeta.get(Calendar.MONTH) - calendarActual.get(Calendar.MONTH);
+
+                // Evitar la división por cero
+                if (diferenciaMeses > 0) {
+                    montoMensual = (double) montoTotalMeta / diferenciaMeses;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return montoMensual;
+    }
+
 
     public boolean elimnarMeta(int id) {
         boolean correcto = false;

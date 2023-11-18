@@ -14,6 +14,7 @@ import com.example.financepal.R;
 import com.example.financepal.VerMeta;
 import com.example.financepal.entidades.MetasInfo;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.MetaViewHolder> {
@@ -38,6 +39,8 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
         holder.viewNombreMeta.setText(listaMetas.get(position).getNombreMeta());
         holder.viewFechaMeta.setText(listaMetas.get(position).getFechaMeta());
         holder.viewMontoMeta.setText(String.valueOf(listaMetas.get(position).getMontoMeta()));
+        holder.viewMontoMensual.setText(String.valueOf(listaMetas.get(position).getMontoMensual())); // Nueva línea
+
 
 
     }
@@ -50,7 +53,7 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
 
     public class MetaViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombreMeta, viewFechaMeta, viewMontoMeta;
+        TextView viewNombreMeta, viewFechaMeta,viewMontoMensual, viewMontoMeta;
 
         public MetaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +61,7 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
             viewNombreMeta=itemView.findViewById(R.id.viewNombreMeta);
             viewFechaMeta=itemView.findViewById(R.id.viewFechaMeta);
             viewMontoMeta=itemView.findViewById(R.id.viewMontoMeta);
+            viewMontoMensual =itemView.findViewById(R.id.viewMontoMensual);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

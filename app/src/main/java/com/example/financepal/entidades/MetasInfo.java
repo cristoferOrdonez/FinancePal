@@ -9,6 +9,8 @@ public class MetasInfo {
     private String fechaMeta;
     private Integer montoMeta;
 
+    private double montoMensual;
+
     public int getId() {
         return id;
     }
@@ -40,4 +42,6 @@ public class MetasInfo {
     public void setMontoMeta(Integer montoMeta) {
         this.montoMeta = montoMeta;
     }
+    public void setMontoMensual(double montoMensual){this.montoMensual= montoMensual;}
+    public double getMontoMensual(){return montoMensual;}
 }
