@@ -154,12 +154,12 @@ public class DbIngresos extends DbHelperFP {
 
     }
 
-    public long obtenerIngresosTotales(String correoUsuario, int mes, int year){
+    public long obtenerIngresosTotales(String correoUsuario){
 
         long total = 0;
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ? AND fechaMesIngreso = ? AND fechaYearIngreso = ?", new String[]{correoUsuario, String.valueOf(mes), String.valueOf(year)});
+        Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ?", new String[]{correoUsuario});
 
         if (cursorIngresos.moveToFirst()) {
             do {
