@@ -148,6 +148,7 @@ public class DbNombreMetas extends  DbHelperFP{
         return sumaMontosMensuales;
     }
 
+    /*
     public boolean actualizarCorreosMetas(String correoAntiguo, String correoNuevo) {
         boolean correcto;
 
@@ -171,6 +172,8 @@ public class DbNombreMetas extends  DbHelperFP{
 
         return correcto;
     }
+
+     */
 
 
     public void eliminarMetasVencidas(String correoUsuario) {

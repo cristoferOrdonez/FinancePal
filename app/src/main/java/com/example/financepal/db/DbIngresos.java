@@ -154,4 +154,25 @@ public class DbIngresos extends DbHelperFP {
 
     }
 
+    public long obtenerIngresosTotales(String correoUsuario, int mes, int year){
+
+        long total = 0;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ? AND fechaMesIngreso = ? AND fechaYearIngreso = ?", new String[]{correoUsuario, String.valueOf(mes), String.valueOf(year)});
+
+        if (cursorIngresos.moveToFirst()) {
+            do {
+                total += cursorIngresos.getInt(3);
+
+            } while (cursorIngresos.moveToNext());
+        }
+        cursorIngresos.close();
+
+        db.close();
+
+        return total;
+
+    }
+
 }
