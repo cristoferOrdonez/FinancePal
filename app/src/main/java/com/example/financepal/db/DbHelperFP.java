@@ -111,15 +111,17 @@ public class DbHelperFP extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            ContentValues valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues();
+            ContentValues valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues(), valuesMetas = new ContentValues();
             valuesIngresos.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
             valuesCatGastos.put("correocatgasto", correoNuevo.toLowerCase());
             valuesGastos.put("correogasto", correoNuevo.toLowerCase());
+            valuesMetas.put("correoUsuarioMetas", correoNuevo.toLowerCase());
 
             int rowsAffectedIngresos = db.update(TABLE_INGRESOS, valuesIngresos, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
             int rowsAffectedCatGastos = db.update(TABLE_CATEGORIAS_GASTO, valuesCatGastos, "correocatgasto = ?", new String[]{correoAntiguo});
             int rowsAffectedGastos = db.update(TABLE_GASTOS, valuesGastos, "correogasto = ?", new String[]{correoAntiguo});
-            correcto = (rowsAffectedIngresos + rowsAffectedCatGastos + rowsAffectedGastos > 0);
+            int rowsAffectedMetas = db.update(TABLE_METAS, valuesMetas, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
+            correcto = (rowsAffectedIngresos + rowsAffectedCatGastos + rowsAffectedGastos + rowsAffectedMetas > 0);
 
         } catch (Exception e) {
             e.printStackTrace();

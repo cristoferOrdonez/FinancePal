@@ -143,16 +143,9 @@ public class MisDatos extends AppCompatActivity {
                 Toast.makeText(this, "El correo electronico ingresado ya se encuentra ingresado en otra cuenta.", Toast.LENGTH_SHORT).show();
 
             } else {
-                DbNombreMetas dbNombreMetas = new DbNombreMetas(this);
 
-                boolean correosGastosIngresosActu = new DbHelperFP(this).actualizarCorreos(correoElectronicoS, correoElectronico);
-
-
-                boolean usuarioActualizado = dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena);
-
-                boolean metasActualizadas = dbNombreMetas.actualizarCorreosMetas(correoElectronicoS, correoElectronico);
-
-                if (usuarioActualizado && correosGastosIngresosActu && metasActualizadas) {
+                if (dbUsuarios.actualizarUsuario(correoElectronicoS, nombres, apellidos, edad, correoElectronico, contrasena)
+ && new DbHelperFP(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
                     Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
                     correoElectronicoS = correoElectronico.toLowerCase();
                     cambiarAInicio(view);
