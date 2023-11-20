@@ -7,6 +7,102 @@
     android:background="@color/white"
     tools:context=".Balance">
 
+    <TextView
+        android:id="@+id/textMayorGasto"
+        android:layout_width="188dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="4dp"
+        android:text="Mayor gasto:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtGastoMasRecu"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/texgasto"
+        android:layout_width="189dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="4dp"
+        android:text="Gastos totales:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textmetasmen"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textmetasmen"
+        android:layout_width="189dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="4dp"
+        android:text="Metas mensuales totales:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textbalan"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textbalan"
+        android:layout_width="188dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="4dp"
+        android:text="Balance"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textMayorGasto"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtGastoMasRecu"
+        android:layout_width="188dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="4dp"
+        android:text="Gasto más recurrente:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textGastoMenorPrior"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textGastoMenorPrior"
+        android:layout_width="188dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="52dp"
+        android:text="Gasto con menor prioridad:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/TextIngTot"
+        android:layout_width="189dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="4dp"
+        android:text="Ingresos totales:"
+        android:textAlignment="viewStart"
+        android:textColor="@color/verdeOscuro"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/texgasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
+        app:layout_constraintVertical_bias="0.0" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroInferiorInicio5"
         android:layout_width="match_parent"
