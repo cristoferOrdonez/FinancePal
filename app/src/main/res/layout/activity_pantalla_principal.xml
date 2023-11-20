@@ -89,34 +89,82 @@
         android:id="@+id/botonIngresos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MIS INGRESOS (BOTON DE PRUEBA, POR ESO SE VE FEO)"
         android:onClick="cambiarAIngresos"
+        android:text="MIS INGRESOS (BOTON DE PRUEBA, POR ESO SE VE FEO)"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSuperiorInicio" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloSuperiorInicio"
+        app:layout_constraintVertical_bias="0.131" />
 
     <Button
         android:id="@+id/buttonMetasdeAhorroINICIO"
         android:layout_width="318dp"
         android:layout_height="54dp"
         android:text="Boton metas de ahorro"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonIngresos" />
+        app:layout_constraintTop_toBottomOf="@+id/botonIngresos"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/botonEntrarGastos"
         android:layout_width="253dp"
         android:layout_height="49dp"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="83dp"
         android:onClick="cambiarAGastos"
         android:text="GASTOS"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorInicio" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="401dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:onClick="cambiarAGastos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:srcCompat="@mipmap/gastosm" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="411dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="104dp"
+        android:clickable="true"
+        android:onClick="cambiarAIngresos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorInicio"
+        app:srcCompat="@mipmap/ingresosm" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="404dp"
+        android:layout_height="136dp"
+        android:clickable="true"
+        android:onClick="cambiarAMetasDeAhorro"
+        app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.129"
+        app:srcCompat="@mipmap/metasm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
