@@ -196,4 +196,6 @@ public class AgregarGasto extends AppCompatActivity {
         startActivity(miIntent);
         finishAffinity();
     }
+
+
 }
