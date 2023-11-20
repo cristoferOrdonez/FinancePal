@@ -56,6 +56,10 @@
         android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
+
+        android:clickable="true"
+        android:focusable="false"
+
         android:hint="mm/aaaa"
         android:inputType="date"
         android:textColor="@color/black"

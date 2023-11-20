@@ -17,7 +17,7 @@ public class PantallaPrincipal extends AppCompatActivity {
     String correoElectronicoS;
     ImageView botonBalance, botonHistorico, botonMisDatos;
 
-    Button buttonMetasdeAhorro;
+    //Button buttonMetasdeAhorro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +32,17 @@ public class PantallaPrincipal extends AppCompatActivity {
         botonMisDatos = findViewById(R.id.botonMisDatosINICIO);
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
+        /*
         buttonMetasdeAhorro = findViewById(R.id.buttonMetasdeAhorroINICIO);
+
         buttonMetasdeAhorro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cambiarAMetasDeAhorro(view);
             }
         });
+        */
+
 
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
