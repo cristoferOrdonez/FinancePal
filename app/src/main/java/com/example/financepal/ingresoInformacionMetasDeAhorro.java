@@ -71,6 +71,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
                         long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
                         //Se inserta la info a la tabla
                         limpiar();
+                        cambiarAMetasDeAhorro(view);
                     } else {
                         Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Fecha no válida", Toast.LENGTH_SHORT).show();
                     }

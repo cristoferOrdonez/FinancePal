@@ -103,6 +103,7 @@ public class VerMeta extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(dbNombreMetas.elimnarMeta(id)){
                             listaMetas();
+                            cambiarAMetasDeAhorro(view);
 
                         }
 
