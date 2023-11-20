@@ -92,22 +92,22 @@ public class EditarActivityMetas extends AppCompatActivity {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!txtNombreMeta.getText().toString().equals("") && !txtFechaMeta.getText().toString().equals("") && !txtMontoMeta.getText().toString().equals("")) {
+                    // Validar la fecha ingresada
+                    if (validarFecha(txtFechaMeta.getText().toString().trim())) {
+                        correcto = dbNombreMetas.editarMeta(id, txtNombreMeta.getText().toString(), txtFechaMeta.getText().toString(), Integer.parseInt(txtMontoMeta.getText().toString()));
 
-                if(!txtNombreMeta.getText().toString().equals("") && !txtFechaMeta.getText().toString().equals("") && !txtMontoMeta.getText().toString().equals("")){
-                    correcto = dbNombreMetas.editarMeta(id, txtNombreMeta.getText().toString(), txtFechaMeta.getText().toString(), Integer.parseInt(txtMontoMeta.getText().toString()));
-
-                    if(correcto){
-                        Toast.makeText(EditarActivityMetas.this, "META MODIFICADA", Toast.LENGTH_LONG).show();
-                        verRegistroMeta();
+                        if (correcto) {
+                            Toast.makeText(EditarActivityMetas.this, "META MODIFICADA", Toast.LENGTH_LONG).show();
+                            verRegistroMeta();
+                        } else {
+                            Toast.makeText(EditarActivityMetas.this, "ERROR AL EDITAR MODIFICAR META", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(EditarActivityMetas.this, "Fecha no válida", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(EditarActivityMetas.this, "ERROR AL EDITAR MODIFICAR META", Toast.LENGTH_LONG).show();
-
-                    }
-                }
-                else{
+                } else {
                     Toast.makeText(EditarActivityMetas.this, "DEBE LLENAR LOS CAMPOS", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
@@ -143,7 +143,10 @@ public class EditarActivityMetas extends AppCompatActivity {
         });
     }
 
-
+    private boolean validarFecha(String fecha) {
+        // Validar que la fecha tenga el formato mm/aaaa
+        return fecha.matches("(0[1-9]|1[0-2])/\\d{4}");
+    }
 
 
 
