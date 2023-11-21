@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingLeft="15dp"
         android:background="@drawable/background_listado_de_elementos">
 
         <LinearLayout
@@ -27,13 +28,12 @@
             android:layout_height="60dp"
             android:layout_weight="32"
             android:gravity="center|start"
-            android:paddingLeft="15dp"
             android:textColor="@color/verdeOscuro"
             android:paddingRight="15dp"
             android:text="TextView"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="16sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/textViewMontoGastos"
@@ -42,7 +42,6 @@
             android:layout_weight="33"
             android:textColor="@color/verdeOscuro"
             android:gravity="center|start"
-            android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="TextView" />
 
