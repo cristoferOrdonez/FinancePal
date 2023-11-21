@@ -68,7 +68,9 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewFechaGastos = view.findViewById(R.id.textViewFechaGastos);
 
         textViewNombreGastos.setText(g.getNombregasto());
-        textViewMontoGastos.setText(currencyFormatter.format(g.getMontogasto())+" COP");
+
+        long gastos = g.getMontogasto()*g.getRecurrenciagasto();
+        textViewMontoGastos.setText(currencyFormatter.format(gastos)+" COP");
 
         String categoria = "Categoria: "+db.mostrarNombreCategoria(g);
         textViewCategoriaGastos.setText(categoria);
