@@ -69,6 +69,7 @@ public class CustomAdapterGastos extends BaseAdapter {
 
         textViewNombreGastos.setText(g.getNombregasto());
         textViewMontoGastos.setText(currencyFormatter.format(g.getMontogasto())+" COP");
+
         String categoria = "Categoria: "+db.mostrarNombreCategoria(g);
         textViewCategoriaGastos.setText(categoria);
         String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));

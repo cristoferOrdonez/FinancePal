@@ -353,5 +353,78 @@ public class DbGastos extends DbHelperFP {
         return nombre;
     }
 
+    public long mostrarGastosTotales(String correo){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY montogasto DESC",null);
+        long total=0;
+        if (datos.moveToFirst()) {
+            do {
+                total += datos.getInt(5);
 
+            } while (datos.moveToNext());
+        }
+        return total;
+
+    }
+
+    public UsuarioGastos gastoMasAltoMes(String correo, int mes){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"'",null);
+        UsuarioGastos usuario = null;
+        if(datos.moveToFirst()){
+            usuario = new UsuarioGastos();
+            usuario.setIdgastos(datos.getInt(0));
+            usuario.setCorreogasto(datos.getString(1));
+            usuario.setNombregasto(datos.getString(2));
+            usuario.setIdcatgasto(datos.getInt(3));
+            usuario.setIdprioridad(datos.getInt(4));
+            usuario.setMontogasto(datos.getInt(5));
+            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setFechamesgasto(datos.getString(7));
+            usuario.setFechaanogasto(datos.getString(8));
+        }
+        return usuario;
+    }
+
+    public UsuarioGastos gastoMasRecurrente(String correo){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY recurrenciagasto DESC",null);
+        UsuarioGastos usuario = null;
+        if(datos.moveToFirst()){
+            usuario = new UsuarioGastos();
+            usuario.setIdgastos(datos.getInt(0));
+            usuario.setCorreogasto(datos.getString(1));
+            usuario.setNombregasto(datos.getString(2));
+            usuario.setIdcatgasto(datos.getInt(3));
+            usuario.setIdprioridad(datos.getInt(4));
+            usuario.setMontogasto(datos.getInt(5));
+            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setFechamesgasto(datos.getString(7));
+            usuario.setFechaanogasto(datos.getString(8));
+        }
+        return usuario;
+    }
+
+    public UsuarioGastos gastoMasAltoPrioridad(String correo){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1='Baja') ORDER BY montogasto DESC",null);
+        UsuarioGastos usuario = null;
+        if(datos.moveToFirst()){
+            usuario = new UsuarioGastos();
+            usuario.setIdgastos(datos.getInt(0));
+            usuario.setCorreogasto(datos.getString(1));
+            usuario.setNombregasto(datos.getString(2));
+            usuario.setIdcatgasto(datos.getInt(3));
+            usuario.setIdprioridad(datos.getInt(4));
+            usuario.setMontogasto(datos.getInt(5));
+            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setFechamesgasto(datos.getString(7));
+            usuario.setFechaanogasto(datos.getString(8));
+        }
+        return usuario;
+    }
 }
