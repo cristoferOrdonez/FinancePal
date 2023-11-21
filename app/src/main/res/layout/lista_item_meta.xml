@@ -9,47 +9,59 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="15sp"
-        android:paddingRight="15sp"
+        android:orientation="vertical"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
 
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/viewNombreMeta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="20"
             android:text="TextView"
+            android:gravity="center|left"
             android:textColor="@color/verdeOscuro"
-            android:textSize="20sp" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/viewFechaMeta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="20"
             android:text="TextView"
-            android:textColor="@color/verdeOscuro"
-            android:textSize="15sp" />
+            android:gravity="center|left"
+            android:textColor="@color/verdeOscuro" />
 
         <TextView
             android:id="@+id/viewMontoMeta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="20"
             android:text="TextView"
-            android:textColor="@color/verdeOscuro"
-            android:textSize="15sp" />
+            android:gravity="center|left"
+            android:textColor="@color/verdeOscuro" />
 
         <TextView
             android:id="@+id/viewMontoMensual"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="TextView"
-            android:textColor="@color/verdeOscuro"
-            android:textSize="15sp" />
-
+            android:layout_weight="20"
+            android:gravity="center|left"
+            android:textColor="@color/verdeOscuro" />
+    </LinearLayout>
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@color/verdeOscuro" />
-    </LinearLayout>
+        </LinearLayout>
 </LinearLayout>

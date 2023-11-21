@@ -60,7 +60,7 @@ public class DbIngresos extends DbHelperFP {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getInt(3)) + " COP", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
+                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getInt(3)) + " COP", ((String.valueOf(cursorIngresos.getInt(4)).length() == 1)?"0" + cursorIngresos.getInt(4): cursorIngresos.getInt(4)) + "/" + cursorIngresos.getInt(5));
 
                 listaIngresos.add(ingresoInfo);
             } while (cursorIngresos.moveToNext());
