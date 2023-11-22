@@ -19,9 +19,13 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
     public static final String TABLE_METAS="t_metas";
 
+    public static final String TABLE_HISTORICO="t_historico";
+
     protected static final String TABLE_GASTOS = "t_gastosu";
     protected static final String TABLE_CATEGORIAS_GASTO = "t_categ_gastosu";
     protected static final String TABLE_PRIORIDAD = "t_prioridadgastosu";
+
+
 
 
 
@@ -87,6 +91,15 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "FOREIGN KEY(idcatgasto1) REFERENCES "+TABLE_CATEGORIAS_GASTO+"(idcatgasto)," +
                 "FOREIGN KEY(idprioridad1) REFERENCES "+ TABLE_PRIORIDAD+" (idprioridad))");
 
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_HISTORICO + "(" +
+                "idHistorico INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "correoUsuarioHistorico TEXT NOT NULL, " +
+                "ingresoTotalHistorico INTEGER NOT NULL, " +
+                "gastoTotalHistorico INTEGER NOT NULL," +
+                "fechaMesHistorico INTEGER NOT NULL," +
+                "fechaYearHistorico INTEGER NOT NULL)");
+
     }
 
     @Override
@@ -95,6 +108,7 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
 
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_METAS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORICO);
 
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_GASTOS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_CATEGORIAS_GASTO);
@@ -111,17 +125,20 @@ public class DbHelperFP extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            ContentValues valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues(), valuesMetas = new ContentValues();
+            ContentValues valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues(), valuesMetas = new ContentValues(), valuesHistorico = new ContentValues();
             valuesIngresos.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
             valuesCatGastos.put("correocatgasto", correoNuevo.toLowerCase());
             valuesGastos.put("correogasto", correoNuevo.toLowerCase());
             valuesMetas.put("correoUsuarioMetas", correoNuevo.toLowerCase());
+            valuesHistorico.put("correoUsuarioMetas", correoNuevo.toLowerCase());
 
             int rowsAffectedIngresos = db.update(TABLE_INGRESOS, valuesIngresos, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
             int rowsAffectedCatGastos = db.update(TABLE_CATEGORIAS_GASTO, valuesCatGastos, "correocatgasto = ?", new String[]{correoAntiguo});
             int rowsAffectedGastos = db.update(TABLE_GASTOS, valuesGastos, "correogasto = ?", new String[]{correoAntiguo});
             int rowsAffectedMetas = db.update(TABLE_METAS, valuesMetas, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
-            correcto = (rowsAffectedIngresos + rowsAffectedCatGastos + rowsAffectedGastos + rowsAffectedMetas > 0);
+            int rowsAffectedHistorico = db.update(TABLE_HISTORICO, valuesHistorico, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
+
+            correcto = (rowsAffectedHistorico + rowsAffectedIngresos + rowsAffectedCatGastos + rowsAffectedGastos + rowsAffectedMetas > 0);
 
         } catch (Exception e) {
             e.printStackTrace();
