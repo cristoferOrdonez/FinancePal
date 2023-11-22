@@ -37,7 +37,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
     String correoElectronicoS;
     EditText nombreMeta, fechaMeta, montoMeta;
     Button botonGuardarMeta;
-    ImageView botonAtras;
+    Button botonAtras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
