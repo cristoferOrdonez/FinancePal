@@ -78,5 +78,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/logoInicio"
+        android:layout_width="296dp"
+        android:layout_height="224dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcherlogo2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
