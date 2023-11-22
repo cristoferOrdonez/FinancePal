@@ -191,13 +191,10 @@ public class DbNombreMetas extends  DbHelperFP{
 
     private boolean esFechaAnterior(String fechaMeta) {
         try {
-            // Obtener la fecha actual
             Date fechaActual = new Date();
-            // Convertir la fecha de la meta a un objeto Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy", Locale.getDefault());
             Date fechaMetaDate = dateFormat.parse(fechaMeta);
 
-            // Comparar las fechas
             return fechaMetaDate != null && fechaMetaDate.before(fechaActual);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -209,15 +206,12 @@ public class DbNombreMetas extends  DbHelperFP{
         double montoMensual = 0;
 
         try {
-            // Obtener la fecha actual
             Date fechaActual = new Date();
 
-            // Convertir la fecha de la meta a un objeto Date
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy", Locale.getDefault());
             Date fechaMetaDate = dateFormat.parse(fechaMeta);
 
             if (fechaMetaDate != null) {
-                // Calcular la diferencia en meses entre la fecha actual y la fecha de la meta
                 Calendar calendarActual = Calendar.getInstance();
                 calendarActual.setTime(fechaActual);
 
@@ -227,7 +221,6 @@ public class DbNombreMetas extends  DbHelperFP{
                 int diferenciaMeses = (calendarMeta.get(Calendar.YEAR) - calendarActual.get(Calendar.YEAR)) * 12 +
                         calendarMeta.get(Calendar.MONTH) - calendarActual.get(Calendar.MONTH);
 
-                // Evitar la división por cero
                 if (diferenciaMeses > 0) {
                     montoMensual = (double) montoTotalMeta / diferenciaMeses;
                 }
