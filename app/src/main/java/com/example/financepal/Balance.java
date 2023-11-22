@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbNombreMetas;
 
 import java.text.NumberFormat;
@@ -64,10 +65,14 @@ public class Balance extends AppCompatActivity {
 
 
 
-        DbNombreMetas dbNombreMetas =new DbNombreMetas(Balance.this);
+        DbNombreMetas dbNombreMetas =new DbNombreMetas(this);
         Double montomensualmetas =dbNombreMetas.sumarMontosMensuales(correoElectronicoS);
         espacioMetasMensualesTotales.setText((col.format(montomensualmetas))+" COP");
         dbNombreMetas.close();
+
+        DbIngresos dbIngresos = new DbIngresos(this);
+        Double montoMensualIngresos = dbIngresos.obtenerIngresosTotales(correoElectronicoS);
+        espacioIngresosTotales.setText(col.format(montoMensualIngresos) + " COP");
 
 
 
