@@ -7,37 +7,11 @@
     android:background="@color/white"
     tools:context=".ingresoInformacionMetasDeAhorro">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/verdeClaro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tituloSuperiorMetasDeAhorroEditar"
-        android:layout_width="203dp"
-        android:layout_height="37dp"
-        android:text="REGISTRO METAS"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintVertical_bias="0.481" />
-
     <EditText
         android:id="@+id/textoNombreMetaEditar"
-        android:layout_width="236dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="Nombre de la meta"
@@ -47,17 +21,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textoFechaMetaEditar"
-        android:layout_width="236dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
-        android:ems="10"
-
         android:clickable="true"
+
+        android:ems="10"
         android:focusable="false"
 
         android:hint="mm/aaaa"
@@ -71,9 +45,9 @@
 
     <EditText
         android:id="@+id/textoMontoMetaEditar"
-        android:layout_width="236dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="Monto"
@@ -81,33 +55,33 @@
         android:textColor="@color/black"
         android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoFechaMetaEditar" />
 
     <Button
         android:id="@+id/botonGuardarMetasEditar"
-        android:layout_width="133dp"
-        android:layout_height="48dp"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Guardar"
+        android:text="Crear"
         android:textColor="@color/white"
         app:backgroundTint="@color/verdeOscuro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoMontoMetaEditar" />
 
-    <ImageView
+    <Button
         android:id="@+id/botonAtrasRegistroMetasdeAhorro"
-        android:layout_width="52dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintEnd_toStartOf="@+id/tituloSuperiorMetasDeAhorroEditar"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorRegistroMetasDeAhorro2"
-        app:layout_constraintVertical_bias="0.125"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Cancelar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

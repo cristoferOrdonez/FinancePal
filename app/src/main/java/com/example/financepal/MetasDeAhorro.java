@@ -26,7 +26,7 @@ public class MetasDeAhorro extends AppCompatActivity {
     String correoElectronicoS;
     ImageView botonInicio;
 
-    Button botonNuevaMeta;
+    ImageView botonNuevaMeta;
 
     RecyclerView listaMetas;
 
