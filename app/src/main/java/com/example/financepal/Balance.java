@@ -71,7 +71,7 @@ public class Balance extends AppCompatActivity {
         dbNombreMetas.close();
 
         DbIngresos dbIngresos = new DbIngresos(this);
-        Double montoMensualIngresos = dbIngresos.obtenerIngresosTotales(correoElectronicoS);
+        Long montoMensualIngresos = dbIngresos.obtenerIngresosTotales(correoElectronicoS);
         espacioIngresosTotales.setText(col.format(montoMensualIngresos) + " COP");
 
 

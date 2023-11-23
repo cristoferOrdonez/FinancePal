@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
 import com.example.financepal.db.DbIngresos;
+import com.example.financepal.entidades.EntidadHistorico;
 import com.example.financepal.entidades.Ingreso;
 import java.io.IOException;
 import java.util.List;
@@ -89,6 +92,9 @@ public class CrearModificarIngresos extends AppCompatActivity {
             if(!verificarRepeticion(nombresMetas)) {
 
                 dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), Integer.parseInt(editTextMonto.getText().toString()));
+                DbHistorico dbHistorico = new DbHistorico(this);
+                dbHistorico.actualizarHistorico(correoElectronicoS, dbIngresos.obtenerIngresosTotales(correoElectronicoS), new DbGastos(this).mostrarGastosTotales(correoElectronicoS));
+
                 Toast.makeText(this, "Se ha creado el ingreso exitosamente.", Toast.LENGTH_SHORT).show();
                 cambiarAIngresos(view);
 
@@ -141,6 +147,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
                 } else {
 
                     boolean correcto = dbIngresos.editarIngreso(id, nombreEdit, montoEdit);
+                    DbHistorico dbHistorico = new DbHistorico(this);
+                    dbHistorico.actualizarHistorico(correoElectronicoS, dbIngresos.obtenerIngresosTotales(correoElectronicoS), new DbGastos(this).mostrarGastosTotales(correoElectronicoS));
 
                     if (correcto) {
                         Toast.makeText(this, "Se ha modificado el ingreso.", Toast.LENGTH_SHORT).show();

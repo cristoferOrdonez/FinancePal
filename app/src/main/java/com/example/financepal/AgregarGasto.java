@@ -13,9 +13,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 import com.example.financepal.entidades.UsuarioPrioridadesGasto;
+import com.example.financepal.db.DbIngresos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,6 +79,9 @@ public class AgregarGasto extends AppCompatActivity {
 
             usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
             long res= db.insertarGasto(usuario);
+            DbHistorico dbHistorico = new DbHistorico(this);
+            dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+
             if(res==-1){
                 Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT).show();
                 nombre.setText("");
@@ -113,6 +118,9 @@ public class AgregarGasto extends AppCompatActivity {
             }
             else{
                 boolean res= db.editarGasto(usuario);
+                DbHistorico dbHistorico = new DbHistorico(this);
+                dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+
                 if (res) {
                     Toast.makeText(this, "Se ha modificado el gasto.", Toast.LENGTH_SHORT).show();
                     cambiaraAtras(view);

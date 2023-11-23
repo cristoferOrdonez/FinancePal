@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.financepal.adaptadores.CustomAdapterCategGastos;
 import com.example.financepal.adaptadores.CustomAdapterGastos;
 import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 
@@ -164,6 +166,9 @@ public class CategoriasGasto extends AppCompatActivity {
 
                 dialog.dismiss();
                 db.eliminarCatGasto(id);
+                DbHistorico dbHistorico = new DbHistorico(CategoriasGasto.this);
+                dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(CategoriasGasto.this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+
                 listarDatos();
 
 

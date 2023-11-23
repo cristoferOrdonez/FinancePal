@@ -9,8 +9,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
+import com.example.financepal.db.DbIngresos;
+import com.example.financepal.entidades.EntidadHistorico;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
@@ -46,6 +52,9 @@ public class PantallaPrincipal extends AppCompatActivity {
 
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
+
+        DbHistorico dbHistorico = new DbHistorico(this);
+        dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), new DbGastos(this).mostrarGastosTotales(correoElectronicoS));
 
     }
 
