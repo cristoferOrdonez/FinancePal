@@ -1,4 +1,4 @@
-package com.example.financepal;
+package com.example.financepal.entidades;
 
 public class InfoGasto {
     public String nombre;

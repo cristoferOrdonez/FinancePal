@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
 import com.example.financepal.entidades.UsuarioGastos;
 
@@ -79,6 +81,8 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
                 usuario.setNombrecatgasto(EditTextNombreCatGastos.getText().toString().trim());
                 usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().trim());
                 boolean res= db.editarCatGasto(usuario);
+                DbHistorico dbHistorico = new DbHistorico(this);
+                dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
 
                 if (res) {
                     Toast.makeText(this, "Se ha modificado la categoria.", Toast.LENGTH_SHORT).show();
@@ -127,6 +131,9 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
                 usuario.setDesccatgasto(EditTextDescCatGastos.getText().toString().trim());
 
                 res= db.insertarNuevaCategoria(usuario);
+                DbHistorico dbHistorico = new DbHistorico(this);
+                dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+
                 if (res) {
                     Toast.makeText(this, "Se ha agregado la categoría.", Toast.LENGTH_SHORT).show();
                     cambiaraAtras(view);

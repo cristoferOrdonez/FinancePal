@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import com.example.financepal.adaptadores.CustomAdapterGastos;
 import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
+import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.List;
@@ -117,6 +119,9 @@ public class Gastos extends AppCompatActivity {
         if(db.eliminarGasto(id)){
             Toast.makeText(this, "Se ha eliminado el gasto.", Toast.LENGTH_SHORT).show();
         }
+        DbHistorico dbHistorico = new DbHistorico(this);
+        dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+
         listarDatos();
     }
 

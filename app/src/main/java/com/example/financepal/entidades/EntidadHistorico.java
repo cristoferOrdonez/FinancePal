@@ -6,42 +6,41 @@ import android.app.appsearch.StorageInfo;
 public class EntidadHistorico {
 
     private int id;
-    private int fechaMesHistorico;
-    private int fechaAnoHistorico;
-    private int gastoTotalHistorico;
+    private String fechaHistorico;
+    private String gastoTotalHistorico;
+    private String ingresoTotalHistorico;
 
-    public int getFechaAnoHistorico() {
-        return fechaAnoHistorico;
+    public EntidadHistorico(int id, String ingresoTotalHistorico, String gastoTotalHistorico, String fechaHistorico){
+
+        this.id = id;
+        this.ingresoTotalHistorico = ingresoTotalHistorico;
+        this.gastoTotalHistorico = gastoTotalHistorico;
+        this.fechaHistorico = fechaHistorico;
+
     }
 
-    public void setFechaAnoHistorico(int fechaAnoHistorico) {
-        this.fechaAnoHistorico = fechaAnoHistorico;
+    public String getFechaHistorico() {
+        return fechaHistorico;
     }
 
-    public int getGastoTotalHistorico() {
+    public void setFechaHistorico(String fechaAnoHistorico) {
+        this.fechaHistorico = fechaAnoHistorico;
+    }
+
+    public String getGastoTotalHistorico() {
         return gastoTotalHistorico;
     }
 
-    public void setGastoTotalHistorico(int gastoTotalHistorico) {
+    public void setGastoTotalHistorico(String gastoTotalHistorico) {
         this.gastoTotalHistorico = gastoTotalHistorico;
     }
 
-    public int getIngresoTotalHistorico() {
+    public String getIngresoTotalHistorico() {
         return ingresoTotalHistorico;
     }
 
-    public void setIngresoTotalHistorico(int ingresoTotalHistorico) {
+    public void setIngresoTotalHistorico(String ingresoTotalHistorico) {
         this.ingresoTotalHistorico = ingresoTotalHistorico;
-    }
-
-    private int ingresoTotalHistorico;
-
-    public int getFechaMesHistorico() {
-        return fechaMesHistorico;
-    }
-
-    public void setFechaMesHistorico(int fechaMesHistorico) {
-        this.fechaMesHistorico = fechaMesHistorico;
     }
 
     public int getId() {

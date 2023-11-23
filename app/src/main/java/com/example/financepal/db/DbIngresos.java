@@ -154,9 +154,9 @@ public class DbIngresos extends DbHelperFP {
 
     }
 
-    public double obtenerIngresosTotales(String correoUsuario){
+    public long obtenerIngresosTotales(String correoUsuario){
 
-        double total = 0;
+        long total = 0;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE correoUsuarioIngresos = ?", new String[]{correoUsuario});

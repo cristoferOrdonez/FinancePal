@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.AdaptadorIngresos;
+import com.example.financepal.db.DbGastos;
+import com.example.financepal.db.DbHistorico;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.Ingreso;
 import java.io.IOException;
@@ -152,6 +154,9 @@ public class Ingresos extends AppCompatActivity {
         if(dbIngresos.elimnarIngreso(id)){
             Toast.makeText(this, "Se ha eliminado el ingreso.", Toast.LENGTH_SHORT).show();
         }
+
+        DbHistorico dbHistorico = new DbHistorico(this);
+        dbHistorico.actualizarHistorico(correoElectronicoS, dbIngresos.obtenerIngresosTotales(correoElectronicoS), new DbGastos(this).mostrarGastosTotales(correoElectronicoS));
 
         establecerLista();
 

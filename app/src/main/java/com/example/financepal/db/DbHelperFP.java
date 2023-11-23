@@ -109,7 +109,6 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_METAS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORICO);
-
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_GASTOS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_CATEGORIAS_GASTO);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_PRIORIDAD);
@@ -125,18 +124,18 @@ public class DbHelperFP extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            ContentValues valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues(), valuesMetas = new ContentValues(), valuesHistorico = new ContentValues();
+            ContentValues valuesHistorico = new ContentValues(), valuesIngresos = new ContentValues(), valuesCatGastos = new ContentValues(), valuesGastos = new ContentValues(), valuesMetas = new ContentValues();
             valuesIngresos.put("correoUsuarioIngresos", correoNuevo.toLowerCase());
             valuesCatGastos.put("correocatgasto", correoNuevo.toLowerCase());
             valuesGastos.put("correogasto", correoNuevo.toLowerCase());
             valuesMetas.put("correoUsuarioMetas", correoNuevo.toLowerCase());
-            valuesHistorico.put("correoUsuarioMetas", correoNuevo.toLowerCase());
+            valuesHistorico.put("correoUsuarioHistorico", correoNuevo.toLowerCase());
 
             int rowsAffectedIngresos = db.update(TABLE_INGRESOS, valuesIngresos, "correoUsuarioIngresos = ?", new String[]{correoAntiguo});
             int rowsAffectedCatGastos = db.update(TABLE_CATEGORIAS_GASTO, valuesCatGastos, "correocatgasto = ?", new String[]{correoAntiguo});
             int rowsAffectedGastos = db.update(TABLE_GASTOS, valuesGastos, "correogasto = ?", new String[]{correoAntiguo});
             int rowsAffectedMetas = db.update(TABLE_METAS, valuesMetas, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
-            int rowsAffectedHistorico = db.update(TABLE_HISTORICO, valuesHistorico, "correoUsuarioMetas = ?", new String[]{correoAntiguo});
+            int rowsAffectedHistorico = db.update(TABLE_HISTORICO, valuesHistorico, "correoUsuarioHistorico = ?", new String[]{correoAntiguo});
 
             correcto = (rowsAffectedHistorico + rowsAffectedIngresos + rowsAffectedCatGastos + rowsAffectedGastos + rowsAffectedMetas > 0);
 
@@ -149,15 +148,5 @@ public class DbHelperFP extends SQLiteOpenHelper {
 
         return correcto;
     }
-/*
-    public double obtenerPromedio(String correoElectronico){
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        return
-
-    }
-
- */
 
 }
