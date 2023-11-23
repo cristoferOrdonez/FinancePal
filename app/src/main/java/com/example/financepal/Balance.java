@@ -12,8 +12,12 @@ import android.widget.Toast;
 
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbNombreMetas;
+import com.example.financepal.db.DbGastos;
+import com.example.financepal.entidades.Usuario;
+import com.example.financepal.entidades.UsuarioGastos;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class Balance extends AppCompatActivity {
@@ -40,13 +44,13 @@ public class Balance extends AppCompatActivity {
         botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
 
 
-        espacioIngresosTotales=findViewById(R.id.espacioIngresosTotales);
-        espacioGastoTotales=findViewById(R.id.espacioGastosTotales);
-        espacioMetasMensualesTotales=findViewById(R.id.espacioMetasMensualesTotales);
-        espacioBalance=findViewById(R.id.espacioBalance);
-        espacioMayorGasto=findViewById(R.id.espacioMayorGasto);
-        espacioGastoMasRecurrente=findViewById(R.id.espacioGastoMasRecurrente);
-        espacioGastoMenorPrioridad=findViewById(R.id.espacioGastoMenorPrioridad);
+        espacioIngresosTotales = findViewById(R.id.espacioIngresosTotales); //
+        espacioGastoTotales = findViewById(R.id.espacioGastosTotales); //
+        espacioMetasMensualesTotales = findViewById(R.id.espacioMetasMensualesTotales); ///
+        espacioBalance = findViewById(R.id.espacioBalance); //
+        espacioMayorGasto = findViewById(R.id.espacioMayorGasto); ///
+        espacioGastoMasRecurrente = findViewById(R.id.espacioGastoMasRecurrente);
+        espacioGastoMenorPrioridad = findViewById(R.id.espacioGastoMenorPrioridad);
 
         espacioIngresosTotales.setInputType(InputType.TYPE_NULL);
         espacioGastoTotales.setInputType(InputType.TYPE_NULL);
@@ -60,20 +64,72 @@ public class Balance extends AppCompatActivity {
         NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
 
+        DbNombreMetas dbNombreMetas = new DbNombreMetas(this);
+        Double montomensualmetas = dbNombreMetas.sumarMontosMensuales(correoElectronicoS);
+        espacioMetasMensualesTotales.setText((col.format(montomensualmetas)) + " COP");
 
-
-
-
-
-        DbNombreMetas dbNombreMetas =new DbNombreMetas(this);
-        Double montomensualmetas =dbNombreMetas.sumarMontosMensuales(correoElectronicoS);
-        espacioMetasMensualesTotales.setText((col.format(montomensualmetas))+" COP");
-        dbNombreMetas.close();
 
         DbIngresos dbIngresos = new DbIngresos(this);
         Long montoMensualIngresos = dbIngresos.obtenerIngresosTotales(correoElectronicoS);
         espacioIngresosTotales.setText(col.format(montoMensualIngresos) + " COP");
 
+        DbGastos dbGastos = new DbGastos(this);
+        long totalGastos = dbGastos.mostrarGastosTotales(correoElectronicoS);
+        espacioGastoTotales.setText((col.format(totalGastos)) + " COP");
+
+        espacioBalance.setText(col.format(montoMensualIngresos - totalGastos) + " COP");
+
+
+        UsuarioGastos gastoAltoUsuario = (dbGastos.gastoMasAlto(correoElectronicoS));
+        if (gastoAltoUsuario != null) {
+            String nombreGastoMasAlto = gastoAltoUsuario.getNombregasto();
+            int cantGastoMasAlto = gastoAltoUsuario.getMontogasto();
+            espacioMayorGasto.setText(nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COL"));
+        } else {
+            espacioMayorGasto.setText("No hay gastos registrados");
+        }
+
+
+        UsuarioGastos gastoRecurrenteUsuario = dbGastos.gastoMasRecurrente(correoElectronicoS);
+        if (gastoRecurrenteUsuario != null) {
+            String nombreGastoMasRecurrente = gastoRecurrenteUsuario.getNombregasto();
+            int cantGastoMasREcurrente = gastoRecurrenteUsuario.getMontogasto()*gastoRecurrenteUsuario.getRecurrenciagasto();
+            espacioGastoMasRecurrente.setText(nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COL"));
+        } else {
+            espacioGastoMasRecurrente.setText("No hay gastos registrados");
+        }
+
+/*
+        List<UsuarioGastos> gastosPrioridades = dbGastos.gastoMasAltoPrioridades(correoElectronicoS);
+        if (!gastosPrioridades.isEmpty()) {
+            UsuarioGastos mayorMontoMenorPrioridadUsuario = gastosPrioridades.get(2);
+            if (mayorMontoMenorPrioridadUsuario != null) {
+                String nombreMenorPrioridad = mayorMontoMenorPrioridadUsuario.getNombregasto();
+                int montoMenorPrioridad = mayorMontoMenorPrioridadUsuario.getMontogasto();
+                espacioGastoMenorPrioridad.setText(nombreMenorPrioridad + "\n" + (col.format(montoMenorPrioridad) + " COL"));
+            } else {
+                espacioGastoMenorPrioridad.setText("No hay gastos registrados");
+            }
+        } else {
+            espacioGastoMenorPrioridad.setText("No hay lista");
+        }
+        */
+        UsuarioGastos gastoPrioridad = dbGastos.gastoMasPrioridades(correoElectronicoS);
+        if (gastoPrioridad != null) {
+            String nombreGastoMasPrioridad = gastoPrioridad.getNombregasto();
+            int cantGastoMasPrioridad = gastoPrioridad.getMontogasto();
+            espacioGastoMenorPrioridad.setText(nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COL"));
+        } else {
+            espacioGastoMenorPrioridad.setText("No hay gastos registrados");
+        }
+
+
+
+
+
+        dbNombreMetas.close();
+        dbIngresos.close();
+        dbGastos.close();
 
 
     }
