@@ -411,9 +411,9 @@ public class DbGastos extends DbHelperFP {
     public List<UsuarioGastos> gastoMasAltoPrioridades(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1='Alta') ORDER BY montogasto DESC LIMIT 1)" +
-                "UNION SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1='Media') ORDER BY montogasto DESC LIMIT 1)" +
-                "UNION SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1='Baja') ORDER BY montogasto DESC LIMIT 1)" +
+        Cursor datos = db.rawQuery("SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=1) ORDER BY montogasto DESC LIMIT 1)" +
+                "UNION SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=2) ORDER BY montogasto DESC LIMIT 1)" +
+                "UNION SELECT * FROM (SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=3) ORDER BY montogasto DESC LIMIT 1)" +
                 "ORDER BY idprioridad1 ASC",null);
         UsuarioGastos usuario = null;
         List<UsuarioGastos> lista = new ArrayList<>();
@@ -434,4 +434,25 @@ public class DbGastos extends DbHelperFP {
         }
         return lista;
     }
+
+    public UsuarioGastos gastoMasPrioridades(String correo){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery(" SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=3 ) ORDER BY montogasto DESC",null);
+        UsuarioGastos usuario = null;
+        if(datos.moveToFirst()){
+            usuario = new UsuarioGastos();
+            usuario.setIdgastos(datos.getInt(0));
+            usuario.setCorreogasto(datos.getString(1));
+            usuario.setNombregasto(datos.getString(2));
+            usuario.setIdcatgasto(datos.getInt(3));
+            usuario.setIdprioridad(datos.getInt(4));
+            usuario.setMontogasto(datos.getInt(5));
+            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setFechamesgasto(datos.getString(7));
+            usuario.setFechaanogasto(datos.getString(8));
+        }
+        return usuario;
+    }
+
 }
