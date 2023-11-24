@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class VerMeta extends AppCompatActivity {
     String correoElectronicoS;
     EditText txtNombreMeta, txtFechaMeta, txtMontoMeta;
-    Button guardar;
+    Button guardar, cancelar;
 
     FloatingActionButton fabEditar, fabElminar;
 
@@ -45,6 +45,7 @@ public class VerMeta extends AppCompatActivity {
         fabElminar=findViewById(R.id.fabEliminarMeta);
 
         guardar =findViewById(R.id.botonGuardarMetasEditar);
+        cancelar = findViewById(R.id.botonCancelarMetasEditar);
 
         botonAtras= findViewById(R.id.botonAtrasRegistroMetasdeAhorro);
 
@@ -88,6 +89,7 @@ public class VerMeta extends AppCompatActivity {
             txtFechaMeta.setText(metaInfo.getFechaMeta());
             txtMontoMeta.setText(String.valueOf(metaInfo.getMontoMeta()));
             guardar.setVisibility(View.INVISIBLE);
+            cancelar.setVisibility(View.INVISIBLE);
             txtNombreMeta.setInputType(InputType.TYPE_NULL);
             txtFechaMeta.setInputType(InputType.TYPE_NULL);
             txtMontoMeta.setInputType(InputType.TYPE_NULL);

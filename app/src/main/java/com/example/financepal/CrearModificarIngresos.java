@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
@@ -19,12 +20,13 @@ import java.util.List;
 
 public class CrearModificarIngresos extends AppCompatActivity {
 
-    String correoElectronicoS;
+    String correoElectronicoS, funcionBoton;
 
     Ingreso infoIngreso;
     long id;
     Button botonCrearGuardarIngreso;
     EditText editTextNombre, editTextMonto;
+    TextView nombre, monto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,19 @@ public class CrearModificarIngresos extends AppCompatActivity {
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         botonCrearGuardarIngreso = findViewById(R.id.botonCrearGuardarCrearModificarIngresos);
-        botonCrearGuardarIngreso.setText(getIntent().getStringExtra("funcionBoton"));
+        nombre = findViewById(R.id.textViewNombreIngresos);
+        monto = findViewById(R.id.textViewMontoIngresos);
+
+        funcionBoton = getIntent().getStringExtra("funcionBoton");
+
+        botonCrearGuardarIngreso.setText(funcionBoton);
+
+        if(funcionBoton.equals("Crear")){
+
+            nombre.setVisibility(View.INVISIBLE);
+            monto.setVisibility(View.INVISIBLE);
+
+        }
 
         editTextNombre = findViewById(R.id.editTextNombreCrearModificarIngresos);
         editTextMonto = findViewById(R.id.editTextMontoCrearModificarIngresos);
