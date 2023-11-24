@@ -41,7 +41,7 @@
             android:textColor="@color/verdeOscuro" />
 
         <TextView
-            android:id="@+id/viewGastosMensulesHistorico"
+            android:id="@+id/viewGastosMensualesHistorico"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="20"
@@ -50,7 +50,7 @@
             android:textColor="@color/verdeOscuro" />
 
         <TextView
-            android:id="@+id/viewIngresosMensualesHistoricos"
+            android:id="@+id/viewIngresosMensualesHistorico"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="20"
