@@ -7,108 +7,154 @@
     android:background="@color/white"
     tools:context=".Balance">
 
-    <TextView
-        android:id="@+id/textMayorGasto"
-        android:layout_width="188dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="292dp"
-        android:text="Mayor gasto:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/texgasto"
-        android:layout_width="189dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="64dp"
-        android:text="Gastos totales:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/textmetasmen"
-        android:layout_width="189dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="128dp"
-        android:text="Metas mensuales totales:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/textbalan"
-        android:layout_width="188dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="212dp"
-        android:text="Balance"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/txtGastoMasRecu"
-        android:layout_width="188dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="368dp"
-        android:text="Gasto más recurrente:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/textGastoMenorPrior"
-        android:layout_width="188dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="452dp"
-        android:text="Gasto con menor prioridad:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <TextView
-        android:id="@+id/TextIngTot"
-        android:layout_width="189dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="4dp"
-        android:text="Ingresos totales:"
-        android:textAlignment="viewStart"
-        android:textColor="@color/verdeOscuro"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recuadroInferiorInicio5"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/verdeOscuro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="15dp"
+                android:text="Datos Generales"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/verdeOscuro"
+                android:textSize="25sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondo_tablas_balance">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/espacioIngresosTotales"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/espacioGastosTotales"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textViewFechaBALANCE"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/espacioBalance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="15dp"
+                android:text="Otros Datos"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/verdeOscuro"
+                android:textSize="25sp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fondo_tablas_balance">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/espacioMetasMensualesTotales"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/espacioMayorGasto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/espacioGastoMasRecurrente"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/espacioGastoMenorPrioridad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorBalance"
@@ -135,129 +181,11 @@
         app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorBalance"
         app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorBalance" />
 
-    <EditText
-        android:id="@+id/espacioIngresosTotales"
-        android:layout_width="219dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/TextIngTot"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioGastosTotales"
-        android:layout_width="218dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/texgasto"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioMetasMensualesTotales"
-        android:layout_width="224dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="132dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/textmetasmen"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioBalance"
-        android:layout_width="219dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="212dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/texgasto"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioMayorGasto"
-        android:layout_width="219dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="292dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/texgasto"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorBalance"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioGastoMasRecurrente"
-        android:layout_width="220dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/txtGastoMasRecu"
-        app:layout_constraintTop_toBottomOf="@+id/espacioMayorGasto"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/espacioGastoMenorPrioridad"
-        android:layout_width="221dp"
-        android:layout_height="92dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/background_buttons"
-        android:clickable="false"
-        android:ems="10"
-        android:hint=" "
-        android:inputType="text"
-        android:labelFor="@+id/viewNombreMetaEditar"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/textGastoMenorPrior"
-        app:layout_constraintTop_toBottomOf="@+id/espacioGastoMasRecurrente"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroInferiorInicio5"
+        android:background="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
@@ -294,5 +222,6 @@
 
         </TableRow>
     </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
