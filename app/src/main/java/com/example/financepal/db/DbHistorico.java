@@ -44,7 +44,7 @@ public class DbHistorico extends DbHelperFP{
         if (cursorHistorico.moveToFirst()) {
             do {
                 if(!(cursorHistorico.getInt(4) == mesActual && cursorHistorico.getInt(5) == anoActual)) {
-                    historicoInfo = new EntidadHistorico(cursorHistorico.getInt(0), col.format(cursorHistorico.getInt(2)) + " COP", col.format(cursorHistorico.getInt(3)) + " COP", cursorHistorico.getInt(4) + "/" + cursorHistorico.getInt(5));
+                    historicoInfo = new EntidadHistorico(cursorHistorico.getInt(0), cursorHistorico.getInt(2), cursorHistorico.getInt(3), cursorHistorico.getInt(4) + "/" + cursorHistorico.getInt(5));
                     listaHistorico.add(historicoInfo);
                 }
             } while (cursorHistorico.moveToNext());
