@@ -36,8 +36,11 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
 
     @Override
     public void onBindViewHolder(@NonNull MetaViewHolder holder, int position) {
+
+        String fechaMetaString = listaMetas.get(position).getFechaMeta();
+
         holder.viewNombreMeta.setText(listaMetas.get(position).getNombreMeta());
-        holder.viewFechaMeta.setText(listaMetas.get(position).getFechaMeta());
+        holder.viewFechaMeta.setText(MetodosComunes.obtenerPrefijoMes(Integer.parseInt(fechaMetaString.substring(0, 2))) + " " + fechaMetaString.substring(3));
         holder.viewMontoMeta.setText("Monto Total:  " + String.valueOf(listaMetas.get(position).getMontoTotalFormateado()) + "  COP");
         holder.viewMontoMensual.setText("Monto Mensual:  " + String.valueOf(listaMetas.get(position).getMontoMensualFormateado()) + "  COP"); // Nueva línea
 
@@ -70,7 +73,8 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
                     Intent intent =new Intent(context, VerMeta.class );
                     intent.putExtra("ID", listaMetas.get(getAdapterPosition()).getId());
                     intent.putExtra("correoElectronico", correoElectronico); // Pasa el correo electrónico con el Intent
-                    context.startActivity(intent );
+                    context.startActivity(intent);
+
                 }
             });
 

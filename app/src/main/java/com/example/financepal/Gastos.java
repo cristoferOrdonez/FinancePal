@@ -2,8 +2,10 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -136,6 +138,7 @@ public class Gastos extends AppCompatActivity {
         Intent miIntent = new Intent(this, CategoriasGasto.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
+        finishAffinity();
     }
 
     public void cambiarANuevoGasto(View view){
@@ -143,6 +146,7 @@ public class Gastos extends AppCompatActivity {
         miIntent.putExtra("funcionBoton", "Crear");
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
+        finishAffinity();
     }
 
     public void cambiarParaModificarGasto(int id){
@@ -152,7 +156,27 @@ public class Gastos extends AppCompatActivity {
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         myIntent.putExtra("id", id);
         startActivity(myIntent);
+        finishAffinity();
 
     }
+
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        if(keyCode == event.KEYCODE_BACK){
+
+            cambiarAPantallaPrincipal(new View(this));
+
+        }
+
+        return super.onKeyDown(keyCode, event);
+
+    }
+
 }
 

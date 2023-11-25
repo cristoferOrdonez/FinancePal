@@ -2,9 +2,12 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -219,6 +222,24 @@ public class AgregarGasto extends AppCompatActivity {
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
         finishAffinity();
+    }
+
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        if(keyCode == event.KEYCODE_BACK){
+
+            cambiaraAtras(new View(this));
+
+        }
+
+        return super.onKeyDown(keyCode, event);
+
     }
 
 

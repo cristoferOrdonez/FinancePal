@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -110,6 +112,7 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("funcionBoton", "Crear");
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(myIntent);
+        finishAffinity();
 
     }
 
@@ -120,6 +123,7 @@ public class Ingresos extends AppCompatActivity {
         myIntent.putExtra("correoElectronico", correoElectronicoS);
         myIntent.putExtra("id", id);
         startActivity(myIntent);
+        finishAffinity();
 
     }
 
@@ -160,6 +164,24 @@ public class Ingresos extends AppCompatActivity {
 
         establecerLista();
 
+
+    }
+
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        if(keyCode == event.KEYCODE_BACK){
+
+            volver(new View(this));
+
+        }
+
+        return super.onKeyDown(keyCode, event);
 
     }
 

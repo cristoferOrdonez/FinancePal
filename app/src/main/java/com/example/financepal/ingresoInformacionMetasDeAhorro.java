@@ -3,10 +3,12 @@ package com.example.financepal;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -208,6 +210,23 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        if(keyCode == event.KEYCODE_BACK){
+
+            cambiarAMetasDeAhorro(new View(this));
+        }
+
+        return super.onKeyDown(keyCode, event);
 
     }
 
