@@ -4,8 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarGasto"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".AgregarGasto">
+
+    <TextView
+        android:id="@+id/textViewRecurrenciaGasto"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Recurrencia mensual"
+        app:layout_constraintBottom_toTopOf="@+id/editTextRecurrenciaCrearModificarGastos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPrioridadGasto"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Prioridad"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerPrioridadGasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewCategoriaGasto"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Categoría"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerCategoriaGasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMontoGasto"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Monto"
+        app:layout_constraintBottom_toTopOf="@+id/editTextMontoCrearModificarIGastos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNombreGasto"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Nombre o razón"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNombreCrearModificarGastos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonCrearGuardarCrearModificarGastos"
@@ -25,7 +80,7 @@
         android:id="@+id/editTextMontoCrearModificarIGastos"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="monto"
@@ -40,15 +95,15 @@
         android:id="@+id/editTextRecurrenciaCrearModificarGastos"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
-        android:hint="recurrencia"
+        android:hint="recurrencia mensual"
         android:inputType="number"
         android:textColor="@color/black"
         android:textColorHint="@color/colorHint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerPrioridadGasto" />
 
@@ -86,7 +141,7 @@
         android:layout_width="270dp"
 
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/spinner1"
         android:dropDownWidth="wrap_content"
         android:dropDownSelector="@android:drawable/arrow_down_float"
@@ -99,7 +154,7 @@
         android:id="@+id/spinnerPrioridadGasto"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
 
         android:background="@drawable/spinner1"
         android:dropDownWidth="wrap_content"

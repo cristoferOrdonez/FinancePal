@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
@@ -21,8 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 public class AgregarCategoriaGasto extends AppCompatActivity {
-    String correoElectronicoS;
+    String correoElectronicoS, funcionBoton;
     private DbGastos db;
+    TextView nombre, descripcion;
     EditText EditTextNombreCatGastos;
     EditText EditTextDescCatGastos;
     Button BotonCrearGuardarCatGastos;
@@ -38,7 +40,20 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
         db = new DbGastos(this);
 
         BotonCrearGuardarCatGastos = findViewById(R.id.botonCrearGuardarCatGastos);
-        BotonCrearGuardarCatGastos.setText(getIntent().getStringExtra("funcionBoton"));
+        nombre = findViewById(R.id.viewTextNombreCatGasto);
+        descripcion = findViewById(R.id.textViewDesCatGasto);
+
+
+        funcionBoton = getIntent().getStringExtra("funcionBoton");
+
+        if(funcionBoton.equals("Crear")){
+
+            nombre.setVisibility(View.INVISIBLE);
+            descripcion.setVisibility(View.INVISIBLE);
+
+        }
+
+        BotonCrearGuardarCatGastos.setText(funcionBoton);
 
         try {
             establecerEditText();

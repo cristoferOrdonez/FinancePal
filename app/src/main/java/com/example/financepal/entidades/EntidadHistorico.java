@@ -7,10 +7,10 @@ public class EntidadHistorico {
 
     private int id;
     private String fechaHistorico;
-    private String gastoTotalHistorico;
-    private String ingresoTotalHistorico;
+    private int gastoTotalHistorico;
+    private int ingresoTotalHistorico;
 
-    public EntidadHistorico(int id, String ingresoTotalHistorico, String gastoTotalHistorico, String fechaHistorico){
+    public EntidadHistorico(int id, int ingresoTotalHistorico, int gastoTotalHistorico, String fechaHistorico){
 
         this.id = id;
         this.ingresoTotalHistorico = ingresoTotalHistorico;
@@ -27,19 +27,19 @@ public class EntidadHistorico {
         this.fechaHistorico = fechaAnoHistorico;
     }
 
-    public String getGastoTotalHistorico() {
+    public int getGastoTotalHistorico() {
         return gastoTotalHistorico;
     }
 
-    public void setGastoTotalHistorico(String gastoTotalHistorico) {
+    public void setGastoTotalHistorico(int gastoTotalHistorico) {
         this.gastoTotalHistorico = gastoTotalHistorico;
     }
 
-    public String getIngresoTotalHistorico() {
+    public int getIngresoTotalHistorico() {
         return ingresoTotalHistorico;
     }
 
-    public void setIngresoTotalHistorico(String ingresoTotalHistorico) {
+    public void setIngresoTotalHistorico(int ingresoTotalHistorico) {
         this.ingresoTotalHistorico = ingresoTotalHistorico;
     }
 

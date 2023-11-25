@@ -7,6 +7,61 @@
     android:background="@color/white"
     tools:context=".MisDatos">
 
+    <TextView
+        android:id="@+id/viewNombreMetaEditar6"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/editTextContrasenaRMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewNombreMetaEditar5"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Correo electronico"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoElectronicoRMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewNombreMetaEditar4"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Edad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEdadMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewNombreMetaEditar3"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Apellidos"
+        app:layout_constraintBottom_toTopOf="@+id/editTextApellidosMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewNombreMetaEditar2"
+        android:layout_width="233dp"
+        android:layout_height="22dp"
+
+        android:text="Nombres"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNombresMISDATOS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.398"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroInferiorInicio4"
         android:layout_width="match_parent"
@@ -47,7 +102,7 @@
         android:id="@+id/editTextEdadMISDATOS"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="edad"
@@ -63,7 +118,7 @@
         android:id="@+id/editTextContrasenaRMISDATOS"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="contraseña"
@@ -79,7 +134,7 @@
         android:id="@+id/editTextNombresMISDATOS"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="nombres"
@@ -95,7 +150,7 @@
         android:id="@+id/editTextApellidosMISDATOS"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="apellidos"
@@ -111,7 +166,7 @@
         android:id="@+id/editTextCorreoElectronicoRMISDATOS"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/background_buttons"
         android:ems="10"
         android:hint="correo electronico"
@@ -121,7 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEdadMISDATOS"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextEdadMISDATOS" />
 
     <Button
         android:id="@+id/botonActualizar"
