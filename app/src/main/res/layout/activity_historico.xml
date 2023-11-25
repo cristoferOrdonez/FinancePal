@@ -1,96 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Historico">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recuadroInferiorInicio2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/verdeOscuro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recuadroSuperiorHistorico"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/verdeClaro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/TituloSuperiorHistorico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HISTÓRICO"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorHistorico"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorHistorico"
-        app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorHistorico" />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroInferiorInicio2"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TableRow
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/recuadroSuperiorHistorico"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/verdeClaro"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/botonInicioHISTORICO"
-                android:layout_width="101dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/boton_inicio_des_select" />
+        <TextView
+            android:id="@+id/TituloSuperiorHistorico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HISTÓRICO"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/recuadroSuperiorHistorico"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/recuadroSuperiorHistorico"
+            app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorHistorico" />
 
-            <ImageView
-                android:id="@+id/botonBalanceHISTORICO"
-                android:layout_width="101dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/boton_balance_des_select" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/botonHistoricoHISTORICO"
-                android:layout_width="101dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/boton_historico_select" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/botonMisDatosHISTORICO"
-                android:layout_width="101dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/boton_mis_datos_des_select" />
-        </TableRow>
-    </TableLayout>
+        <ListView
+            android:id="@+id/listViewHistorico"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/listViewHistorico"
-        android:layout_width="391dp"
-        android:layout_height="649dp"
-        app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorHistorico" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/verdeOscuro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/botonInicioHISTORICO"
+                    android:layout_width="101dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/boton_inicio_des_select" />
+
+                <ImageView
+                    android:id="@+id/botonBalanceHISTORICO"
+                    android:layout_width="101dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/boton_balance_des_select" />
+
+                <ImageView
+                    android:id="@+id/botonHistoricoHISTORICO"
+                    android:layout_width="101dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/boton_historico_select" />
+
+                <ImageView
+                    android:id="@+id/botonMisDatosHISTORICO"
+                    android:layout_width="101dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@mipmap/boton_mis_datos_des_select" />
+            </TableRow>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -63,17 +63,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/recuadroInferiorInicio4"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/verdeOscuro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
         android:id="@+id/recuadroSuperiorMisDatos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -194,7 +183,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recuadroInferiorInicio4"
+        android:background="@color/verdeOscuro"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
