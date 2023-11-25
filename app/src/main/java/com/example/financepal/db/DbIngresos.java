@@ -25,7 +25,7 @@ public class DbIngresos extends DbHelperFP {
         this.context = context;
     }
 
-    public long insertarIngreso(String correoUsuario, String nombreIngreso, int montoIngreso) {
+    public long insertarIngreso(String correoUsuario, String nombreIngreso, long montoIngreso) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
@@ -79,7 +79,7 @@ public class DbIngresos extends DbHelperFP {
         cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE idIngreso = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
-            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), cursorIngresos.getInt(3) + "", cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
+            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), String.valueOf(cursorIngresos.getInt(3)), cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
         }
         cursorIngresos.close();
 
@@ -87,7 +87,7 @@ public class DbIngresos extends DbHelperFP {
         return IngresoInfo;
     }
 
-    public boolean editarIngreso(long id, String nombreIngreso, int montoIngreso) {
+    public boolean editarIngreso(long id, String nombreIngreso, long montoIngreso) {
         boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
