@@ -83,7 +83,7 @@ public class Balance extends AppCompatActivity {
         if (gastoAltoUsuario != null) {
             String nombreGastoMasAlto = gastoAltoUsuario.getNombregasto();
             int cantGastoMasAlto = gastoAltoUsuario.getMontogasto();
-            espacioMayorGasto.setText("Mayor gasto:\n" + nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COL"));
+            espacioMayorGasto.setText("Mayor gasto:\n" + nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COP"));
         } else {
             espacioMayorGasto.setText("Mayor gasto:\nNo hay gastos registrados");
         }
@@ -93,7 +93,7 @@ public class Balance extends AppCompatActivity {
         if (gastoRecurrenteUsuario != null) {
             String nombreGastoMasRecurrente = gastoRecurrenteUsuario.getNombregasto();
             int cantGastoMasREcurrente = gastoRecurrenteUsuario.getMontogasto()*gastoRecurrenteUsuario.getRecurrenciagasto();
-            espacioGastoMasRecurrente.setText("Gasto más recurrente:\n" + nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COL"));
+            espacioGastoMasRecurrente.setText("Gasto más recurrente:\n" + nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COP"));
         } else {
             espacioGastoMasRecurrente.setText("Gasto más recurrente:\nNo hay gastos registrados");
         }
