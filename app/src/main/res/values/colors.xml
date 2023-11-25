@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="verdeBotones">#E5F3E5</color>
+    <color name="verdeBotones">#E5FAE5</color>
     <color name="moradoVotones">#553E4E</color>
     <color name="moradoEditText">#CABEC6</color>
     <color name="moradoOscuro">#3B2B30</color>
