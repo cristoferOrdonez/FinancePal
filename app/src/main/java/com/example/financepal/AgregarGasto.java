@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbGastos;
@@ -25,13 +26,14 @@ import java.util.List;
 
 public class AgregarGasto extends AppCompatActivity {
 
-    String correoElectronicoS;
+    String correoElectronicoS, funcionBoton;
     private DbGastos db;
 
     Button botonCrearGuardarGasto;
     EditText nombre, monto, recurrencia;
     Spinner spinnerPrioridadGasto, spinnerCategoriaGasto;
     ArrayList<String> prioridadgasto, categoriagasto;
+    TextView nombreT, montoT, recurrenciaT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,21 @@ public class AgregarGasto extends AppCompatActivity {
         spinnerPrioridadGasto.setAdapter(arrayAdapter2);
 
         botonCrearGuardarGasto = findViewById(R.id.botonCrearGuardarCrearModificarGastos);
-        botonCrearGuardarGasto.setText(getIntent().getStringExtra("funcionBoton"));
+        nombreT = findViewById(R.id.textViewNombreGasto);
+        montoT = findViewById(R.id.textViewMontoGasto);
+        recurrenciaT = findViewById(R.id.textViewRecurrenciaGasto);
+
+        funcionBoton = getIntent().getStringExtra("funcionBoton");
+
+        if(funcionBoton.equals("Crear")){
+
+            nombreT.setVisibility(View.INVISIBLE);
+            montoT.setVisibility(View.INVISIBLE);
+            recurrenciaT.setVisibility(View.INVISIBLE);
+
+        }
+
+        botonCrearGuardarGasto.setText(funcionBoton);
 
         try {
             establecerEditText();

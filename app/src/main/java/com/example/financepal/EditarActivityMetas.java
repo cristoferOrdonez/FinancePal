@@ -14,7 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,14 +32,16 @@ import java.util.List;
 public class EditarActivityMetas extends AppCompatActivity {
     String correoElectronicoS;
     EditText txtNombreMeta, txtFechaMeta, txtMontoMeta;
-    Button guardar;
+    Button guardar, cancelar;
     FloatingActionButton fabEditar, fabElminar;
 
 
     boolean correcto;
     ImageView botonAtras;
+    View recuadro;
 
     MetasInfo metaInfo;
+    TextView titulo;
     int id=0;
 
     @Override
@@ -64,16 +68,19 @@ public class EditarActivityMetas extends AppCompatActivity {
 
         guardar =findViewById(R.id.botonGuardarMetasEditar);
         configurarFechaEditText();
+        cancelar = findViewById(R.id.botonCancelarMetasEditar);
+
+        cancelar.setOnClickListener(view -> cambiarAMetasDeAhorro(view));
+        titulo = findViewById(R.id.tituloSuperiorMetasDeAhorroEditar);
+        titulo.setVisibility(View.INVISIBLE);
+
+        recuadro = findViewById(R.id.recuadroSuperiorRegistroMetasDeAhorro2);
+        recuadro.setVisibility(View.INVISIBLE);
 
 
         botonAtras= findViewById(R.id.botonAtrasRegistroMetasdeAhorro);
 
-        botonAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAMetasDeAhorro(view);
-            }
-        });
+        botonAtras.setVisibility(View.INVISIBLE);
 
         if (savedInstanceState==null){
             Bundle extras = getIntent().getExtras();
