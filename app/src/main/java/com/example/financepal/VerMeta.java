@@ -102,7 +102,7 @@ public class VerMeta extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder( VerMeta.this);
-                builder.setMessage("Desea eliminar esta meta?").setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setMessage("¿Desea eliminar esta meta?").setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(dbNombreMetas.elimnarMeta(id)){

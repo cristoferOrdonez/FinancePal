@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +56,8 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
         editTextNombre = findViewById(R.id.editTextNombreCrearModificarIngresos);
         editTextMonto = findViewById(R.id.editTextMontoCrearModificarIngresos);
+        editTextMonto.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
+        editTextNombre.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
 
 
         try {
@@ -108,7 +111,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
             if(!verificarRepeticion(nombresMetas)) {
 
-                dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), Integer.parseInt(editTextMonto.getText().toString()));
+                dbIngresos.insertarIngreso(correoElectronicoS, editTextNombre.getText().toString().trim(), Long.parseLong(editTextMonto.getText().toString()));
                 DbHistorico dbHistorico = new DbHistorico(this);
                 dbHistorico.actualizarHistorico(correoElectronicoS, dbIngresos.obtenerIngresosTotales(correoElectronicoS), new DbGastos(this).mostrarGastosTotales(correoElectronicoS));
 
@@ -147,7 +150,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
         if(verificarInformacion()){
 
             String nombreEdit = editTextNombre.getText().toString().trim();
-            int montoEdit = Integer.parseInt(editTextMonto.getText().toString());
+            long montoEdit = Long.parseLong(editTextMonto.getText().toString());
 
             if(infoIngreso.getNombre().equals(nombreEdit) && infoIngreso.getMonto().equals(montoEdit)) {
 

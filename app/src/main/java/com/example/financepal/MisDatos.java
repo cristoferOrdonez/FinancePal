@@ -230,4 +230,40 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
+    public void IntencionCerrarSesion(View view){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Desea cerrar sesión?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+
+                        cerrarSesion();
+
+                    }
+
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+
+                        dialog.dismiss();
+
+                    }
+
+                });
+        builder.show();
+
+    }
+
+    public void cerrarSesion(){
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finishAffinity();
+
+    }
+
 }

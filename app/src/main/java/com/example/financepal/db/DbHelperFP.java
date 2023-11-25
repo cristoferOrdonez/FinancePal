@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 public class DbHelperFP extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION=3;
-    private static final String DATABASE_NOMBRE = "ingresos.db";
+    private static final String DATABASE_NOMBRE = "datos.db";
 
     public static final String TABLE_INGRESOS = "t_ingresos";
 
@@ -39,7 +39,7 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "idIngreso INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "correoUsuarioIngresos TEXT NOT NULL, " +
                 "nombreIngreso TEXT NOT NULL, " +
-                "montoIngreso INTEGER NOT NULL," +
+                "montoIngreso BIGINT NOT NULL," +
                 "fechaMesIngreso INTEGER NOT NULL," +
                 "fechaYearIngreso INTEGER NOT NULL)");
 

@@ -7,6 +7,19 @@
     android:background="@color/white"
     tools:context=".MisDatos">
 
+    <Button
+        android:id="@+id/botonCerrarSesion"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="IntencionCerrarSesion"
+        android:text="Cerrar sesión"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/verdeOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonActualizar" />
+
     <TextView
         android:id="@+id/viewNombreMetaEditar6"
         android:layout_width="233dp"
