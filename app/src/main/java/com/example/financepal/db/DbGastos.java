@@ -356,7 +356,7 @@ public class DbGastos extends DbHelperFP {
     public long mostrarGastosTotales(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY montogasto DESC",null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"'",null);
         long total=0;
         if (datos.moveToFirst()) {
             do {
@@ -371,7 +371,7 @@ public class DbGastos extends DbHelperFP {
     public UsuarioGastos gastoMasAlto(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"'",null);
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY montogasto DESC",null);
         UsuarioGastos usuario = null;
         if(datos.moveToFirst()){
             usuario = new UsuarioGastos();
@@ -386,6 +386,21 @@ public class DbGastos extends DbHelperFP {
             usuario.setFechaanogasto(datos.getString(8));
         }
         return usuario;
+    }
+
+    public long mostrarGastosTotalesMes(String correo, int mes, int ano){
+        DbHelperFP dbHelper = new DbHelperFP(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND fechamesgasto="+mes+" AND fechaanogasto="+ano+") ORDER BY montogasto DESC",null);
+        long total=0;
+        if (datos.moveToFirst()) {
+            do {
+                total += datos.getInt(5);
+
+            } while (datos.moveToNext());
+        }
+        return total;
+
     }
 
     public UsuarioGastos gastoMasRecurrente(String correo){

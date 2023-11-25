@@ -16,6 +16,7 @@ import com.example.financepal.entidades.Ingreso;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -50,7 +51,7 @@ public class DbHistorico extends DbHelperFP{
             } while (cursorHistorico.moveToNext());
         }
         cursorHistorico.close();
-
+        //Collections.reverse(listaHistorico);
         db.close();
         return listaHistorico;
     }
