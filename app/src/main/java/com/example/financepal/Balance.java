@@ -58,34 +58,34 @@ public class Balance extends AppCompatActivity {
 
         GregorianCalendar calendario = new GregorianCalendar();
 
-        espacioFecha.setText("Fecha:\n" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+        espacioFecha.setText((calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
 
         NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
 
         DbNombreMetas dbNombreMetas = new DbNombreMetas(this);
         Double montomensualmetas = dbNombreMetas.sumarMontosMensuales(correoElectronicoS);
-        espacioMetasMensualesTotales.setText("Metas mensuales totales:\n" + (col.format(montomensualmetas)) + " COP");
+        espacioMetasMensualesTotales.setText((col.format(montomensualmetas)) + " COP");
 
 
         DbIngresos dbIngresos = new DbIngresos(this);
         Long montoMensualIngresos = dbIngresos.obtenerIngresosTotales(correoElectronicoS);
-        espacioIngresosTotales.setText("Ingresos totales:\n" + col.format(montoMensualIngresos) + " COP");
+        espacioIngresosTotales.setText(col.format(montoMensualIngresos) + " COP");
 
         DbGastos dbGastos = new DbGastos(this);
         long totalGastos = dbGastos.mostrarGastosTotales(correoElectronicoS);
-        espacioGastoTotales.setText("Gastos totales:\n" + (col.format(totalGastos)) + " COP");
+        espacioGastoTotales.setText((col.format(totalGastos)) + " COP");
 
-        espacioBalance.setText("Balance:\n" + col.format(montoMensualIngresos - totalGastos) + " COP");
+        espacioBalance.setText(col.format(montoMensualIngresos - totalGastos) + " COP");
 
 
         UsuarioGastos gastoAltoUsuario = (dbGastos.gastoMasAlto(correoElectronicoS));
         if (gastoAltoUsuario != null) {
             String nombreGastoMasAlto = gastoAltoUsuario.getNombregasto();
             int cantGastoMasAlto = gastoAltoUsuario.getMontogasto();
-            espacioMayorGasto.setText("Mayor gasto:\n" + nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COP"));
+            espacioMayorGasto.setText(nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COP"));
         } else {
-            espacioMayorGasto.setText("Mayor gasto:\nNo hay gastos registrados");
+            espacioMayorGasto.setText("No hay gastos relacionados");
         }
 
 
@@ -93,9 +93,9 @@ public class Balance extends AppCompatActivity {
         if (gastoRecurrenteUsuario != null) {
             String nombreGastoMasRecurrente = gastoRecurrenteUsuario.getNombregasto();
             int cantGastoMasREcurrente = gastoRecurrenteUsuario.getMontogasto()*gastoRecurrenteUsuario.getRecurrenciagasto();
-            espacioGastoMasRecurrente.setText("Gasto más recurrente:\n" + nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COP"));
+            espacioGastoMasRecurrente.setText(nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COP"));
         } else {
-            espacioGastoMasRecurrente.setText("Gasto más recurrente:\nNo hay gastos registrados");
+            espacioGastoMasRecurrente.setText("No hay gastos relacionados");
         }
 
 /*
@@ -117,9 +117,9 @@ public class Balance extends AppCompatActivity {
         if (gastoPrioridad != null) {
             String nombreGastoMasPrioridad = gastoPrioridad.getNombregasto();
             int cantGastoMasPrioridad = gastoPrioridad.getMontogasto();
-            espacioGastoMenorPrioridad.setText("Mayor gasto con menor prioridad:\n" + nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COL"));
+            espacioGastoMenorPrioridad.setText(nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COL"));
         } else {
-            espacioGastoMenorPrioridad.setText("Mayor gasto con menor prioridad:\nNo hay gastos registrados");
+            espacioGastoMenorPrioridad.setText("No hay gastos relacionados");
         }
 
 
