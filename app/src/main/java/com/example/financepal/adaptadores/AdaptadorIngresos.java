@@ -53,9 +53,11 @@ public class AdaptadorIngresos extends BaseAdapter {
         textViewMonto = view.findViewById(R.id.textViewMontoINGRESOS);
         textViewFecha = view.findViewById(R.id.textViewFechaINGRESOS);
 
+        String fechaIngreso = ing.getFecha();
+
         textViewNombre.setText(ing.getNombre());
         textViewMonto.setText(ing.getMonto());
-        textViewFecha.setText("Fecha: " + ing.getFecha());
+        textViewFecha.setText("Fecha: " + MetodosComunes.obtenerPrefijoMes(Integer.parseInt(fechaIngreso.substring(0,2))) + " " + fechaIngreso.substring(3));
 
         return view;
     }

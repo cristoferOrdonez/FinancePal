@@ -59,7 +59,9 @@ public class AdaptadorHistorico extends BaseAdapter {
         viewGastosMensualesHistorico= view.findViewById(R.id.viewGastosMensualesHistorico);
         viewIngresosMensualesHistorico= view.findViewById(R.id.viewIngresosMensualesHistorico);
 
-        viewFechaHistorico.setText(ent.getFechaHistorico());
+        String fechaHistorico = ent.getFechaHistorico();
+
+        viewFechaHistorico.setText("Periodo: " + MetodosComunes.obtenerPrefijoMes(Integer.parseInt(fechaHistorico.substring(0,fechaHistorico.indexOf("/")))) + " " + fechaHistorico.substring(fechaHistorico.indexOf("/") + 1));
         viewBalanceHistorico.setText("Balance: "+currencyFormatter.format(ent.getIngresoTotalHistorico()-ent.getGastoTotalHistorico())+" COP");
         viewGastosMensualesHistorico.setText("Gasto Mensual: "+currencyFormatter.format(ent.getGastoTotalHistorico())+" COP");
         viewIngresosMensualesHistorico.setText("Ingreso Mensual: "+currencyFormatter.format(ent.getIngresoTotalHistorico())+" COP");

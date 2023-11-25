@@ -33,6 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/recuadroSuperiorInicio" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/verdeOscuro"
@@ -77,23 +78,23 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="cambiarAGastos"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorInicio"
         app:srcCompat="@mipmap/gastosm" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="cambiarAMetasDeAhorro"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
@@ -101,11 +102,11 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="360dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="cambiarAIngresos"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorInicio"

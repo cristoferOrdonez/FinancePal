@@ -76,7 +76,7 @@ public class CustomAdapterGastos extends BaseAdapter {
         textViewCategoriaGastos.setText(categoria);
         String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));
         textViewRecurrenciaGastos.setText(prioridad);
-        String fecha = "Fecha: " + g.getFechamesgasto()+"/"+g.getFechaanogasto();
+        String fecha = "Fecha: " + MetodosComunes.obtenerPrefijoMes(Integer.parseInt(g.getFechamesgasto())) + " " + g.getFechaanogasto();
         textViewFechaGastos.setText(fecha);
         return view;
     }

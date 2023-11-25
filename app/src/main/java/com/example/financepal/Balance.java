@@ -2,14 +2,18 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.financepal.adaptadores.MetodosComunes;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.db.DbGastos;
@@ -58,7 +62,7 @@ public class Balance extends AppCompatActivity {
 
         GregorianCalendar calendario = new GregorianCalendar();
 
-        espacioFecha.setText((calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+        espacioFecha.setText(MetodosComunes.obtenerPrefijoMes(calendario.get(Calendar.MONTH) + 1) + " " + calendario.get(Calendar.YEAR));
 
         NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
@@ -157,6 +161,48 @@ public class Balance extends AppCompatActivity {
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
         finishAffinity();
+
+    }
+
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        if(keyCode == event.KEYCODE_BACK){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de Finance Pal?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+
+                        }
+
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+
+                            dialog.dismiss();
+
+                        }
+
+                    });
+            builder.show();
+        }
+
+        return super.onKeyDown(keyCode, event);
 
     }
 
