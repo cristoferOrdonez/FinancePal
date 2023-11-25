@@ -85,9 +85,12 @@
     </TableLayout>
 
     <ListView
+        android:id="@+id/listViewHistorico"
         android:layout_width="391dp"
         android:layout_height="649dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="65dp" />
+        app:layout_constraintBottom_toTopOf="@+id/recuadroInferiorInicio2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recuadroSuperiorHistorico" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

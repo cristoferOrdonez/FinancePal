@@ -11,7 +11,9 @@ import com.example.financepal.R;
 import com.example.financepal.entidades.EntidadHistorico;
 import com.example.financepal.entidades.UsuarioGastos;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class AdaptadorHistorico extends BaseAdapter {
 
@@ -46,6 +48,8 @@ public class AdaptadorHistorico extends BaseAdapter {
         TextView viewIngresosMensualesHistorico;
 
         EntidadHistorico ent = lst.get(i);
+        Locale locale = new Locale("es", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 
         if(view == null)
             view = LayoutInflater.from(context).inflate(R.layout.lista_item_historico, null);
@@ -56,9 +60,9 @@ public class AdaptadorHistorico extends BaseAdapter {
         viewIngresosMensualesHistorico= view.findViewById(R.id.viewIngresosMensualesHistorico);
 
         viewFechaHistorico.setText(ent.getFechaHistorico());
-        viewBalanceHistorico.setText(""+(ent.getIngresoTotalHistorico()-ent.getGastoTotalHistorico()));
-        viewGastosMensualesHistorico.setText();
-        viewIngresosMensualesHistorico.setText();
+        viewBalanceHistorico.setText("Balance: "+currencyFormatter.format(ent.getIngresoTotalHistorico()-ent.getGastoTotalHistorico())+" COP");
+        viewGastosMensualesHistorico.setText("Gasto Mensual: "+currencyFormatter.format(ent.getGastoTotalHistorico())+" COP");
+        viewIngresosMensualesHistorico.setText("Ingreso Mensual: "+currencyFormatter.format(ent.getIngresoTotalHistorico())+" COP");
 
         return view;
     }
