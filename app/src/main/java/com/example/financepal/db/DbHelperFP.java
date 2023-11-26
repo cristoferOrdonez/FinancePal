@@ -55,7 +55,7 @@ public class DbHelperFP extends SQLiteOpenHelper {
                 "idMetas INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "correoUsuarioMetas TEXT NOT NULL, " +
                 "nombreMeta TEXT NOT NULL, " +
-                "montoMeta INTEGER NOT NULL, " +
+                "montoMeta BIGINT NOT NULL, " +
                 "fechaMeta TEXT NOT NULL)");
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CATEGORIAS_GASTO + "(" +
                 "idcatgasto INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -95,8 +95,8 @@ public class DbHelperFP extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_HISTORICO + "(" +
                 "idHistorico INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "correoUsuarioHistorico TEXT NOT NULL, " +
-                "ingresoTotalHistorico INTEGER NOT NULL, " +
-                "gastoTotalHistorico INTEGER NOT NULL," +
+                "ingresoTotalHistorico BIGINT NOT NULL, " +
+                "gastoTotalHistorico BIGINT NOT NULL," +
                 "fechaMesHistorico INTEGER NOT NULL," +
                 "fechaYearHistorico INTEGER NOT NULL)");
 

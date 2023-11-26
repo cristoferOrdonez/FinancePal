@@ -94,9 +94,9 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setNombregasto(nombre.getText().toString().trim());
             usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
-            usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
+            usuario.setMontogasto(Long.parseLong(monto.getText().toString()));
 
-            usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+            usuario.setRecurrenciagasto(Long.parseLong(recurrencia.getText().toString()));
             long res= db.insertarGasto(usuario);
             DbHistorico dbHistorico = new DbHistorico(this);
             dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
@@ -130,8 +130,8 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setNombregasto(nombre.getText().toString());
             usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
-            usuario.setMontogasto(Integer.parseInt(monto.getText().toString()));
-            usuario.setRecurrenciagasto(Integer.parseInt(recurrencia.getText().toString()));
+            usuario.setMontogasto(Long.parseLong(monto.getText().toString()));
+            usuario.setRecurrenciagasto(Long.parseLong(recurrencia.getText().toString()));
             if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
                 Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT).show();
             }

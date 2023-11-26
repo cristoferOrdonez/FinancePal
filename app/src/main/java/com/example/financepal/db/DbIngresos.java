@@ -60,7 +60,7 @@ public class DbIngresos extends DbHelperFP {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getInt(3)) + " COP", ((String.valueOf(cursorIngresos.getInt(4)).length() == 1)?"0" + cursorIngresos.getInt(4): cursorIngresos.getInt(4)) + "/" + cursorIngresos.getInt(5));
+                ingresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), col.format(cursorIngresos.getLong(3)) + " COP", ((String.valueOf(cursorIngresos.getInt(4)).length() == 1)?"0" + cursorIngresos.getInt(4): cursorIngresos.getInt(4)) + "/" + cursorIngresos.getInt(5));
 
                 listaIngresos.add(ingresoInfo);
             } while (cursorIngresos.moveToNext());
@@ -79,7 +79,7 @@ public class DbIngresos extends DbHelperFP {
         cursorIngresos = db.rawQuery("SELECT * FROM " + TABLE_INGRESOS + " WHERE idIngreso = ? LIMIT 1", new String[]{String.valueOf(id)});
 
         if (cursorIngresos.moveToFirst()) {
-            IngresoInfo = new Ingreso(cursorIngresos.getInt(0), cursorIngresos.getString(2), String.valueOf(cursorIngresos.getInt(3)), cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
+            IngresoInfo = new Ingreso(cursorIngresos.getLong(0), cursorIngresos.getString(2), String.valueOf(cursorIngresos.getLong(3)), cursorIngresos.getInt(4) + "/" + cursorIngresos.getInt(5));
         }
         cursorIngresos.close();
 
@@ -163,7 +163,7 @@ public class DbIngresos extends DbHelperFP {
 
         if (cursorIngresos.moveToFirst()) {
             do {
-                total += cursorIngresos.getInt(3);
+                total += cursorIngresos.getLong(3);
 
             } while (cursorIngresos.moveToNext());
         }

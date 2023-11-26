@@ -114,8 +114,8 @@ public class DbGastos extends DbHelperFP {
                         usuario.setNombregasto(datos.getString(2));
                         usuario.setIdcatgasto(datos.getInt(3));
                         usuario.setIdprioridad(datos.getInt(4));
-                        usuario.setMontogasto(datos.getInt(5));
-                        usuario.setRecurrenciagasto(datos.getInt(6));
+                        usuario.setMontogasto(datos.getLong(5));
+                        usuario.setRecurrenciagasto(datos.getLong(6));
                         usuario.setFechamesgasto(datos.getString(7));
                         usuario.setFechaanogasto(datos.getString(8));
                         lista.add(usuario);
@@ -258,8 +258,8 @@ public class DbGastos extends DbHelperFP {
                     usuario.setNombregasto(datos.getString(2));
                     usuario.setIdcatgasto(datos.getInt(3));
                     usuario.setIdprioridad(datos.getInt(4));
-                    usuario.setMontogasto(datos.getInt(5));
-                    usuario.setRecurrenciagasto(datos.getInt(6));
+                    usuario.setMontogasto(datos.getLong(5));
+                    usuario.setRecurrenciagasto(datos.getLong(6));
                     usuario.setFechamesgasto(datos.getString(7));
                     usuario.setFechaanogasto(datos.getString(8));
                 }
@@ -360,7 +360,7 @@ public class DbGastos extends DbHelperFP {
         long total=0;
         if (datos.moveToFirst()) {
             do {
-                total += datos.getInt(5);
+                total += datos.getLong(5);
 
             } while (datos.moveToNext());
         }
@@ -380,8 +380,8 @@ public class DbGastos extends DbHelperFP {
             usuario.setNombregasto(datos.getString(2));
             usuario.setIdcatgasto(datos.getInt(3));
             usuario.setIdprioridad(datos.getInt(4));
-            usuario.setMontogasto(datos.getInt(5));
-            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setMontogasto(datos.getLong(5));
+            usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
@@ -395,7 +395,7 @@ public class DbGastos extends DbHelperFP {
         long total=0;
         if (datos.moveToFirst()) {
             do {
-                total += datos.getInt(5);
+                total += datos.getLong(5);
 
             } while (datos.moveToNext());
         }
@@ -415,8 +415,8 @@ public class DbGastos extends DbHelperFP {
             usuario.setNombregasto(datos.getString(2));
             usuario.setIdcatgasto(datos.getInt(3));
             usuario.setIdprioridad(datos.getInt(4));
-            usuario.setMontogasto(datos.getInt(5));
-            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setMontogasto(datos.getLong(5));
+            usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
@@ -435,8 +435,8 @@ public class DbGastos extends DbHelperFP {
             usuario.setNombregasto(datos.getString(2));
             usuario.setIdcatgasto(datos.getInt(3));
             usuario.setIdprioridad(datos.getInt(4));
-            usuario.setMontogasto(datos.getInt(5));
-            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setMontogasto(datos.getLong(5));
+            usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
@@ -455,8 +455,8 @@ public class DbGastos extends DbHelperFP {
             usuario.setNombregasto(datos.getString(2));
             usuario.setIdcatgasto(datos.getInt(3));
             usuario.setIdprioridad(datos.getInt(4));
-            usuario.setMontogasto(datos.getInt(5));
-            usuario.setRecurrenciagasto(datos.getInt(6));
+            usuario.setMontogasto(datos.getLong(5));
+            usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }

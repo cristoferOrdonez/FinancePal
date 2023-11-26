@@ -5,8 +5,8 @@ public class UsuarioGastos {
     private String correogasto, nombregasto, fechamesgasto, fechaanogasto;
     private int idcatgasto;
     private int idprioridad;
-    private int montogasto;
-    private int recurrenciagasto;
+    private long montogasto;
+    private long recurrenciagasto;
 
     private int idgastos;
 
@@ -83,19 +83,19 @@ public class UsuarioGastos {
         this.idprioridad = idprioridad;
     }
 
-    public int getMontogasto() {
+    public long getMontogasto() {
         return montogasto;
     }
 
-    public void setMontogasto(int montogasto) {
+    public void setMontogasto(long montogasto) {
         this.montogasto = montogasto;
     }
 
-    public int getRecurrenciagasto() {
+    public long getRecurrenciagasto() {
         return recurrenciagasto;
     }
 
-    public void setRecurrenciagasto(int recurrenciagasto) {
+    public void setRecurrenciagasto(long recurrenciagasto) {
         this.recurrenciagasto = recurrenciagasto;
     }
 }

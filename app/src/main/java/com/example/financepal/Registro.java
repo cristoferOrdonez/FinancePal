@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class Registro extends AppCompatActivity {
         edad = findViewById(R.id.editTextEdadMISDATOS);
         correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         contrasenaR = findViewById(R.id.editTextContrasenaRMISDATOS);
+        edad.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
     }
 
