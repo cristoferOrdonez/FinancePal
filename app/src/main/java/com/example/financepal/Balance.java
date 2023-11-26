@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -174,9 +178,18 @@ public class Balance extends AppCompatActivity {
 
         if(keyCode == event.KEYCODE_BACK){
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Desea salir de Finance Pal?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            SpannableString message = new SpannableString("¿Desea salir de Finance Pal?");
+            message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
+
+            SpannableString afirmacion = new SpannableString("Si");
+            afirmacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, afirmacion.length(), 0);
+
+            SpannableString negacion = new SpannableString("No");
+            negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(message)
+                    .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -189,7 +202,7 @@ public class Balance extends AppCompatActivity {
                         }
 
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -205,5 +218,4 @@ public class Balance extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
 
     }
-
 }

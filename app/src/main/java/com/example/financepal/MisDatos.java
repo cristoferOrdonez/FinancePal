@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -198,9 +203,18 @@ public class MisDatos extends AppCompatActivity {
 
         if(keyCode == event.KEYCODE_BACK){
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Desea salir de Finance Pal?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            SpannableString message = new SpannableString("¿Desea salir de Finance Pal?");
+            message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
+
+            SpannableString afirmacion = new SpannableString("Si");
+            afirmacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, afirmacion.length(), 0);
+
+            SpannableString negacion = new SpannableString("No");
+            negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(message)
+                    .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -213,7 +227,7 @@ public class MisDatos extends AppCompatActivity {
                         }
 
                     })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which){
@@ -230,32 +244,40 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void IntencionCerrarSesion(View view){
+    public void IntencionCerrarSesion(View view) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("¿Desea cerrar sesión?")
-                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
 
+        // Crear un SpannableString con el texto y el color deseado
+        SpannableString message = new SpannableString("¿Desea cerrar sesión?");
+        message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
+
+        SpannableString afirmacion = new SpannableString("Si");
+        afirmacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, afirmacion.length(), 0);
+
+        SpannableString negacion = new SpannableString("No");
+        negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
+
+        builder.setMessage(message)
+                .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which){
-
                         cerrarSesion();
-
                     }
-
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-
+                .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which){
-
                         dialog.dismiss();
-
                     }
-
                 });
-        builder.show();
 
+        // Establecer el color de fondo de la ventana del diálogo
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2E7D32"))); // Verde oscuro
+
+        // Mostrar el diálogo
+        alertDialog.show();
     }
 
     public void cerrarSesion(){

@@ -1,12 +1,16 @@
 package com.example.financepal;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -101,8 +105,17 @@ public class VerMeta extends AppCompatActivity {
         fabElminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder( VerMeta.this);
-                builder.setMessage("¿Desea eliminar esta meta?").setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(VerMeta.this, R.style.AlertDialogCustom));
+
+                SpannableString message = new SpannableString("¿Desea eliminar esta meta?");
+                message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
+
+                SpannableString afirmacion = new SpannableString("Si");
+                afirmacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, afirmacion.length(), 0);
+
+                SpannableString negacion = new SpannableString("No");
+                negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
+                builder.setMessage(message).setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(dbNombreMetas.elimnarMeta(id)){
@@ -114,7 +127,7 @@ public class VerMeta extends AppCompatActivity {
 
                     }
                 })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
