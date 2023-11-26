@@ -56,7 +56,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
 
         editTextNombre = findViewById(R.id.editTextNombreCrearModificarIngresos);
         editTextMonto = findViewById(R.id.editTextMontoCrearModificarIngresos);
-        editTextMonto.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
+        editTextMonto.setFilters(new InputFilter[]{new InputFilter.LengthFilter(11)});
         editTextNombre.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
 
 
@@ -84,7 +84,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
         if(editTextNombre.getText().toString().trim().equals(""))
             mensaje += "Nombre o razón invalida\n";
 
-        if(editTextMonto.getText().toString().trim().equals("") || Integer.parseInt(editTextMonto.getText().toString().trim()) <= 0) {
+        if(editTextMonto.getText().toString().trim().equals("") || Long.parseLong(editTextMonto.getText().toString().trim()) <= 0) {
             mensaje += "Monto invalido";
             editTextMonto.setText("");
         }

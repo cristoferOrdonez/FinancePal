@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.ContextThemeWrapper;
@@ -53,6 +54,7 @@ public class MisDatos extends AppCompatActivity {
         editTextEdad = findViewById(R.id.editTextEdadMISDATOS);
         editTextCorreoElectronico = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         editTextContrasena = findViewById(R.id.editTextContrasenaRMISDATOS);
+        editTextEdad.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
         establecerEditText();

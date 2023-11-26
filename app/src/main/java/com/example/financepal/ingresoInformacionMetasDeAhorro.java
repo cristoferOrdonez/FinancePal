@@ -89,7 +89,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
                     // Validar la fecha ingresada
                     if (validarFecha(fechaMeta.getText().toString().trim())) {
                         DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
-                        long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Integer.parseInt(montoMeta.getText().toString()));
+                        long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Long.parseLong(montoMeta.getText().toString()));
                         //Se inserta la info a la tabla
                         limpiar();
                         cambiarAMetasDeAhorro(view);

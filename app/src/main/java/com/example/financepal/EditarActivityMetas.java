@@ -113,7 +113,7 @@ public class EditarActivityMetas extends AppCompatActivity {
                 if (!txtNombreMeta.getText().toString().equals("") && !txtFechaMeta.getText().toString().equals("") && !txtMontoMeta.getText().toString().equals("")) {
                     // Validar la fecha ingresada
                     if (validarFecha(txtFechaMeta.getText().toString().trim())) {
-                        correcto = dbNombreMetas.editarMeta(id, txtNombreMeta.getText().toString(), txtFechaMeta.getText().toString(), Integer.parseInt(txtMontoMeta.getText().toString()));
+                        correcto = dbNombreMetas.editarMeta(id, txtNombreMeta.getText().toString(), txtFechaMeta.getText().toString(), Long.parseLong(txtMontoMeta.getText().toString()));
 
                         if (correcto) {
                             Toast.makeText(EditarActivityMetas.this, "META MODIFICADA", Toast.LENGTH_LONG).show();

@@ -36,7 +36,7 @@ public class DbNombreMetas extends  DbHelperFP{
         this.context = context;
     }
 
-    public long insertarMeta(String correoUsuarioMetas, String nombreMeta, String fechaMeta, Integer montoMeta) {
+    public long insertarMeta(String correoUsuarioMetas, String nombreMeta, String fechaMeta, long montoMeta) {
         long id = 0;
         try {
             DbHelperFP dbHelper = new DbHelperFP(context);
@@ -70,11 +70,11 @@ public class DbNombreMetas extends  DbHelperFP{
                 metasInfo = new MetasInfo();
                 metasInfo.setId(cursorMetas.getInt(0));
                 metasInfo.setNombreMeta(cursorMetas.getString(2));
-                metasInfo.setMontoMeta(cursorMetas.getInt(3));
+                metasInfo.setMontoMeta(cursorMetas.getLong(3));
                 metasInfo.setFechaMeta(cursorMetas.getString(4));
 
-                metasInfo.setMontoTotalFormateado(col.format(cursorMetas.getInt(3)));
-                metasInfo.setMontoMensualFormateado(col.format(calcularMontoMensual(cursorMetas.getString(4), cursorMetas.getInt(3))));
+                metasInfo.setMontoTotalFormateado(col.format(cursorMetas.getLong(3)));
+                metasInfo.setMontoMensualFormateado(col.format(calcularMontoMensual(cursorMetas.getString(4), cursorMetas.getLong(3))));
 
                 metasInfo.setMontoMensual(calcularMontoMensual(metasInfo.getFechaMeta(), metasInfo.getMontoMeta()));
 
@@ -97,7 +97,7 @@ public class DbNombreMetas extends  DbHelperFP{
             metaInfo = new MetasInfo();
             metaInfo.setId(cursorMetas.getInt(0));
             metaInfo.setNombreMeta(cursorMetas.getString(2));
-            metaInfo.setMontoMeta(cursorMetas.getInt(3));
+            metaInfo.setMontoMeta(cursorMetas.getLong(3));
             metaInfo.setFechaMeta(cursorMetas.getString(4));
         }
         cursorMetas.close();
@@ -105,7 +105,7 @@ public class DbNombreMetas extends  DbHelperFP{
         return metaInfo;
     }
 
-    public boolean editarMeta(int id, String nombreMeta, String fechaMeta, Integer montoMeta) {
+    public boolean editarMeta(int id, String nombreMeta, String fechaMeta, Long montoMeta) {
         boolean correcto = false;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -202,7 +202,7 @@ public class DbNombreMetas extends  DbHelperFP{
         }
     }
 
-    public double calcularMontoMensual(String fechaMeta, int montoTotalMeta) {
+    public double calcularMontoMensual(String fechaMeta, long montoTotalMeta) {
         double montoMensual = 0;
 
         try {
