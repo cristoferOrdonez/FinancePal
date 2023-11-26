@@ -90,7 +90,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
                     if (validarFecha(fechaMeta.getText().toString().trim())) {
                         DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
                         long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Long.parseLong(montoMeta.getText().toString()));
-                        //Se inserta la info a la tabla
+                        Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Se ha creado la meta.", Toast.LENGTH_SHORT).show();
                         limpiar();
                         cambiarAMetasDeAhorro(view);
                     } else {

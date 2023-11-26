@@ -15,6 +15,8 @@ import com.example.financepal.db.DbUsuarios;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
 
@@ -31,7 +33,13 @@ public class Registro extends AppCompatActivity {
         edad = findViewById(R.id.editTextEdadMISDATOS);
         correoElectronicoR = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         contrasenaR = findViewById(R.id.editTextContrasenaRMISDATOS);
+
+        //filtros
         edad.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+        contrasenaR.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+        nombres.setFilters(new InputFilter[]{new InputFilter.LengthFilter(100)});
+        apellidos.setFilters(new InputFilter[]{new InputFilter.LengthFilter(40)});
+        correoElectronicoR.setFilters(new InputFilter[]{new InputFilter.LengthFilter(320)});
 
     }
 
@@ -50,27 +58,32 @@ public class Registro extends AppCompatActivity {
         boolean flag = true;
         String mensajeError = "";
 
-        if(this.nombres.getText().toString().trim().equals("")) {
+        if(nombres.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado nombres validos\n";
             flag = false;
         }
-        if(this.apellidos.getText().toString().trim().equals("")) {
+        if(apellidos.getText().toString().trim().equals("")) {
             mensajeError += "No ha ingresado apellidos validos\n";
             flag = false;
         }
-        if(this.edad.getText().toString().trim().equals("") || Integer.parseInt(this.edad.getText().toString().trim()) > 150) {
+        if(edad.getText().toString().trim().equals("") || Integer.parseInt(edad.getText().toString().trim()) > 150) {
             mensajeError += "No ha ingresado una edad valida\n";
             flag = false;
         }
-        if(!this.correoElectronicoR.getText().toString().contains("@") || this.correoElectronicoR.getText().toString().replaceAll("@","").trim().equals("") || correoElectronicoR.getText().toString().contains(" ")){
+
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(correoElectronicoR.getText().toString());
+
+        if(!mather.find()){
             mensajeError += "No ha ingresado un correo electronico valido\n";
             flag = false;
         }
-        if(this.contrasenaR.getText().toString().length() < 8){
+        if(contrasenaR.getText().toString().length() < 8){
             mensajeError += "Debe ingresar una contraseña de por lo menos 8 caracteres\n";
             flag = false;
         }
-        if(this.contrasenaR.getText().toString().contains(" ")){
+        if(contrasenaR.getText().toString().contains(" ")){
             mensajeError += "La contraseña no puede contener espacios en blanco\n";
             flag = false;
         }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.entidades.MetasInfo;
@@ -119,6 +120,7 @@ public class VerMeta extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(dbNombreMetas.elimnarMeta(id)){
+                            Toast.makeText(VerMeta.this, "Se ha eliminado la meta exitosamente.", Toast.LENGTH_SHORT).show();
                             listaMetas();
                             cambiarAMetasDeAhorro(view);
 
