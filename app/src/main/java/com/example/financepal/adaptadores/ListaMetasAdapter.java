@@ -1,5 +1,6 @@
 package com.example.financepal.adaptadores;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -74,6 +75,7 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
                     intent.putExtra("ID", listaMetas.get(getAdapterPosition()).getId());
                     intent.putExtra("correoElectronico", correoElectronico); // Pasa el correo electrónico con el Intent
                     context.startActivity(intent);
+                    ((Activity)context).finishAffinity();
 
                 }
             });
