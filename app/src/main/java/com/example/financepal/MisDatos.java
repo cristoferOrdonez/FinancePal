@@ -28,6 +28,8 @@ import com.example.financepal.entidades.Usuario;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MisDatos extends AppCompatActivity {
 
@@ -54,7 +56,12 @@ public class MisDatos extends AppCompatActivity {
         editTextEdad = findViewById(R.id.editTextEdadMISDATOS);
         editTextCorreoElectronico = findViewById(R.id.editTextCorreoElectronicoRMISDATOS);
         editTextContrasena = findViewById(R.id.editTextContrasenaRMISDATOS);
+
         editTextEdad.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+        editTextContrasena.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+        editTextNombres.setFilters(new InputFilter[]{new InputFilter.LengthFilter(100)});
+        editTextApellidos.setFilters(new InputFilter[]{new InputFilter.LengthFilter(40)});
+        editTextCorreoElectronico.setFilters(new InputFilter[]{new InputFilter.LengthFilter(320)});
 
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
         establecerEditText();
@@ -106,7 +113,12 @@ public class MisDatos extends AppCompatActivity {
             mensajeError += "No ha ingresado una edad valida\n";
             flag = false;
         }
-        if(!editTextCorreoElectronico.getText().toString().contains("@") || editTextCorreoElectronico.getText().toString().replaceAll("@","").trim().equals("") || editTextCorreoElectronico.getText().toString().contains(" ")){
+
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        Matcher mather = pattern.matcher(editTextCorreoElectronico.getText().toString());
+
+        if(!mather.find()){
             mensajeError += "No ha ingresado un correo electronico valido\n";
             flag = false;
         }

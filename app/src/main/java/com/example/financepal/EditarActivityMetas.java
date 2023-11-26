@@ -116,16 +116,16 @@ public class EditarActivityMetas extends AppCompatActivity {
                         correcto = dbNombreMetas.editarMeta(id, txtNombreMeta.getText().toString(), txtFechaMeta.getText().toString(), Long.parseLong(txtMontoMeta.getText().toString()));
 
                         if (correcto) {
-                            Toast.makeText(EditarActivityMetas.this, "META MODIFICADA", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditarActivityMetas.this, "Meta modificada.", Toast.LENGTH_LONG).show();
                             verRegistroMeta();
                         } else {
-                            Toast.makeText(EditarActivityMetas.this, "ERROR AL EDITAR MODIFICAR META", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditarActivityMetas.this, "Error la modificar la meta.", Toast.LENGTH_LONG).show();
                         }
                     } else {
                         Toast.makeText(EditarActivityMetas.this, "Fecha no válida", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(EditarActivityMetas.this, "DEBE LLENAR LOS CAMPOS", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarActivityMetas.this, "Debe llenar todos los campos.", Toast.LENGTH_LONG).show();
                 }
             }
         });
