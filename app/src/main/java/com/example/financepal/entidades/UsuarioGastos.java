@@ -7,10 +7,17 @@ public class UsuarioGastos {
     private int idprioridad;
     private long montogasto;
     private long recurrenciagasto;
+    private long montototalgasto;
 
     private int idgastos;
 
-    public UsuarioGastos(String correogasto, String nombregasto, String fechamesgasto, String fechaanogasto, int idcatgasto, int idprioridad, int montogasto, int recurrenciagasto, int idgastos) {
+
+
+    public UsuarioGastos(){
+
+    }
+
+    public UsuarioGastos(String correogasto, String nombregasto, String fechamesgasto, String fechaanogasto, int idcatgasto, int idprioridad, long montogasto, long recurrenciagasto, long montototalgasto, int idgastos) {
         this.correogasto = correogasto;
         this.nombregasto = nombregasto;
         this.fechamesgasto = fechamesgasto;
@@ -19,11 +26,8 @@ public class UsuarioGastos {
         this.idprioridad = idprioridad;
         this.montogasto = montogasto;
         this.recurrenciagasto = recurrenciagasto;
+        this.montototalgasto = montototalgasto;
         this.idgastos = idgastos;
-    }
-
-    public UsuarioGastos(){
-
     }
 
     public int getIdgastos() {
@@ -97,5 +101,13 @@ public class UsuarioGastos {
 
     public void setRecurrenciagasto(long recurrenciagasto) {
         this.recurrenciagasto = recurrenciagasto;
+    }
+
+    public long getMontototalgasto() {
+        return montototalgasto;
+    }
+
+    public void setMontototalgasto(long montototalgasto) {
+        this.montototalgasto = montototalgasto;
     }
 }

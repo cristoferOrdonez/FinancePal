@@ -84,7 +84,7 @@ public class Balance extends AppCompatActivity {
         UsuarioGastos gastoAltoUsuario = (dbGastos.gastoMasAlto(correoElectronicoS));
         if (gastoAltoUsuario != null) {
             String nombreGastoMasAlto = gastoAltoUsuario.getNombregasto();
-            long cantGastoMasAlto = gastoAltoUsuario.getMontogasto();
+            long cantGastoMasAlto = gastoAltoUsuario.getMontototalgasto();
             espacioMayorGasto.setText(nombreGastoMasAlto + "\n" + (col.format(cantGastoMasAlto) + " COP"));
         } else {
             espacioMayorGasto.setText("No hay gastos relacionados");
@@ -94,7 +94,7 @@ public class Balance extends AppCompatActivity {
         UsuarioGastos gastoRecurrenteUsuario = dbGastos.gastoMasRecurrente(correoElectronicoS);
         if (gastoRecurrenteUsuario != null) {
             String nombreGastoMasRecurrente = gastoRecurrenteUsuario.getNombregasto();
-            long cantGastoMasREcurrente = gastoRecurrenteUsuario.getMontogasto()*gastoRecurrenteUsuario.getRecurrenciagasto();
+            long cantGastoMasREcurrente = gastoRecurrenteUsuario.getMontototalgasto();
             espacioGastoMasRecurrente.setText(nombreGastoMasRecurrente+"\n"+(col.format(cantGastoMasREcurrente) + " COP"));
         } else {
             espacioGastoMasRecurrente.setText("No hay gastos relacionados");
@@ -103,7 +103,7 @@ public class Balance extends AppCompatActivity {
         UsuarioGastos gastoPrioridad = dbGastos.gastoMasPrioridades(correoElectronicoS);
         if (gastoPrioridad != null) {
             String nombreGastoMasPrioridad = gastoPrioridad.getNombregasto();
-            long cantGastoMasPrioridad = gastoPrioridad.getMontogasto();
+            long cantGastoMasPrioridad = gastoPrioridad.getMontototalgasto();
             espacioGastoMenorPrioridad.setText(nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COL"));
         } else {
             espacioGastoMenorPrioridad.setText("No hay gastos relacionados");
