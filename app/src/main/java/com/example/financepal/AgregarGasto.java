@@ -44,7 +44,7 @@ public class AgregarGasto extends AppCompatActivity {
         db = new DbGastos(this);
 
         nombre = findViewById(R.id.editTextNombreCrearModificarGastos);
-        nombre.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
+        nombre.setFilters(new InputFilter[]{new InputFilter.LengthFilter((19))});
         monto = findViewById(R.id.editTextMontoCrearModificarIGastos);
         monto.setFilters(new InputFilter[]{new InputFilter.LengthFilter((11))});
         recurrencia = findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
