@@ -6,12 +6,14 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbUsuarios;
@@ -21,8 +23,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Declaracion de los editText
+    private byte contador;
     private EditText editTextCorreoElectronico, editTextContrasena;
+    private ImageView imagenInicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         //Inicialización de editTexts
         editTextCorreoElectronico = findViewById((R.id.editTextCorreoElectronico));
         editTextContrasena = findViewById(R.id.editTextTextContrasena);
+        imagenInicio = findViewById(R.id.logoInicio);
+
+        imagenInicio.setOnClickListener(view -> incrementar());
 
     }
 
@@ -118,12 +124,29 @@ public class MainActivity extends AppCompatActivity {
                             intent.addCategory(Intent.CATEGORY_HOME);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            finishAndRemoveTask();
+                        } else {
+                            finishAffinity();
+                            System.exit(0);
+                        }
+
                     })
                     .setNegativeButton(negacion, (dialog, which) -> dialog.dismiss());
             builder.show();
         }
 
         return super.onKeyDown(keyCode, event);
+
+    }
+
+    private void incrementar(){
+
+        if(++contador == 10){
+
+            Toast.makeText(this, "Aplicación hecha por:\nCristofer Ordoñez\nFarid Ardila\nDiego Arevalo", Toast.LENGTH_LONG).show();
+            contador = 0;
+        }
 
     }
 
