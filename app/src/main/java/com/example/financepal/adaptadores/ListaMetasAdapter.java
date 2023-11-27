@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.financepal.R;
 import com.example.financepal.VerMeta;
 import com.example.financepal.entidades.MetasInfo;
-
-import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.MetaViewHolder> {
@@ -42,8 +40,8 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
 
         holder.viewNombreMeta.setText(listaMetas.get(position).getNombreMeta());
         holder.viewFechaMeta.setText(MetodosComunes.obtenerPrefijoMes(Integer.parseInt(fechaMetaString.substring(0, 2))) + " " + fechaMetaString.substring(3));
-        holder.viewMontoMeta.setText("Monto Total:  " + String.valueOf(listaMetas.get(position).getMontoTotalFormateado()) + "  COP");
-        holder.viewMontoMensual.setText("Monto Mensual:  " + String.valueOf(listaMetas.get(position).getMontoMensualFormateado()) + "  COP"); // Nueva línea
+        holder.viewMontoMeta.setText("Monto Total:  " + listaMetas.get(position).getMontoTotalFormateado() + "  COP");
+        holder.viewMontoMensual.setText("Monto Mensual:  " + listaMetas.get(position).getMontoMensualFormateado() + "  COP"); // Nueva línea
 
 
 
@@ -67,9 +65,8 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
             viewMontoMeta=itemView.findViewById(R.id.viewMontoMeta);
             viewMontoMensual =itemView.findViewById(R.id.viewMontoMensual);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            itemView.setOnClickListener(view -> {
+
                     Context context = view.getContext();
                     Intent intent =new Intent(context, VerMeta.class );
                     intent.putExtra("ID", listaMetas.get(getAdapterPosition()).getId());
@@ -77,7 +74,6 @@ public class ListaMetasAdapter extends RecyclerView.Adapter<ListaMetasAdapter.Me
                     context.startActivity(intent);
                     ((Activity)context).finishAffinity();
 
-                }
             });
 
 

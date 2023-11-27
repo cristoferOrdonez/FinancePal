@@ -4,14 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.financepal.entidades.MetasInfo;
-
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -19,15 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class DbNombreMetas extends  DbHelperFP{
     Context context;
@@ -58,8 +47,8 @@ public class DbNombreMetas extends  DbHelperFP{
     public ArrayList<MetasInfo> mostrarMetas(String correoUsuario) {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<MetasInfo> listaMetas = new ArrayList<>();
-        MetasInfo metasInfo = null;
-        Cursor cursorMetas = null;
+        MetasInfo metasInfo;
+        Cursor cursorMetas;
         NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
 
@@ -106,7 +95,7 @@ public class DbNombreMetas extends  DbHelperFP{
     }
 
     public boolean editarMeta(int id, String nombreMeta, String fechaMeta, Long montoMeta) {
-        boolean correcto = false;
+        boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -119,11 +108,8 @@ public class DbNombreMetas extends  DbHelperFP{
 
             int rowsAffected = db.update(TABLE_METAS, values, "idMetas=?", new String[]{String.valueOf(id)});
 
-            if (rowsAffected > 0) {
-                correcto = true;
-            } else {
-                correcto = false;
-            }
+            correcto = (rowsAffected > 0);
+
         } catch (Exception e) {
             e.printStackTrace();
             correcto = false;
@@ -137,7 +123,6 @@ public class DbNombreMetas extends  DbHelperFP{
     public double sumarMontosMensuales(String correoUsuario) {
         double sumaMontosMensuales = 0;
 
-        SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<MetasInfo> listaMetas = mostrarMetas(correoUsuario);
 
         for (MetasInfo meta : listaMetas) {
@@ -177,7 +162,7 @@ public class DbNombreMetas extends  DbHelperFP{
 
 
     public void eliminarMetasVencidas(String correoUsuario) {
-        SQLiteDatabase db = this.getWritableDatabase();
+
         ArrayList<MetasInfo> listaMetas = mostrarMetas(correoUsuario);
 
         for (MetasInfo meta : listaMetas) {
@@ -234,7 +219,7 @@ public class DbNombreMetas extends  DbHelperFP{
 
 
     public boolean elimnarMeta(int id) {
-        boolean correcto = false;
+        boolean correcto;
 
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -246,7 +231,7 @@ public class DbNombreMetas extends  DbHelperFP{
 
 
         } catch (Exception e) {
-            e.toString();
+            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
             correcto = false;
         } finally {
             db.close();

@@ -131,7 +131,7 @@ public class DbIngresos extends DbHelperFP {
         return correcto;
     }
 
-    public List obtenerNombresIngresos(String correoUsuario) {
+    public List<String> obtenerNombresIngresos(String correoUsuario) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 

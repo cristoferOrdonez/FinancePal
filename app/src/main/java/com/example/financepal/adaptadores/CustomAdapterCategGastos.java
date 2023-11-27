@@ -8,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.financepal.R;
-import com.example.financepal.db.DbGastos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
-import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.List;
 
@@ -18,8 +16,6 @@ public class CustomAdapterCategGastos extends BaseAdapter {
 
     Context context;
     List<UsuarioCategoriasGasto> lst;
-
-    private DbGastos db;
 
     public CustomAdapterCategGastos(Context context, List<UsuarioCategoriasGasto> lst) {
         this.context = context;
@@ -43,7 +39,7 @@ public class CustomAdapterCategGastos extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        db = new DbGastos(context);
+
         TextView textViewDescCat;
         TextView textViewNombreCat;
 

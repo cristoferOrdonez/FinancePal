@@ -12,10 +12,6 @@ public class UsuarioPrioridadesGasto {
         this.idprioridad = idprioridad;
     }
 
-    public String getNombreprioridad() {
-        return nombreprioridad;
-    }
-
     public void setNombreprioridad(String nombreprioridad) {
         this.nombreprioridad = nombreprioridad;
     }

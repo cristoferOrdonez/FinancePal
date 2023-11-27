@@ -1,7 +1,5 @@
 package com.example.financepal.entidades;
 
-import android.app.appsearch.StorageInfo;
-
 public class MetasInfo {
 
     private int id;

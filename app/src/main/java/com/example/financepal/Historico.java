@@ -3,7 +3,6 @@ package com.example.financepal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,17 +10,13 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.AdaptadorHistorico;
-import com.example.financepal.adaptadores.CustomAdapterGastos;
-import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHistorico;
 import com.example.financepal.entidades.EntidadHistorico;
-import com.example.financepal.entidades.UsuarioGastos;
 
 import java.util.List;
 
@@ -29,7 +24,6 @@ public class Historico extends AppCompatActivity {
 
     String correoElectronicoS;
     ImageView botonInicio, botonBalance, botonMisDatos;
-    private DbHistorico db;
     List<EntidadHistorico> lista;
 
     ListView ListViewHistorico;
@@ -38,17 +32,17 @@ public class Historico extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico);
-        db = new DbHistorico(this);
+        DbHistorico db = new DbHistorico(this);
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         botonInicio = findViewById(R.id.botonInicioHISTORICO);
-        botonInicio.setOnClickListener(view -> cambiarAInicio(view));
+        botonInicio.setOnClickListener(view -> cambiarAInicio());
 
         botonBalance = findViewById(R.id.botonBalanceHISTORICO);
-        botonBalance.setOnClickListener(view -> cambiarABalance(view));
+        botonBalance.setOnClickListener(view -> cambiarABalance());
 
         botonMisDatos = findViewById(R.id.botonMisDatosHISTORICO);
-        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
+        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos());
 
         ListViewHistorico = findViewById(R.id.listViewHistorico);
         try {
@@ -62,7 +56,7 @@ public class Historico extends AppCompatActivity {
 
     }
 
-    public void cambiarAInicio(View view){
+    public void cambiarAInicio(){
 
         Intent miIntent = new Intent(this, PantallaPrincipal.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -71,7 +65,7 @@ public class Historico extends AppCompatActivity {
 
     }
 
-    public void cambiarABalance(View view){
+    public void cambiarABalance(){
 
         Intent miIntent = new Intent(this, Balance.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -80,7 +74,7 @@ public class Historico extends AppCompatActivity {
 
     }
 
-    public void cambiarAMisDatos(View view){
+    public void cambiarAMisDatos(){
 
         Intent miIntent = new Intent(this, MisDatos.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -97,7 +91,7 @@ public class Historico extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             SpannableString message = new SpannableString("¿Desea salir de Finance Pal?");
             message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
@@ -110,29 +104,15 @@ public class Historico extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
             builder.setMessage(message)
-                    .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
+                    .setPositiveButton(afirmacion, (dialog, which)-> {
 
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addCategory(Intent.CATEGORY_HOME);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
-                        }
-
                     })
-                    .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
-
-                            dialog.dismiss();
-
-                        }
-
-                    });
+                    .setNegativeButton(negacion, (dialog, which) -> dialog.dismiss());
             builder.show();
         }
 

@@ -3,24 +3,20 @@ package com.example.financepal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.financepal.adaptadores.CustomAdapterCategGastos;
-import com.example.financepal.adaptadores.CustomAdapterGastos;
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHistorico;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
-import com.example.financepal.entidades.UsuarioGastos;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,15 +44,14 @@ public class CategoriasGasto extends AppCompatActivity {
             CustomAdapterCategGastos adapter = new CustomAdapterCategGastos(this,lista);
             ListViewCatGastos.setAdapter(adapter);
             ListViewCatGastos.refreshDrawableState();
-            int numcateg=adapter.getCount();
+            adapter.getCount();
         }
         catch (Exception e){
             Toast.makeText(this, e.toString(),Toast.LENGTH_LONG).show();
         }
 
-        ListViewCatGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        ListViewCatGastos.setOnItemClickListener( (adapterView, view, i, l) -> {
+
                 UsuarioCategoriasGasto usuario = lista.get(i);
 
                 int id = usuario.getIdcatgasto();
@@ -67,7 +62,6 @@ public class CategoriasGasto extends AppCompatActivity {
                     mostrarDialogoAcortado(id);
                 }
 
-            }
         });
 
     }
@@ -83,23 +77,15 @@ public class CategoriasGasto extends AppCompatActivity {
         dialog.show();
 
         Button modificar = view.findViewById(R.id.botonModificarGastos2);
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        modificar.setOnClickListener( i -> {
 
                 dialog.dismiss();
                 cambiarParaModificarCatGasto(id);
 
-            }
         });
 
         Button cancelar = view.findViewById(R.id.botonCancelarGastos2);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
     }
 
     public void mostrarDialogoCompleto(int id) {
@@ -114,20 +100,13 @@ public class CategoriasGasto extends AppCompatActivity {
         dialog.show();
 
         Button modificar = view.findViewById(R.id.botonModificarGastos);
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        modificar.setOnClickListener(i-> {
                 dialog.dismiss();
                 cambiarParaModificarCatGasto(id);
-
-            }
         });
 
         Button eliminar = view.findViewById(R.id.botonEliminarGastos);
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        eliminar.setOnClickListener(i -> {
 
                 try {
                     eliminarCatGasto(id);
@@ -137,16 +116,10 @@ public class CategoriasGasto extends AppCompatActivity {
 
                 dialog.dismiss();
 
-            }
         });
 
         Button cancelar = view.findViewById(R.id.botonCancelarGastos);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
 
     }
 
@@ -162,29 +135,19 @@ public class CategoriasGasto extends AppCompatActivity {
         dialog.show();
 
         Button aceptar = view.findViewById(R.id.botonAceptarCategGastos);
-        aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        aceptar.setOnClickListener(i -> {
                 dialog.dismiss();
-                db.eliminarCatGasto(id);
-                DbHistorico dbHistorico = new DbHistorico(CategoriasGasto.this);
-                dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(CategoriasGasto.this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
-
-                listarDatos();
-
-
-            }
+                if(db.eliminarCatGasto(id)) {
+                    DbHistorico dbHistorico = new DbHistorico(CategoriasGasto.this);
+                    dbHistorico.actualizarHistorico(correoElectronicoS, new DbIngresos(CategoriasGasto.this).obtenerIngresosTotales(correoElectronicoS), db.mostrarGastosTotales(correoElectronicoS));
+                    Toast.makeText(CategoriasGasto.this, "Se ha eliminado el gasto corectamente", Toast.LENGTH_SHORT).show();
+                    listarDatos();
+                }
         });
 
 
         Button cancelar = view.findViewById(R.id.botonCancelarCategGastos);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelar.setOnClickListener( i -> dialog.dismiss());
 
 
     }
@@ -220,7 +183,7 @@ public class CategoriasGasto extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiaraAtras(new View(this));
 

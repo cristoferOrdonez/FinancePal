@@ -1,13 +1,9 @@
 package com.example.financepal;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,7 +67,7 @@ public class EditarActivityMetas extends AppCompatActivity {
         configurarFechaEditText();
         cancelar = findViewById(R.id.botonCancelarMetasEditar);
 
-        cancelar.setOnClickListener(view -> cambiarAMetasDeAhorro(view));
+        cancelar.setOnClickListener(view -> cambiarAMetasDeAhorro());
         titulo = findViewById(R.id.tituloSuperiorMetasDeAhorroEditar);
         titulo.setVisibility(View.INVISIBLE);
 
@@ -107,9 +102,8 @@ public class EditarActivityMetas extends AppCompatActivity {
             txtMontoMeta.setText(String.valueOf(metaInfo.getMontoMeta()));
         }
 
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        guardar.setOnClickListener(view -> {
+
                 if (!txtNombreMeta.getText().toString().equals("") && !txtFechaMeta.getText().toString().equals("") && !txtMontoMeta.getText().toString().equals("")) {
                     // Validar la fecha ingresada
                     if (validarFecha(txtFechaMeta.getText().toString().trim())) {
@@ -127,7 +121,6 @@ public class EditarActivityMetas extends AppCompatActivity {
                 } else {
                     Toast.makeText(EditarActivityMetas.this, "Debe llenar todos los campos.", Toast.LENGTH_LONG).show();
                 }
-            }
         });
 
 
@@ -141,28 +134,7 @@ public class EditarActivityMetas extends AppCompatActivity {
         txtFechaMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
 
         txtFechaMeta.setOnClickListener(view -> mostrarDialogo());
-        // Agregar un TextWatcher a txtFechaMeta
-        /*
-        txtFechaMeta.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                if (count == 1 && start == 1) {
-                    // Agregar automáticamente el '/' después del mes
-                    txtFechaMeta.setText(new StringBuilder(charSequence).insert(2, "/").toString());
-                    txtFechaMeta.setSelection(3); // Mover el cursor después del '/'
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
-
-         */
     }
 
     private boolean validarFecha(String fecha) {
@@ -173,7 +145,7 @@ public class EditarActivityMetas extends AppCompatActivity {
 
 
 
-    public void cambiarAMetasDeAhorro(View view) {
+    public void cambiarAMetasDeAhorro() {
 
         Intent miIntent = new Intent(this, MetasDeAhorro.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -242,25 +214,12 @@ public class EditarActivityMetas extends AppCompatActivity {
         dialog.show();
 
         Button cancelar = view.findViewById(R.id.buttonCancelar);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                dialog.dismiss();
-
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
 
         Button aceptar = view.findViewById(R.id.buttonAceptar);
-        aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        aceptar.setOnClickListener(i -> {
                 txtFechaMeta.setText(spinnerMes.getSelectedItem().toString() + "/" + spinnerYear.getSelectedItem().toString());
-
                 dialog.dismiss();
-
-            }
         });
 
 
@@ -274,9 +233,9 @@ public class EditarActivityMetas extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
-            cambiarAMetasDeAhorro(new View(this));
+            cambiarAMetasDeAhorro();
 
         }
 

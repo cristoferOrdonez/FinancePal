@@ -2,8 +2,6 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -17,11 +15,9 @@ import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHistorico;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.entidades.UsuarioCategoriasGasto;
-import com.example.financepal.entidades.UsuarioGastos;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AgregarCategoriaGasto extends AppCompatActivity {
@@ -125,11 +121,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
                 nombres.entrySet()) {
 
             if(set.getValue().equalsIgnoreCase(EditTextNombreCatGastos.getText().toString().trim())){
-                if(set.getKey() == getIntent().getExtras().getInt("id")){
-                }
-                else{
-                    repetido=true;
-                }
+                repetido = !(set.getKey() == getIntent().getExtras().getInt("id"));
                 break;
             }
         }
@@ -184,7 +176,7 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiaraAtras(new View(this));
 

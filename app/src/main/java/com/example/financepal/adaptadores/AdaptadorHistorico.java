@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.financepal.R;
 import com.example.financepal.entidades.EntidadHistorico;
-import com.example.financepal.entidades.UsuarioGastos;
 
 import java.text.NumberFormat;
 import java.util.List;

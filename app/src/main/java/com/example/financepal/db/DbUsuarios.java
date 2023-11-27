@@ -114,7 +114,7 @@ public class DbUsuarios extends DbHelperFP {
 
      */
 
-    public List obtenerCorreosElectronicos(){
+    public List<String> obtenerCorreosElectronicos(){
 
         SQLiteDatabase db = this.getWritableDatabase();
 

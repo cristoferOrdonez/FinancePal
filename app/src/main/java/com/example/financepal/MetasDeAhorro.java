@@ -4,24 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.financepal.adaptadores.ListaMetasAdapter;
-import com.example.financepal.db.DbHelperFP;
-import com.example.financepal.db.DbHelperFP;
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.entidades.MetasInfo;
 
-import java.sql.SQLDataException;
 import java.util.ArrayList;
 
 public class MetasDeAhorro extends AppCompatActivity {
@@ -55,29 +46,16 @@ public class MetasDeAhorro extends AppCompatActivity {
 
 
         botonInicio = findViewById(R.id.botonAtrasInicioMETAS);
-        botonInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAInicio(view);
-            }
-        });
+        botonInicio.setOnClickListener(view -> cambiarAInicio());
 
         botonNuevaMeta = findViewById(R.id.botonNuevaMeta);
-        botonNuevaMeta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarRegistroMeta(view);
-            }
-        });
-
-        DbHelperFP dbHelper= new DbHelperFP(MetasDeAhorro.this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        botonNuevaMeta.setOnClickListener(view -> cambiarRegistroMeta());
 
         eliminarMetasVencidas();
 
     }
 
-    public void cambiarAInicio(View view){
+    public void cambiarAInicio(){
 
         Intent miIntent = new Intent(this, PantallaPrincipal.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -85,7 +63,7 @@ public class MetasDeAhorro extends AppCompatActivity {
         finishAffinity();
 
     }
-    public void cambiarRegistroMeta(View view){
+    public void cambiarRegistroMeta(){
 
         Intent miIntent = new Intent(this, ingresoInformacionMetasDeAhorro.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -117,9 +95,9 @@ public class MetasDeAhorro extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
-            cambiarAInicio(new View(this));
+            cambiarAInicio();
 
         }
 

@@ -7,27 +7,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.financepal.adaptadores.MetodosComunes;
 import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbNombreMetas;
 import com.example.financepal.db.DbGastos;
-import com.example.financepal.entidades.Usuario;
 import com.example.financepal.entidades.UsuarioGastos;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Locale;
 import android.widget.TextView;
 
@@ -46,13 +40,13 @@ public class Balance extends AppCompatActivity {
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         botonInicio = findViewById(R.id.botonInicioBALANCE);
-        botonInicio.setOnClickListener(view -> cambiarAInicio(view));
+        botonInicio.setOnClickListener(view -> cambiarAInicio());
 
         botonHistorico = findViewById(R.id.botonHistoricoBALANCE);
-        botonHistorico.setOnClickListener(view -> cambiarAHistorico(view));
+        botonHistorico.setOnClickListener(view -> cambiarAHistorico());
 
         botonMisDatos = findViewById(R.id.botonMisDatosBALANCE);
-        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos(view));
+        botonMisDatos.setOnClickListener(view -> cambiarAMisDatos());
 
 
         espacioIngresosTotales = findViewById(R.id.espacioIngresosTotales); //
@@ -106,21 +100,6 @@ public class Balance extends AppCompatActivity {
             espacioGastoMasRecurrente.setText("No hay gastos relacionados");
         }
 
-/*
-        List<UsuarioGastos> gastosPrioridades = dbGastos.gastoMasAltoPrioridades(correoElectronicoS);
-        if (!gastosPrioridades.isEmpty()) {
-            UsuarioGastos mayorMontoMenorPrioridadUsuario = gastosPrioridades.get(2);
-            if (mayorMontoMenorPrioridadUsuario != null) {
-                String nombreMenorPrioridad = mayorMontoMenorPrioridadUsuario.getNombregasto();
-                int montoMenorPrioridad = mayorMontoMenorPrioridadUsuario.getMontogasto();
-                espacioGastoMenorPrioridad.setText(nombreMenorPrioridad + "\n" + (col.format(montoMenorPrioridad) + " COL"));
-            } else {
-                espacioGastoMenorPrioridad.setText("No hay gastos registrados");
-            }
-        } else {
-            espacioGastoMenorPrioridad.setText("No hay lista");
-        }
-        */
         UsuarioGastos gastoPrioridad = dbGastos.gastoMasPrioridades(correoElectronicoS);
         if (gastoPrioridad != null) {
             String nombreGastoMasPrioridad = gastoPrioridad.getNombregasto();
@@ -141,7 +120,7 @@ public class Balance extends AppCompatActivity {
 
     }
 
-    public void cambiarAInicio(View view){
+    public void cambiarAInicio(){
 
         Intent miIntent = new Intent(this, PantallaPrincipal.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -150,7 +129,7 @@ public class Balance extends AppCompatActivity {
 
     }
 
-    public void cambiarAHistorico(View view){
+    public void cambiarAHistorico(){
 
         Intent miIntent = new Intent(this, Historico.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -159,7 +138,7 @@ public class Balance extends AppCompatActivity {
 
     }
 
-    public void cambiarAMisDatos(View view){
+    public void cambiarAMisDatos(){
 
         Intent miIntent = new Intent(this, MisDatos.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -176,7 +155,7 @@ public class Balance extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             SpannableString message = new SpannableString("¿Desea salir de Finance Pal?");
             message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
@@ -189,29 +168,15 @@ public class Balance extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
             builder.setMessage(message)
-                    .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
+                    .setPositiveButton(afirmacion, (dialog, which) -> {
 
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addCategory(Intent.CATEGORY_HOME);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
-                        }
-
                     })
-                    .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
-
-                            dialog.dismiss();
-
-                        }
-
-                    });
+                    .setNegativeButton(negacion, (dialog, which) -> dialog.dismiss());
             builder.show();
         }
 

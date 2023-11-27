@@ -3,23 +3,17 @@ package com.example.financepal.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.financepal.PantallaPrincipal;
 import com.example.financepal.entidades.EntidadHistorico;
-import com.example.financepal.entidades.Ingreso;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 public class DbHistorico extends DbHelperFP{
     Context context;
@@ -36,7 +30,6 @@ public class DbHistorico extends DbHelperFP{
         List<EntidadHistorico> listaHistorico = new ArrayList<>();
         EntidadHistorico historicoInfo;
         Cursor cursorHistorico = db.rawQuery("SELECT * FROM " + TABLE_HISTORICO + " WHERE correoUsuarioHistorico = ?", new String[]{correoUsuario});
-        NumberFormat col = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
 
         GregorianCalendar calendar = new GregorianCalendar();
         int mesActual = calendar.get(Calendar.MONTH) + 1;
@@ -70,7 +63,7 @@ public class DbHistorico extends DbHelperFP{
             db.execSQL(" DELETE FROM " + TABLE_HISTORICO + " WHERE correoUsuarioHistorico = '" + correoElectronico + "' AND fechaMesHistorico = '" + mesActual + "' AND fechaYearHistorico = '" + anoActual + "' ");
 
         } catch (Exception e) {
-
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
         try {
