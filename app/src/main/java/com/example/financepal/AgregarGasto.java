@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -43,8 +44,11 @@ public class AgregarGasto extends AppCompatActivity {
         db = new DbGastos(this);
 
         nombre = findViewById(R.id.editTextNombreCrearModificarGastos);
+        monto.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
         monto = findViewById(R.id.editTextMontoCrearModificarIGastos);
+        monto.setFilters(new InputFilter[]{new InputFilter.LengthFilter((11))});
         recurrencia = findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
+        recurrencia.setFilters(new InputFilter[]{new InputFilter.LengthFilter((3))});
         spinnerCategoriaGasto = findViewById(R.id.spinnerCategoriaGasto);
         spinnerPrioridadGasto = findViewById(R.id.spinnerPrioridadGasto);
 
@@ -92,6 +96,7 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setIdcatgasto(((UsuarioCategoriasGasto)spinnerCategoriaGasto.getSelectedItem()).getIdcatgasto());
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
             usuario.setMontogasto(Long.parseLong(monto.getText().toString()));
+
 
             usuario.setRecurrenciagasto(Long.parseLong(recurrencia.getText().toString()));
             long res= db.insertarGasto(usuario);
