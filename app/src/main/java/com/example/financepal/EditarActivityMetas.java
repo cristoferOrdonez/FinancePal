@@ -57,6 +57,9 @@ public class EditarActivityMetas extends AppCompatActivity {
         txtFechaMeta = findViewById(R.id.textoFechaMetaEditar);
         txtMontoMeta = findViewById(R.id.textoMontoMetaEditar);
 
+        txtNombreMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter(22)});
+        txtMontoMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter((11))});
+
 
         fabEditar = findViewById(R.id.fabEditarMeta);
         fabEditar.setVisibility(View.INVISIBLE);
