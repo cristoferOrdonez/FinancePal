@@ -379,7 +379,7 @@ public class DbGastos extends DbHelperFP {
     public UsuarioGastos gastoMasAlto(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY montogasto DESC",null);
+        Cursor datos = db.rawQuery("SELECT *, (montogasto*recurrenciagasto) AS montototalgasto FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY montototalgasto DESC",null);
         UsuarioGastos usuario = null;
         if(datos.moveToFirst()){
             usuario = new UsuarioGastos();
@@ -392,6 +392,7 @@ public class DbGastos extends DbHelperFP {
             usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
+            usuario.setMontototalgasto(datos.getLong(9));
         }
         datos.close();
         return usuario;
@@ -419,7 +420,7 @@ public class DbGastos extends DbHelperFP {
     public UsuarioGastos gastoMasRecurrente(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY recurrenciagasto DESC",null);
+        Cursor datos = db.rawQuery("SELECT *, (montogasto*recurrenciagasto) AS montototalgasto FROM "+ TABLE_GASTOS+" WHERE correogasto='"+correo+"' ORDER BY recurrenciagasto DESC",null);
         UsuarioGastos usuario = null;
         if(datos.moveToFirst()){
             usuario = new UsuarioGastos();
@@ -432,6 +433,7 @@ public class DbGastos extends DbHelperFP {
             usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
+            usuario.setMontototalgasto(datos.getLong(9));
         }
         datos.close();
         return usuario;
@@ -462,7 +464,7 @@ public class DbGastos extends DbHelperFP {
     public UsuarioGastos gastoMasPrioridades(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor datos = db.rawQuery(" SELECT * FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=3 ) ORDER BY montogasto DESC",null);
+        Cursor datos = db.rawQuery("SELECT *, (montogasto*recurrenciagasto) AS montototalgasto FROM "+ TABLE_GASTOS+" WHERE (correogasto='"+correo+"' AND idprioridad1=3) ORDER BY montototalgasto DESC",null);
         UsuarioGastos usuario = null;
         if(datos.moveToFirst()){
             usuario = new UsuarioGastos();
@@ -475,6 +477,7 @@ public class DbGastos extends DbHelperFP {
             usuario.setRecurrenciagasto(datos.getLong(6));
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
+            usuario.setMontototalgasto(datos.getLong(9));
         }
         datos.close();
         return usuario;

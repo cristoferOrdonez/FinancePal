@@ -7,6 +7,7 @@ public class EntidadHistorico {
     private long gastoTotalHistorico;
     private long ingresoTotalHistorico;
 
+
     public EntidadHistorico(int id, long ingresoTotalHistorico, long gastoTotalHistorico, String fechaHistorico){
 
         this.id = id;
