@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_weight="40"
         android:orientation="vertical"
         android:paddingLeft="15dp"
@@ -26,8 +26,8 @@
                 <TextView
                     android:id="@+id/textViewNombreINGRESOS"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="17sp"
                     android:gravity="center|left"
@@ -37,8 +37,7 @@
                 <TextView
                     android:id="@+id/textViewMontoINGRESOS"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="50"
+                    android:layout_height="30dp"
                     android:gravity="center|left"
                     android:text="TextView"
                     android:textColor="@color/verdeOscuro" />

@@ -36,9 +36,9 @@ public class AgregarCategoriaGasto extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_categoria_gasto);
 
         EditTextDescCatGastos=findViewById(R.id.editTextDescCatGastos);
-        EditTextDescCatGastos.setFilters(new InputFilter[]{new InputFilter.LengthFilter((50))});
+        EditTextDescCatGastos.setFilters(new InputFilter[]{new InputFilter.LengthFilter((80))});
         EditTextNombreCatGastos=findViewById(R.id.editTextNombreCatGastos);
-        EditTextNombreCatGastos.setFilters(new InputFilter[]{new InputFilter.LengthFilter((48))});
+        EditTextNombreCatGastos.setFilters(new InputFilter[]{new InputFilter.LengthFilter((14))});
 
         db = new DbGastos(this);
 
