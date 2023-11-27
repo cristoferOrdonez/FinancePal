@@ -3,7 +3,6 @@ package com.example.financepal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -55,23 +54,14 @@ public class VerMeta extends AppCompatActivity {
 
         botonAtras= findViewById(R.id.botonAtrasRegistroMetasdeAhorro);
 
-        botonAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAMetasDeAhorro(view);
-            }
-        });
+        botonAtras.setOnClickListener(view -> cambiarAMetasDeAhorro());
 
-        fabEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fabEditar.setOnClickListener(view -> {
                 Intent intent = new Intent( VerMeta.this, EditarActivityMetas.class);
                 intent.putExtra("ID" , id);
                 intent.putExtra("correoElectronico", correoElectronicoS);
-
                 startActivity(intent);
                 finishAffinity();
-            }
         });
 
         if (savedInstanceState==null){
@@ -103,9 +93,7 @@ public class VerMeta extends AppCompatActivity {
         }
 
 
-        fabElminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fabElminar.setOnClickListener(view -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(VerMeta.this, R.style.AlertDialogCustom));
 
                 SpannableString message = new SpannableString("¿Desea eliminar esta meta?");
@@ -116,41 +104,25 @@ public class VerMeta extends AppCompatActivity {
 
                 SpannableString negacion = new SpannableString("No");
                 negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
-                builder.setMessage(message).setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                builder.setMessage(message).setPositiveButton(afirmacion, (dialogInterface, i) -> {
                         if(dbNombreMetas.elimnarMeta(id)){
                             Toast.makeText(VerMeta.this, "Se ha eliminado la meta exitosamente.", Toast.LENGTH_SHORT).show();
-                            listaMetas();
-                            cambiarAMetasDeAhorro(view);
-
-                        }
-
-
+                            cambiarAMetasDeAhorro();
                     }
                 })
-                        .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        }).show();
-            }
+                        .setNegativeButton(negacion, (dialogInterface, i) -> {}).show();
         });
 
 
 
 
     }
-    public void cambiarAMetasDeAhorro(View view) {
+    public void cambiarAMetasDeAhorro() {
 
         Intent miIntent = new Intent(this, MetasDeAhorro.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
         startActivity(miIntent);
         finishAffinity();
-    }
-    private void listaMetas(){
-        Intent intent = new Intent(this, MetasDeAhorro.class);
     }
 
     @Override
@@ -161,9 +133,9 @@ public class VerMeta extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
-            cambiarAMetasDeAhorro(new View(this));
+            cambiarAMetasDeAhorro();
 
         }
 

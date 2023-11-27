@@ -1,8 +1,5 @@
 package com.example.financepal.entidades;
 
-
-import android.app.appsearch.StorageInfo;
-
 public class EntidadHistorico {
 
     private int id;
@@ -23,24 +20,12 @@ public class EntidadHistorico {
         return fechaHistorico;
     }
 
-    public void setFechaHistorico(String fechaAnoHistorico) {
-        this.fechaHistorico = fechaAnoHistorico;
-    }
-
     public long getGastoTotalHistorico() {
         return gastoTotalHistorico;
     }
 
-    public void setGastoTotalHistorico(long gastoTotalHistorico) {
-        this.gastoTotalHistorico = gastoTotalHistorico;
-    }
-
     public long getIngresoTotalHistorico() {
         return ingresoTotalHistorico;
-    }
-
-    public void setIngresoTotalHistorico(long ingresoTotalHistorico) {
-        this.ingresoTotalHistorico = ingresoTotalHistorico;
     }
 
     public int getId() {

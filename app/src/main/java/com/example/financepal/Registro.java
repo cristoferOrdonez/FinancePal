@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbUsuarios;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,7 +52,7 @@ public class Registro extends AppCompatActivity {
         finishAffinity();
     }
 
-    public void VerificarInformacionRegistro(View view) throws IOException {
+    public void VerificarInformacionRegistro(View view) {
 
         boolean flag = true;
         String mensajeError = "";
@@ -95,7 +94,7 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void Registrar(View view) throws IOException {
+    public void Registrar(View view) {
         String nombres = this.nombres.getText().toString().trim();
         String apellidos = this.apellidos.getText().toString().trim();
         int edad = Integer.parseInt(this.edad.getText().toString());
@@ -146,7 +145,7 @@ public class Registro extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiarAAcceso(new View(this));
 

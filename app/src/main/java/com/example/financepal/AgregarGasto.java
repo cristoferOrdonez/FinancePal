@@ -2,8 +2,6 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -35,7 +33,6 @@ public class AgregarGasto extends AppCompatActivity {
     Button botonCrearGuardarGasto;
     EditText nombre, monto, recurrencia;
     Spinner spinnerPrioridadGasto, spinnerCategoriaGasto;
-    ArrayList<String> prioridadgasto, categoriagasto;
     TextView nombreT, montoT, recurrenciaT;
 
     @Override
@@ -103,17 +100,14 @@ public class AgregarGasto extends AppCompatActivity {
 
             if(res==-1){
                 Toast.makeText(AgregarGasto.this,"ERROR. Intente otra vez",Toast.LENGTH_SHORT).show();
-                nombre.setText("");
-                monto.setText("");
-                recurrencia.setText("");
-
             }
             else{
                 Toast.makeText(AgregarGasto.this,"Gasto Agregado",Toast.LENGTH_SHORT).show();
-                nombre.setText("");
-                monto.setText("");
-                recurrencia.setText("");
             }
+
+            nombre.setText("");
+            monto.setText("");
+            recurrencia.setText("");
 
             cambiaraAtras(view);
 
@@ -232,7 +226,7 @@ public class AgregarGasto extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiaraAtras(new View(this));
 

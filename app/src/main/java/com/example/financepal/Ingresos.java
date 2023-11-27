@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,10 +38,10 @@ public class Ingresos extends AppCompatActivity {
         correoElectronicoS = getIntent().getStringExtra("correoElectronico");
 
         botonMas = findViewById(R.id.botonMasIngresos);
-        botonMas.setOnClickListener(view -> cambiarParaCrearIngreso(view));
+        botonMas.setOnClickListener(view -> cambiarParaCrearIngreso());
 
         botonAtras = findViewById(R.id.botonAtrasINGRESOS);
-        botonAtras.setOnClickListener(view -> volver(view));
+        botonAtras.setOnClickListener(view -> volver());
 
         establecerLista();
 
@@ -61,21 +59,13 @@ public class Ingresos extends AppCompatActivity {
         dialog.show();
 
         Button modificar = view.findViewById(R.id.botonModificarINGRESOS);
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        modificar.setOnClickListener(i -> {
                 dialog.dismiss();
                 cambiarParaModificarIngreso(id);
-
-            }
         });
 
         Button eliminar = view.findViewById(R.id.botonEliminarINGRESOS);
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        eliminar.setOnClickListener(i -> {
                 try {
                     eliminarIngreso(id);
                 } catch (IOException e) {
@@ -83,21 +73,14 @@ public class Ingresos extends AppCompatActivity {
                 }
 
                 dialog.dismiss();
-
-            }
         });
 
         Button cancelar = view.findViewById(R.id.botonCancelarINGRESOS);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
 
     }
 
-    public void volver(View view){
+    public void volver(){
 
         Intent myIntent = new Intent(this, PantallaPrincipal.class);
         myIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -106,7 +89,7 @@ public class Ingresos extends AppCompatActivity {
 
     }
 
-    public void cambiarParaCrearIngreso(View view){
+    public void cambiarParaCrearIngreso(){
 
         Intent myIntent = new Intent(this, CrearModificarIngresos.class);
         myIntent.putExtra("funcionBoton", "Crear");
@@ -138,15 +121,10 @@ public class Ingresos extends AppCompatActivity {
         AdaptadorIngresos adaptador = new AdaptadorIngresos(this, list);
         listViewIngresos.setAdapter(adaptador);
 
-        listViewIngresos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        listViewIngresos.setOnItemClickListener((adapterView, view, i, l) -> {
                 Ingreso ing = list.get(i);
-
                 long id = ing.getId();
-
                 mostrarDialogo(id);
-            }
         });
 
     }
@@ -175,9 +153,9 @@ public class Ingresos extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
-            volver(new View(this));
+            volver();
 
         }
 

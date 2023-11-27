@@ -28,18 +28,18 @@ public class DbGastos extends DbHelperFP {
     public void insertarprimeraCategoria(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.execSQL("INSERT INTO "+TABLE_CATEGORIAS_GASTO+" (correocatgasto,nombrecatgasto,desccatgasto) VALUES" +
-                "('"+correo+"','Vivienda','Gastos relacionados con el hogar')," +
-                "('"+correo+"','Transporte','Gastos relacionados con transporte')," +
-                "('"+correo+"','Impuestos','Gastos relacionados con el pago de impuestos')," +
-                "('"+correo+"','Mercado','Gastos relacionados con el mercado')");
+        db.execSQL("INSERT INTO " + TABLE_CATEGORIAS_GASTO + " (correocatgasto,nombrecatgasto,desccatgasto) VALUES" +
+                "('" + correo + "','Vivienda','Gastos relacionados con el hogar')," +
+                "('" + correo + "','Transporte','Gastos relacionados con transporte')," +
+                "('" + correo + "','Impuestos','Gastos relacionados con el pago de impuestos')," +
+                "('" + correo + "','Mercado','Gastos relacionados con el mercado')");
     }
 
 
     public boolean insertarNuevaCategoria(UsuarioCategoriasGasto u){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long id=0;
+        long id;
         boolean correcto;
 
         try{
@@ -103,7 +103,7 @@ public class DbGastos extends DbHelperFP {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_GASTOS+" WHERE correogasto='"+idcorreo+"' ORDER BY idgastos DESC",null);
         List<UsuarioGastos> lista = new ArrayList<>();
-        UsuarioGastos usuario = null;
+        UsuarioGastos usuario;
         try{
             if(datos!=null){
                 if(datos.moveToFirst()){
@@ -121,11 +121,13 @@ public class DbGastos extends DbHelperFP {
                         lista.add(usuario);
                     }while(datos.moveToNext());
                 }
+
+                datos.close();
+
             }
         }catch(Exception e){
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
-
         db.close();
         return lista;
     }
@@ -135,7 +137,7 @@ public class DbGastos extends DbHelperFP {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE (correocatgasto='"+idcorreo+"')",null);
         List<UsuarioCategoriasGasto> lista = new ArrayList<>();
-        UsuarioCategoriasGasto usuario = null;
+        UsuarioCategoriasGasto usuario;
         try{
             if(datos!=null){
                 if(datos.moveToFirst()){
@@ -148,9 +150,10 @@ public class DbGastos extends DbHelperFP {
                         lista.add(usuario);
                     }while(datos.moveToNext());
                 }
+                datos.close();
             }
         }catch(Exception e){
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
         db.close();
@@ -183,9 +186,10 @@ public class DbGastos extends DbHelperFP {
                         usuario.setDesccatgasto(datos.getString(3));
                     }while(datos.moveToNext());
                 }
+                datos.close();
             }
         }catch(Exception e){
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
         db.close();
@@ -263,9 +267,10 @@ public class DbGastos extends DbHelperFP {
                     usuario.setFechamesgasto(datos.getString(7));
                     usuario.setFechaanogasto(datos.getString(8));
                 }
+                datos.close();
             }
         }catch(Exception e){
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
         db.close();
@@ -281,7 +286,7 @@ public class DbGastos extends DbHelperFP {
             correcto=true;
 
         } catch (Exception e) {
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
             correcto = false;
         } finally {
             db.close();
@@ -300,7 +305,7 @@ public class DbGastos extends DbHelperFP {
             correcto=true;
 
         } catch (Exception e) {
-            e.toString();
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
             correcto = false;
         } finally {
             db.close();
@@ -326,7 +331,7 @@ public class DbGastos extends DbHelperFP {
             values.put("fechaanogasto", calendario.get(Calendar.YEAR));
             id=db.insert(TABLE_GASTOS,null,values);
         } catch(Exception e){
-            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT);
+            Toast.makeText(context,e.toString(),Toast.LENGTH_SHORT).show();
         }
         db.close();
         return id;
@@ -338,6 +343,7 @@ public class DbGastos extends DbHelperFP {
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_CATEGORIAS_GASTO+" WHERE idcatgasto="+g.getIdcatgasto(),null);
         datos.moveToFirst();
         String nombre = datos.getString(2);
+        datos.close();
         db.close();
         return nombre;
     }
@@ -349,6 +355,7 @@ public class DbGastos extends DbHelperFP {
         Cursor datos = db.rawQuery("SELECT * FROM "+ TABLE_PRIORIDAD+" WHERE idprioridad='"+g.getIdprioridad()+"'",null);
         datos.moveToFirst();
         String nombre = datos.getString(1);
+        datos.close();
         db.close();
         return nombre;
     }
@@ -364,6 +371,7 @@ public class DbGastos extends DbHelperFP {
 
             } while (datos.moveToNext());
         }
+        datos.close();
         return total;
 
     }
@@ -385,8 +393,11 @@ public class DbGastos extends DbHelperFP {
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
+        datos.close();
         return usuario;
     }
+
+    /*
 
     public long mostrarGastosTotalesMes(String correo, int mes, int ano){
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -402,6 +413,8 @@ public class DbGastos extends DbHelperFP {
         return total;
 
     }
+
+     */
 
     public UsuarioGastos gastoMasRecurrente(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -420,9 +433,11 @@ public class DbGastos extends DbHelperFP {
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
+        datos.close();
         return usuario;
     }
 
+    /*
     public UsuarioGastos gastoMasAltoPrioridades(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -442,6 +457,7 @@ public class DbGastos extends DbHelperFP {
         }
         return usuario;
     }
+     */
 
     public UsuarioGastos gastoMasPrioridades(String correo){
         DbHelperFP dbHelper = new DbHelperFP(context);
@@ -460,6 +476,7 @@ public class DbGastos extends DbHelperFP {
             usuario.setFechamesgasto(datos.getString(7));
             usuario.setFechaanogasto(datos.getString(8));
         }
+        datos.close();
         return usuario;
     }
 

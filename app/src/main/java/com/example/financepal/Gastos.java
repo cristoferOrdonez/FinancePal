@@ -2,13 +2,11 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,8 +26,6 @@ public class Gastos extends AppCompatActivity {
     String correoElectronicoS;
     ListView ListViewGastos;
     List<UsuarioGastos> lista;
-    int id;
-
     private DbGastos db;
 
 
@@ -56,15 +52,10 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, e.toString(),Toast.LENGTH_SHORT).show();
         }
 
-        ListViewGastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        ListViewGastos.setOnItemClickListener((adapterView, view, i, l) -> {
                 UsuarioGastos usuario = lista.get(i);
-
                 int id = usuario.getIdgastos();
-
                 mostrarDialogo(id);
-            }
         });
 
     }
@@ -81,21 +72,13 @@ public class Gastos extends AppCompatActivity {
         dialog.show();
 
         Button modificar = view.findViewById(R.id.botonModificarGastos);
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        modificar.setOnClickListener(i -> {
                 dialog.dismiss();
                 cambiarParaModificarGasto(id);
-
-            }
-        });
+            });
 
         Button eliminar = view.findViewById(R.id.botonEliminarGastos);
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        eliminar.setOnClickListener(i -> {
                 try {
                     eliminarGasto(id);
                 } catch (IOException e) {
@@ -103,17 +86,10 @@ public class Gastos extends AppCompatActivity {
                 }
 
                 dialog.dismiss();
-
-            }
         });
 
         Button cancelar = view.findViewById(R.id.botonCancelarGastos);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
 
     }
 
@@ -168,7 +144,7 @@ public class Gastos extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiarAPantallaPrincipal(new View(this));
 

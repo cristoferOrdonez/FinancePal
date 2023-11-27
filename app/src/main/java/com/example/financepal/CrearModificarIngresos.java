@@ -2,8 +2,6 @@ package com.example.financepal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 import com.example.financepal.db.DbGastos;
 import com.example.financepal.db.DbHistorico;
 import com.example.financepal.db.DbIngresos;
-import com.example.financepal.entidades.EntidadHistorico;
 import com.example.financepal.entidades.Ingreso;
 import java.io.IOException;
 import java.util.List;
@@ -221,7 +218,7 @@ public class CrearModificarIngresos extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             cambiarAIngresos(new View(this));
 

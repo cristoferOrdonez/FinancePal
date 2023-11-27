@@ -1,39 +1,26 @@
 package com.example.financepal;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.financepal.R;
 import com.example.financepal.db.DbNombreMetas;
-import com.example.financepal.entidades.UsuarioCategoriasGasto;
 
 import android.content.Intent;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
-
 
 public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
     String correoElectronicoS;
@@ -81,35 +68,24 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
 
  */
 
-        botonGuardarMeta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Verificar que los campos no estén vacíos
+        botonGuardarMeta.setOnClickListener(view -> {
                 if (camposLlenos()) {
-                    // Validar la fecha ingresada
                     if (validarFecha(fechaMeta.getText().toString().trim())) {
                         DbNombreMetas dbNombreMetas = new DbNombreMetas(ingresoInformacionMetasDeAhorro.this);
                         long id = dbNombreMetas.insertarMeta(correoElectronicoS, nombreMeta.getText().toString(), fechaMeta.getText().toString(), Long.parseLong(montoMeta.getText().toString()));
                         Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Se ha creado la meta.", Toast.LENGTH_SHORT).show();
                         limpiar();
-                        cambiarAMetasDeAhorro(view);
+                        cambiarAMetasDeAhorro();
                     } else {
                         Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Fecha no válida", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Mostrar un mensaje al usuario indicando que todos los campos son obligatorios
                     Toast.makeText(ingresoInformacionMetasDeAhorro.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
                 }
-            }
         });
 
         botonAtras = findViewById(R.id.botonAtrasRegistroMetasdeAhorro);
-        botonAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarAMetasDeAhorro(view);
-            }
-        });
+        botonAtras.setOnClickListener(view -> cambiarAMetasDeAhorro());
     }
 
     private boolean camposLlenos() {
@@ -130,7 +106,7 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         return fecha.matches("(0[1-9]|1[0-2])/\\d{4}");
     }
 
-    public void cambiarAMetasDeAhorro(View view) {
+    public void cambiarAMetasDeAhorro() {
 
         Intent miIntent = new Intent(this, MetasDeAhorro.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -189,25 +165,12 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         dialog.show();
 
         Button cancelar = view.findViewById(R.id.buttonCancelar);
-        cancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                dialog.dismiss();
-
-            }
-        });
+        cancelar.setOnClickListener(i -> dialog.dismiss());
 
         Button aceptar = view.findViewById(R.id.buttonAceptar);
-        aceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        aceptar.setOnClickListener(i -> {
                 fechaMeta.setText(spinnerMes.getSelectedItem().toString() + "/" + spinnerYear.getSelectedItem().toString());
-
                 dialog.dismiss();
-
-            }
         });
 
 
@@ -221,9 +184,9 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
-            cambiarAMetasDeAhorro(new View(this));
+            cambiarAMetasDeAhorro();
         }
 
         return super.onKeyDown(keyCode, event);

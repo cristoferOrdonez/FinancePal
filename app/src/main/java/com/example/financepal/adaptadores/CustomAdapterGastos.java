@@ -20,7 +20,6 @@ public class CustomAdapterGastos extends BaseAdapter {
 
     Context context;
     List<UsuarioGastos> lst;
-    private DbGastos db;
 
 
     public CustomAdapterGastos(Context context, List<UsuarioGastos> lst) {
@@ -46,7 +45,7 @@ public class CustomAdapterGastos extends BaseAdapter {
     @SuppressLint("ViewHolder")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        db = new DbGastos(context);
+        DbGastos db = new DbGastos(context);
         TextView textViewNombreGastos;
         TextView textViewMontoGastos;
         TextView textViewCategoriaGastos;
@@ -74,7 +73,7 @@ public class CustomAdapterGastos extends BaseAdapter {
 
         String categoria = "Categoria: "+db.mostrarNombreCategoria(g);
         textViewCategoriaGastos.setText(categoria);
-        String prioridad="Prioridad: "+String.valueOf(db.mostrarNombrePrioridad(g));
+        String prioridad="Prioridad: "+db.mostrarNombrePrioridad(g);
         textViewRecurrenciaGastos.setText(prioridad);
         String fecha = "Fecha: " + MetodosComunes.obtenerPrefijoMes(Integer.parseInt(g.getFechamesgasto())) + " " + g.getFechaanogasto();
         textViewFechaGastos.setText(fecha);

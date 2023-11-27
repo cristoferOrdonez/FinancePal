@@ -26,8 +26,4 @@ public class Ingreso {
 
     public String getFecha() { return fecha; }
 
-    public void setFecha(String fecha){
-        this.fecha = fecha;
-    }
-
 }

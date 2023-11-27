@@ -3,7 +3,6 @@ package com.example.financepal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,15 +18,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.financepal.db.DbHelperFP;
-import com.example.financepal.db.DbIngresos;
 import com.example.financepal.db.DbUsuarios;
-import com.example.financepal.db.DbNombreMetas;
 
 import com.example.financepal.entidades.Usuario;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,13 +38,13 @@ public class MisDatos extends AppCompatActivity {
         setContentView(R.layout.activity_mis_datos);
 
         botonInicio = findViewById(R.id.botonInicioMISDATOS);
-        botonInicio.setOnClickListener(view -> cambiarAInicio(view));
+        botonInicio.setOnClickListener(view -> cambiarAInicio());
 
         botonBalance = findViewById(R.id.botonBalanceMISDATOS);
-        botonBalance.setOnClickListener(view -> cambiarABalance(view));
+        botonBalance.setOnClickListener(view -> cambiarABalance());
 
         botonHistorico = findViewById(R.id.botonHistoricoMISDATOS);
-        botonHistorico.setOnClickListener(view -> cambiarAHistorico(view));
+        botonHistorico.setOnClickListener(view -> cambiarAHistorico());
 
         editTextNombres = findViewById(R.id.editTextNombresMISDATOS);
         editTextApellidos = findViewById(R.id.editTextApellidosMISDATOS);
@@ -69,7 +64,7 @@ public class MisDatos extends AppCompatActivity {
     }
 
 
-    public void cambiarAInicio(View view){
+    public void cambiarAInicio(){
 
         Intent miIntent = new Intent(this, PantallaPrincipal.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -78,7 +73,7 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void cambiarABalance(View view){
+    public void cambiarABalance(){
 
         Intent miIntent = new Intent(this, Balance.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -87,7 +82,7 @@ public class MisDatos extends AppCompatActivity {
 
     }
 
-    public void cambiarAHistorico(View view){
+    public void cambiarAHistorico(){
 
         Intent miIntent = new Intent(this, Historico.class);
         miIntent.putExtra("correoElectronico", correoElectronicoS);
@@ -170,7 +165,7 @@ public class MisDatos extends AppCompatActivity {
  && new DbHelperFP(this).actualizarCorreos(correoElectronicoS, correoElectronico)) {
                     Toast.makeText(this, "Su información ha sido actualizada correctamente.", Toast.LENGTH_SHORT).show();
                     correoElectronicoS = correoElectronico.toLowerCase();
-                    cambiarAInicio(view);
+                    cambiarAInicio();
                 } else {
                     Toast.makeText(this, "Error al actualizar la información. Por favor, inténtelo de nuevo.", Toast.LENGTH_SHORT).show();
             }
@@ -215,7 +210,7 @@ public class MisDatos extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
 
-        if(keyCode == event.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
 
             SpannableString message = new SpannableString("¿Desea salir de Finance Pal?");
             message.setSpan(new ForegroundColorSpan(Color.WHITE), 0, message.length(), 0);
@@ -228,29 +223,13 @@ public class MisDatos extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
             builder.setMessage(message)
-                    .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
-
+                    .setPositiveButton(afirmacion, (dialog, which) -> {
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addCategory(Intent.CATEGORY_HOME);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
-
-                        }
-
                     })
-                    .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which){
-
-                            dialog.dismiss();
-
-                        }
-
-                    });
+                    .setNegativeButton(negacion, (dialog, which) -> dialog.dismiss());
             builder.show();
         }
 
@@ -273,24 +252,12 @@ public class MisDatos extends AppCompatActivity {
         negacion.setSpan(new ForegroundColorSpan(Color.WHITE), 0, negacion.length(), 0);
 
         builder.setMessage(message)
-                .setPositiveButton(afirmacion, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which){
-                        cerrarSesion();
-                    }
-                })
-                .setNegativeButton(negacion, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which){
-                        dialog.dismiss();
-                    }
-                });
+                .setPositiveButton(afirmacion, (dialog, which) -> cerrarSesion())
+                .setNegativeButton(negacion, (dialog, which) -> dialog.dismiss());
 
-        // Establecer el color de fondo de la ventana del diálogo
         AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#2E7D32"))); // Verde oscuro
 
-        // Mostrar el diálogo
         alertDialog.show();
     }
 
