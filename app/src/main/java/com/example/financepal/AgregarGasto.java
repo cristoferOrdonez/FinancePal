@@ -44,7 +44,7 @@ public class AgregarGasto extends AppCompatActivity {
         db = new DbGastos(this);
 
         nombre = findViewById(R.id.editTextNombreCrearModificarGastos);
-        monto.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
+        nombre.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
         monto = findViewById(R.id.editTextMontoCrearModificarIGastos);
         monto.setFilters(new InputFilter[]{new InputFilter.LengthFilter((11))});
         recurrencia = findViewById(R.id.editTextRecurrenciaCrearModificarGastos);
@@ -131,6 +131,7 @@ public class AgregarGasto extends AppCompatActivity {
             usuario.setIdprioridad(((UsuarioPrioridadesGasto)spinnerPrioridadGasto.getSelectedItem()).getIdprioridad());
             usuario.setMontogasto(Long.parseLong(monto.getText().toString()));
             usuario.setRecurrenciagasto(Long.parseLong(recurrencia.getText().toString()));
+            usuario.setMontototalgasto(Long.parseLong(monto.getText().toString())*Long.parseLong(recurrencia.getText().toString()));
             if(nombre.getText().toString().isBlank()||nombre.getText().toString().isEmpty()||monto.getText().toString().isEmpty()||recurrencia.getText().toString().isEmpty()){
                 Toast.makeText(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT).show();
             }
