@@ -39,6 +39,9 @@ public class ingresoInformacionMetasDeAhorro extends AppCompatActivity {
         fechaMeta = findViewById(R.id.textoFechaMetaEditar);
         botonGuardarMeta = findViewById(R.id.botonGuardarMetasEditar);
 
+        montoMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter(11)});
+        nombreMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter((22))});
+
         // Establecer el límite de caracteres para la fecha
         int maxLength = 7; // mm/aaaa
         fechaMeta.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
