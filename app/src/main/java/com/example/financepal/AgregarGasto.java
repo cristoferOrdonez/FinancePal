@@ -174,7 +174,7 @@ public class AgregarGasto extends AppCompatActivity {
 
             nombre.setText(""+infousuario.getNombregasto());
             monto.setText(""+infousuario.getMontogasto());
-            spinnerPrioridadGasto.setSelection(infousuario.getIdprioridad()-1);
+            spinnerPrioridadGasto.setSelection(infousuario.getIdprioridad() - 1);
             recurrencia.setText(""+infousuario.getRecurrenciagasto());
 
         }

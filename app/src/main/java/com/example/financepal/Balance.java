@@ -105,7 +105,7 @@ public class Balance extends AppCompatActivity {
         if (gastoPrioridad != null) {
             String nombreGastoMasPrioridad = gastoPrioridad.getNombregasto();
             long cantGastoMasPrioridad = gastoPrioridad.getMontototalgasto();
-            espacioGastoMenorPrioridad.setText(nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COL"));
+            espacioGastoMenorPrioridad.setText(nombreGastoMasPrioridad+"\n"+(col.format(cantGastoMasPrioridad) + " COP"));
         } else {
             espacioGastoMenorPrioridad.setText("No hay gastos relacionados");
         }
