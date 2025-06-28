@@ -6,20 +6,20 @@
 
 ## ✨ Características Destacadas
 
-* **Registro de Usuarios Simplificado:** Proceso intuitivo para la creación de nuevas cuentas de usuario con información básica.
-* **Autenticación Segura:** Sistema de inicio de sesión basado en correo electrónico y contraseña para proteger el acceso a la información personal.
-* **Balance Financiero en Tiempo Real:** Visualización clara y concisa del balance económico actual del usuario.
-* **Historial de Movimientos Detallado:** Acceso a un registro histórico de transacciones o balances previos, permitiendo un seguimiento eficaz de las finanzas.
-* **Gestión de Perfil Personal:** Funcionalidades para consultar y editar la información personal del usuario directamente desde la aplicación.
-* **Navegación Intuitiva (UI/UX):** Interfaz de usuario diseñada para facilitar el acceso rápido entre las secciones de balance, historial y perfil personal mediante botones accesibles.
-* **Persistencia de Datos Local:** Almacenamiento eficiente de la información de los usuarios en archivos de texto planos dentro del almacenamiento interno del dispositivo, garantizando la disponibilidad de los datos sin necesidad de conexión a internet.
+* **Registro de Usuarios Simplificado:** proceso intuitivo para la creación de nuevas cuentas de usuario con información básica.
+* **Autenticación Segura:** sistema de inicio de sesión basado en correo electrónico y contraseña para proteger el acceso a la información personal.
+* **Balance Financiero en Tiempo Real:** visualización clara y concisa del balance económico actual del usuario.
+* **Historial de Movimientos Detallado:** acceso a un registro histórico de transacciones o balances previos, permitiendo un seguimiento eficaz de las finanzas.
+* **Gestión de Perfil Personal:** funcionalidades para consultar y editar la información personal del usuario directamente desde la aplicación.
+* **Navegación Intuitiva (UI/UX):** interfaz de usuario diseñada para facilitar el acceso rápido entre las secciones de balance, historial y perfil personal mediante botones accesibles.
+* **Persistencia de Datos Local:** almacenamiento eficiente de la información de los usuarios en archivos de texto planos dentro del almacenamiento interno del dispositivo, garantizando la disponibilidad de los datos sin necesidad de conexión a internet.
 
 ## 🛠️ Tecnologías Utilizadas
 
 * **Lenguaje de Programación:** Java
 * **Framework:** Android SDK
 * **Gestor de Dependencias:** Gradle (configuración con Kotlin DSL: `build.gradle.kts`, `settings.gradle.kts`)
-* **Almacenamiento de Datos:** Archivos de texto en el almacenamiento interno de Android (para una demostración sencilla de persistencia local).
+* **Almacenamiento de Datos:** archivos de texto en el almacenamiento interno de Android (para una demostración sencilla de persistencia local).
 * **Entorno de Desarrollo Integrado (IDE):** Android Studio
 
 
@@ -35,8 +35,8 @@
 
 Para compilar y ejecutar FinancePal, asegúrate de tener instalados los siguientes componentes:
 
-* **Java Development Kit (JDK):** Versión 8 o superior.
-* **Android Studio:** Recomendado para una experiencia de desarrollo óptima.
+* **Java Development Kit (JDK):** versión 8 o superior.
+* **Android Studio:** recomendado para una experiencia de desarrollo óptima.
 * Un **Emulador de Android** configurado o un **Dispositivo Físico Android** conectado para la ejecución de la aplicación.
 
 ### Pasos para Compilar y Ejecutar
@@ -74,8 +74,8 @@ Para compilar y ejecutar FinancePal, asegúrate de tener instalados los siguient
 └── .gitignore
 ```
 
-- **app/src/main/java/com/example/financepal/**: Lógica principal, pantallas y controladores.
-- **app/src/main/res/**: Layouts, recursos gráficos y textos.
+- **app/src/main/java/com/example/financepal/**: lógica principal, pantallas y controladores.
+- **app/src/main/res/**: layouts, recursos gráficos y textos.
 
 ## 👥 Créditos y Autores
 
