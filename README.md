@@ -46,11 +46,11 @@ Para compilar y ejecutar FinancePal, asegúrate de tener instalados los siguient
     git clone https://[https://github.com/cristoferOrdonez/FinancePal.git](https://github.com/cristoferOrdonez/FinancePal.git)
     ```
 2.  **Abrir el Proyecto en Android Studio:**
-    Navega hasta la carpeta del proyecto clonado y ábrelo directamente con Android Studio.
+    navega hasta la carpeta del proyecto clonado y ábrelo directamente con Android Studio.
 3.  **Sincronizar y Compilar el Proyecto:**
-    Utiliza la opción 'Sync Project with Gradle Files' en Android Studio para resolver todas las dependencias y compilar el código.
+    utiliza la opción 'Sync Project with Gradle Files' en Android Studio para resolver todas las dependencias y compilar el código.
 4.  **Ejecutar la Aplicación:**
-    Selecciona un emulador o un dispositivo físico y ejecuta la aplicación.
+    selecciona un emulador o un dispositivo físico y ejecuta la aplicación.
 
 ### Notas Importantes
 
